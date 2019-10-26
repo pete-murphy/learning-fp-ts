@@ -1,6 +1,7 @@
 {
   "ts": true,
-  "plugins": [
-    "@babel/plugin-transform-typescript"
-  ]
+  "plugins": ["@babel/plugin-transform-typescript"],
+  "transform": {
+    "^.+\\.[t|j]sx?$": "babel-jest"
+  }
 }

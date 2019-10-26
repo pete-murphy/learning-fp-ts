@@ -1,19 +1,5 @@
-// import { vms } from "./search/vm.examples.ignore";
-import _ from "lodash";
-import { group } from "fp-ts/lib/NonEmptyArray";
-import { contramap, eqString } from "fp-ts/lib/Eq";
-import { VM } from "./search/vm.types.ignore";
-import { vmToNameLens } from "./search/search";
-import * as M from "fp-ts/lib/Map";
-import { array, snoc, getMonoid } from "fp-ts/lib/Array";
+import { array, getMonoid } from "fp-ts/lib/Array";
 import { fromFoldable } from "fp-ts/lib/Record";
-
-// _.groupBy(vms, "group.name"); //?
-
-const eqVm = contramap(vmToNameLens.get)(eqString);
-// group(eqVm)(vms); //?
-
-// fromFoldable(array)(vms.map(vm => [vmToNameLens.get(vm), [vm]]), concat); //?
 
 type X = {
   name: string;

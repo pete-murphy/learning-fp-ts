@@ -5,6 +5,7 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "resolveJsonModule": true,
+    "strictNullChecks": true,
     "esModuleInterop": true,
     "lib": ["es2019"]
   },
