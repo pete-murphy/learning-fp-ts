@@ -1,7 +1,9 @@
 import { sequenceT } from "fp-ts/lib/Apply";
-import { array } from "fp-ts/lib/Array";
+import { array, map as mapArray } from "fp-ts/lib/Array";
 import { nonEmptyArray, fromArray } from "fp-ts/lib/NonEmptyArray";
-import { map, some } from "fp-ts/lib/Option";
+import { option } from "fp-ts/lib/Option";
+import { flow } from "fp-ts/lib/function";
+import { monoidString, fold } from "fp-ts/lib/Monoid";
 
 const sequenceArr = sequenceT(array);
 const sequenceNEA = sequenceT(nonEmptyArray);
@@ -19,13 +21,34 @@ const variations: Array<Array<string>> = [
 // Show me all the possible combinations
 
 // This works but doesn't type check
-sequenceArr(...variations).map(v => v.join("")); //?
+sequenceArr(...(variations as { 0: string } & any)).map(vs =>
+  ((vs as unknown) as Array<string>).join("")
+); //?
 
 const variationsNEA = fromArray(variations);
 // Wat
-map(sequenceNEA)(variationsNEA); //?
+option.map(variationsNEA, flow(nonEmptyArray.sequence(array))); //?
 
 // This 👍
 array
   .sequence(array)(variations)
-  .map(v => v.join("")); //?
+  .map(vs => vs.join("")); //?
+
+// or
+flow(
+  array.sequence(array),
+  (xss: Array<Array<string>>) =>
+    xss.map(xs => array.reduce(xs, monoidString.empty, monoidString.concat))
+)(variations); //?
+
+// or
+flow(
+  array.sequence(array),
+  (xs: Array<Array<string>>) => array.map(xs, fold(monoidString))
+)(variations); //?
+
+// or
+flow(
+  array.sequence(array),
+  mapArray(fold(monoidString))
+)(variations); //?
