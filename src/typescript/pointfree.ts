@@ -15,10 +15,10 @@ const bar: (a: number) => number = x =>
   );
 const baz: (a: number) => number = flow(
   mul(2),
-  add(1)
+  add(10)
 );
 const quux: (a: number) => number = reader.compose(
-  add(1),
+  add(10),
   mul(2)
 );
 
@@ -26,3 +26,10 @@ foo(3); //?
 bar(3); //?
 baz(3); //?
 quux(3); //?
+
+// reader.compose(
+//   x => x + 1,
+//   x => x * 2
+// )(3); //?
+
+// flow();
