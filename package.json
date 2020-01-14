@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "@devexperts/remote-data-ts": "^2.0.0",
+    "@mostly-adequate/support": "^2.0.1",
     "@types/jest": "^24.0.20",
     "@types/lodash": "^4.14.144",
     "@types/node-fetch": "^2.5.2",
