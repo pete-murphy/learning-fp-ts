@@ -8,6 +8,7 @@ import {
 } from "@devexperts/remote-data-ts"
 import { option, none, some } from "fp-ts/lib/Option"
 import { array } from "fp-ts/lib/Array"
+import { getFoldableComposition } from "fp-ts/lib/Foldable"
 
 or(remoteData)(initial) //?
 or(remoteData)(pending) //?
@@ -47,6 +48,9 @@ and(remoteData)(failure("Oops!")) //?
 and(remoteData)(failure(true)) //?
 and(remoteData)(success(false)) //?
 and(remoteData)(success(true)) //?
+
+const arrayOfRemoteData = getFoldableComposition(array, remoteData) //?
+and(arrayOfRemoteData)([initial, success(true), pending]) //?
 
 and(option)(none) //?
 and(option)(some(false)) //?
