@@ -333,14 +333,6 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-syntax-optional-chaining" "^7.8.0"
 
-"@babel/plugin-proposal-pipeline-operator@^7.5.0":
-  version "7.8.3"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-pipeline-operator/-/plugin-proposal-pipeline-operator-7.8.3.tgz#c3569228e7466f91bfff7f1c1ae18fb5d36b3097"
-  integrity sha512-Z0qV3aUYoLUAnVLdfLTlz/GJYfcrbX7Mhrp897Twik29wQseAFAAXQ4TPvN1oswVBHdN74sLPIn9HVfTXtjuQA==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.8.3"
-    "@babel/plugin-syntax-pipeline-operator" "^7.8.3"
-
 "@babel/plugin-proposal-unicode-property-regex@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-unicode-property-regex/-/plugin-proposal-unicode-property-regex-7.8.3.tgz#b646c3adea5f98800c9ab45105ac34d06cd4a47f"
@@ -397,13 +389,6 @@
   integrity sha512-KoK9ErH1MBlCPxV0VANkXW2/dw4vlbGDrFgz8bmUsBGYkFRcbRwMh6cIJubdPrkxRwuGdtCk0v/wPTKbQgBjkg==
   dependencies:
     "@babel/helper-plugin-utils" "^7.8.0"
-
-"@babel/plugin-syntax-pipeline-operator@^7.8.3":
-  version "7.8.3"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-pipeline-operator/-/plugin-syntax-pipeline-operator-7.8.3.tgz#945d9f13958408e2b1048f6ebe03f370d390aaca"
-  integrity sha512-GhiBvlXZLWeP+MjKaEv33KmiR/QMCv4iCwz1AuuAp7pHxBvOxxyQmIPukh+N/py6PRLYG10bvRCNeenG34QbDA==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.8.3"
 
 "@babel/plugin-syntax-top-level-await@^7.8.3":
   version "7.8.3"
@@ -2825,6 +2810,14 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
+fast-check@^1.16.0:
+  version "1.24.1"
+  resolved "https://registry.yarnpkg.com/fast-check/-/fast-check-1.24.1.tgz#42a153e664122b1a2defdaea4e9b8311635fa7e7"
+  integrity sha512-ECF5LDbt4F8sJyTDI62fRLn0BdHDAdBacxlEsxaYbtqwbsdWofoYZUSaUp9tJrLsqCQ8jG28SkNvPZpDfNo3tw==
+  dependencies:
+    pure-rand "^2.0.0"
+    tslib "^1.10.0"
+
 fast-check@^1.18.1:
   version "1.23.0"
   resolved "https://registry.yarnpkg.com/fast-check/-/fast-check-1.23.0.tgz#7abe0059b192fb9025cd7d6640532fe8ab538746"
@@ -2965,6 +2958,13 @@ fp-ts-contrib@^0.1.3:
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/fp-ts-contrib/-/fp-ts-contrib-0.1.14.tgz#2f46cf28749e927ba66962a40158d0043b7ed05b"
   integrity sha512-5mJetgRt/u4TBgBZ9dnHzKMRj5dAXFNvmE4cDU/9ObfXm4ndA0NWuDoS1VE2hTQKSV6PwuKgDfaR3Q4cuMAAIQ==
+
+fp-ts-laws@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/fp-ts-laws/-/fp-ts-laws-0.2.1.tgz#d9f7f1fd51a84e1cedcd059af10fa67d8d6e7c6a"
+  integrity sha512-KHsBlV7Cq0iHQ6x6tqZ01Kzzao/k1Z8oFHX/jPugRbd254xyDfw1sDSQYKErKInHNIwyqjnO+HU+CtJg85d38w==
+  dependencies:
+    fast-check "^1.16.0"
 
 fp-ts@^2.0.0, fp-ts@^2.0.3:
   version "2.5.3"

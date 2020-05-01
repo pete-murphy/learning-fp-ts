@@ -11,7 +11,8 @@ const traversal = fromTraversable(array)<User>()
 const mkUserLens = Lens.fromProp<User>()
 const userToNameLens = mkUserLens("name")
 const userToIdLens = mkUserLens("id")
-const toLocaleUpperCase = (str: string) => str.toLocaleUpperCase()
+const toLocaleUpperCase = (str: string) =>
+  str.toLocaleUpperCase()
 
 const simpleUsers: Array<User> = [
   { id: 0, name: "Pete" },
@@ -19,10 +20,12 @@ const simpleUsers: Array<User> = [
   { id: 2, name: "Toni" },
 ]
 
-traversal.modify(u =>
+traversal.modify((u) =>
   u.id > 0 ? userToNameLens.modify(toLocaleUpperCase)(u) : u
 )(simpleUsers) //?
 
-traversal.modify(u =>
-  (u.id > 0 ? userToNameLens.modify(toLocaleUpperCase) : identity)(u)
+traversal.modify((u) =>
+  (u.id > 0
+    ? userToNameLens.modify(toLocaleUpperCase)
+    : identity)(u)
 )(simpleUsers) //?
