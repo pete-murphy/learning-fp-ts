@@ -9,25 +9,14 @@ const pick1 = <K extends PropertyKey>(ks: Array<K>) => <
 >(
   obj: A
 ): Pick<A, K> =>
-  Object.assign(
-    {},
-    ...ks.map((k) => (k in obj ? { [k]: obj[k] } : {}))
-  )
+  Object.assign({}, ...ks.map(k => (k in obj ? { [k]: obj[k] } : {})))
 
-const pick2 = <
-  A extends Record<PropertyKey, unknown>,
-  K extends keyof A
->(
+const pick2 = <A extends Record<PropertyKey, unknown>, K extends keyof A>(
   ks: Array<K>
 ) => (obj: A): Pick<A, K> =>
-  Object.assign(
-    {},
-    ...ks.map((k) => (k in obj ? { [k]: obj[k] } : {}))
-  )
+  Object.assign({}, ...ks.map(k => (k in obj ? { [k]: obj[k] } : {})))
 
-const pick3 = <T>() => <K extends keyof T>(ks: K[]) => (
-  x: T
-): Pick<T, K> => {
+const pick3 = <T>() => <K extends keyof T>(ks: K[]) => (x: T): Pick<T, K> => {
   // I don't believe there's any reasonable way to model this sort of
   // transformation in the type system without an assertion - at least here
   // it's in a single reused place

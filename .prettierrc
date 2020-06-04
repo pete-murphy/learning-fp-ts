@@ -4,5 +4,6 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "printWidth": 60
+  "printWidth": 80,
+  "arrowParens": "avoid"
 }

@@ -4,9 +4,9 @@ type EmailAddress = string | string[] | null | undefined
 
 type NonNullEmailAddress = NonNull<EmailAddress>
 
-const foo0 = (str: NonNull<string>): string => str.toUpperCase()
+// const foo0 = (str: NonNull<string>): string => str.toUpperCase()
 
-declare const bar0: string | undefined
+// declare const bar0: string | undefined
 
 //
 type StringOrNumber<T extends string | number> = T extends string
@@ -15,20 +15,20 @@ type StringOrNumber<T extends string | number> = T extends string
 
 // foo0(bar0)
 
-type Bar = {
+type Bar_ = {
   a: string
 }
-type Baz = {
+type Baz_ = {
   b: number
 }
 
 // This would also work for overloading fn
-// function fn(a: string): Bar
-// function fn(a: number): Baz
-// function fn(a: string): Bar | Baz {
+function fn(a: string): Bar_
+function fn(a: number): Baz_
+// function fn(a: string): Bar_ | Baz_ {
 
-function fn<T extends string | number>(a: T): T extends string ? Bar : Baz
-function fn<T extends string | number>(a: T): Bar | Baz {
+// function fn<T extends string | number>(a: T): T extends string ? Bar : Baz
+function fn<T extends string | number>(a: T): Bar_ | Baz_ {
   switch (typeof a) {
     case "string":
       return {
@@ -51,10 +51,10 @@ function fn<T extends string | number>(a: T): Bar | Baz {
 //   }
 // }
 
-const x = fn("")
-const y = fn(0)
+const x = fn("") //?
+const y = fn(0) //?
 
-const quux: { bar: number } & { [key in string]: unknown } = {
-  foo: "asdf",
-  bar: 123,
-}
+// const quux: { bar: number } & { [key in string]: unknown } = {
+//   foo: "asdf",
+//   bar: 123,
+// }
