@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "strictNullChecks": true,
+    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "lib": ["es2019"],

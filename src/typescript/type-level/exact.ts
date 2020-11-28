@@ -14,10 +14,10 @@ _f({ a: "a", b: "b" })
 g({ a: "a", b: "b" })
 
 // ...but if we try to call them with `foo: {a: string; b: string}`...
-const foo = { a: "a", b: "b" }
+const _foo = { a: "a", b: "b" }
 
 // ...only `f` throws a type error.
-_f(foo)
-g(foo)
+_f(_foo)
+g(_foo)
 
 // This was unexpected.

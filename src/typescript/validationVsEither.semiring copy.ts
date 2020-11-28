@@ -6,7 +6,7 @@ import {
   getSemiringValidation,
   of as pure,
   alt,
-} from "./freeSemiring"
+} from "./freeSemiring.old"
 import { sequenceT } from "fp-ts/lib/Apply"
 
 type ValidationError = string

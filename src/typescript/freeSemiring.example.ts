@@ -1,4 +1,4 @@
-import { getSemiring, ap, alt, of } from "./freeSemiring"
+import { getSemiring, ap, alt, of } from "./freeSemiring.old"
 import { Option, some, none } from "fp-ts/lib/Option"
 
 const { add, zero, mul, one } = getSemiring<string>()

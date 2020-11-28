@@ -5,7 +5,7 @@ import {
   Free,
   getSemiringValidation,
   of as pure,
-} from "./freeSemiring"
+} from "./freeSemiring.old"
 import { constant } from "fp-ts/lib/function"
 
 type ValidationError = string
