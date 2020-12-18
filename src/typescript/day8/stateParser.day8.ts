@@ -16,28 +16,26 @@ const allMetadata: (node: Node) => number[] = node => [
   ...node.children.flatMap(allMetadata),
 ]
 
-const getInt = (): State<number[], number> =>
-  pipe(
-    St.get<number[]>(),
-    St.chain(([first, ...rest]: number[]) =>
-      pipe(
-        St.of<number[], number>(first),
-        St.chainFirst(() => St.put(rest))
-      )
+const getInt: State<number[], number> = pipe(
+  St.get<number[]>(),
+  St.chain(([first, ...rest]) =>
+    pipe(
+      St.of<number[], number>(first),
+      St.chainFirst(() => St.put(rest))
     )
   )
+)
 
-const getNode = (): State<number[], Node> =>
-  pipe(
-    sequenceT(St.state)(getInt(), getInt()),
-    St.chain(
-      ([n, m]): State<number[], Node> =>
-        sequenceS(St.state)({
-          children: St.sequenceArray(A.replicate(n, getNode())),
-          metadata: St.sequenceArray(A.replicate(m, getInt())),
-        })
-    )
+const getNode: State<number[], Node> = pipe(
+  sequenceT(St.state)(getInt, getInt),
+  St.chain(
+    ([n, m]): State<number[], Node> =>
+      sequenceS(St.state)({
+        children: St.sequenceArray(A.replicate(n, getNode)),
+        metadata: St.sequenceArray(A.replicate(m, getInt)),
+      })
   )
+)
 
 const words = (str: string) => str.split(/\s/)
 
@@ -46,7 +44,7 @@ const main = () =>
     fs.readFileSync("input", "utf8"),
     words,
     A.map(Number),
-    (ns: number[]) => St.evaluate(ns)(getNode()),
+    ns => St.evaluate(ns)(getNode),
     allMetadata,
     fold(monoidSum),
     console.log
