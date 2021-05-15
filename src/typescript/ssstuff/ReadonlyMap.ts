@@ -113,15 +113,10 @@ export const alter =
       }
     })
 
-    pipe(
-      f(foundA),
-      O.fold(
-        () => {},
-        a_ => {
-          m_.set(k, a_)
-        }
-      )
-    )
+    const alteredA = f(foundA)
+    if (O.isSome(alteredA)) {
+      m_.set(k, alteredA.value)
+    }
 
     return m_
   }
@@ -135,7 +130,7 @@ export const readonlyArrayUnions =
 
     ms.forEach(m => {
       m.forEach((a, k) => {
-        if (!Array.from(m_.keys()).some(k_ => eqK.equals(k, k_))) {
+        if (!RM.member(eqK)(k)(m_)) {
           m_.set(k, a)
         }
       })
