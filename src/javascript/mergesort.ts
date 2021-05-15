@@ -31,11 +31,6 @@ const sortByImpl = function <A>() {
       if (c > 0) {
         xs1[k++] = y
         ++j
-      } else if (c === 0) {
-        xs1[k++] = x
-        xs1[k++] = y
-        ++i
-        ++j
       } else {
         xs1[k++] = x
         ++i
@@ -71,6 +66,14 @@ const ordPairByX: Ord<Pair> = a => b => (a.x > b.x ? 1 : a.x < b.x ? -1 : 0)
 
 const ps1: Pair[] = [1, 2, 3, 4].map(y => ({ x: 0, y }))
 const ps2: Pair[] = [1, 2, 3, 4, 5, 6, 7].map(y => ({ x: 0, y }))
+const ps3: Pair[] = [1, 2, 3, 4, 5, 6, 7].map((y, ix) => ({
+  x: ix % 2 == 0 ? -ix : ix,
+  y,
+}))
 
 sortByImpl<Pair>()(ordPairByX)(x => x)(ps1).map(({ y }) => y) //?
 sortByImpl<Pair>()(ordPairByX)(x => x)(ps2).map(({ y }) => y) //?
+sortByImpl<Pair>()(ordPairByX)(x => x)(
+  sortByImpl<Pair>()(ordPairByX)(x => x)(ps3)
+).map(({ y }) => y) //?
+sortByImpl<Pair>()(ordPairByX)(x => x)(ps3).map(({ y }) => y) //?

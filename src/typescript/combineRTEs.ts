@@ -1,4 +1,5 @@
 import * as RTE from "fp-ts/lib/ReaderTaskEither"
+import * as TE from "fp-ts/lib/TaskEither"
 import * as A from "fp-ts/lib/Array"
 import * as T from "fp-ts/lib/Task"
 import { pipe } from "fp-ts/lib/pipeable"
@@ -98,5 +99,38 @@ export function combineRTE<Rtes extends DEFAULT_RTES>(
   ) as unknown) as CombinedRtes<Rtes>
 }
 
-console.time("combineRTE")
-combineRTE([rte, rte, rte])({})().then(() => console.timeEnd("combineRTE"))
+export function sequenceW<Rtes extends DEFAULT_RTES>(
+  rtes: Rtes
+): CombinedRtes<Rtes> {
+  return (A.array.sequence(RTE.readerTaskEither)(
+    unsafeCoerceToArray(rtes)
+  ) as unknown) as CombinedRtes<Rtes>
+}
+
+type Foo = { foo: string }
+type Bar = { bar: string }
+type Baz = { baz: string }
+
+const rte1: RTE.ReaderTaskEither<Foo, never, {}> = (_: { foo: string }) =>
+  TE.right({})
+const rte2: RTE.ReaderTaskEither<Bar, never, {}> = (_: { bar: string }) =>
+  TE.right({})
+const rte3: RTE.ReaderTaskEither<Baz, never, {}> = (_: { baz: string }) =>
+  TE.right({})
+
+const x = combineRTE([rte1, rte2, rte3])
+
+// const y = RTE.sequenceArray()
+
+// type Flatten<A, S>
+//   = A extends [infer H]          // (1)
+//   ? S & H                        // (2)
+//   : A extends [infer I, infer T] // (3)
+//   ? [Flatten<T, S & I>]          // (4)
+//   : S                            // (5)
+
+// Flatten<[A, [B]], C>  // Matches on line (3) because [A, [B]] extends [..., ...]
+// [Flatten<[B], C & A>] // ... we can infer the "nested" types and follow the instructions on line (4)
+// [C & A & H]           // ... and then that "inner" Flatten now matches the (1) case, so we `&` them as instructed on line (2)
+
+// Flatten<[A, [B]], C>
