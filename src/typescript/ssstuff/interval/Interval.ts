@@ -18,11 +18,13 @@ import * as Srg from "fp-ts/Semiring"
 import * as At from "monocle-ts/At"
 import * as T from "monocle-ts/Traversal"
 // import * as At from "monocle-ts/At"
-import { pipe } from "fp-ts/lib/function"
+import { pipe, tuple } from "fp-ts/lib/function"
 import { Functor1 } from "fp-ts/lib/Functor"
 import { match } from "../matchers"
 
 import * as Ex from "./Extended"
+
+const matchOnTag = match.on("_tag")
 
 export const URI = "Interval"
 
@@ -93,7 +95,7 @@ export const empty: Empty = {
   _tag: "Empty",
 }
 
-const matchOnTag = match.on("_tag")
+export const singleton = <A>(a: A) => between(a, a)
 
 // @TODO - Pete Murphy 2021-05-14 - NOT TESTED
 export const interval =
@@ -313,3 +315,35 @@ export const intersection =
     const minUB = Ord.min(exOrd)(upperBound(i1), upperBound(i2))
     return interval(ordA)(maxLB, minUB)
   }
+
+export const member =
+  <A>(ordA: Ord.Ord<A>) =>
+  (a: A) =>
+  (i: Interval<A>): boolean =>
+    Ord.between(Ex.getOrd(ordA))(lowerBound(i), upperBound(i))(Ex.finite(a))
+
+/**
+ * @internal
+ */
+export const upTo = <A>(interval: Interval<A>): Interval<A> =>
+  pipe(
+    lowerBound(interval),
+    matchOnTag({
+      NegInf: () => empty,
+      Finite: ({ value }) => lessThan(value),
+      PosInf: () => infinite,
+    })
+  )
+
+/**
+ * @internal
+ */
+export const downTo = <A>(interval: Interval<A>): Interval<A> =>
+  pipe(
+    upperBound(interval),
+    matchOnTag({
+      NegInf: () => infinite,
+      Finite: ({ value }) => greaterThan(value),
+      PosInf: () => empty,
+    })
+  )

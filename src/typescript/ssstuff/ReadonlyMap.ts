@@ -6,6 +6,7 @@ import * as Fld from "fp-ts/lib/Foldable"
 import * as O from "fp-ts/lib/Option"
 import * as RA from "fp-ts/lib/ReadonlyArray"
 import * as N from "fp-ts/lib/number"
+import * as Sg from "fp-ts/lib/Semigroup"
 import { pipe } from "fp-ts/lib/function"
 import * as Eq from "fp-ts/lib/Eq"
 
@@ -152,4 +153,51 @@ export const union =
     })
 
     return m_
+  }
+
+export const lookupLE =
+  <K>(ordK: Ord.Ord<K>) =>
+  (k: K) =>
+  <A>(m: ReadonlyMap<K, A>): O.Option<A> => {
+    const lookupResult = RM.lookup(ordK)(k)(m)
+    if (O.isSome(lookupResult)) {
+      return lookupResult
+    }
+
+    let foundA: null | [K, A] = null
+
+    const leq = Ord.leq(ordK)
+    const between = Ord.between(ordK)
+
+    m.forEach((a, k_) => {
+      if (
+        (foundA === null && leq(k_, k)) ||
+        (foundA !== null && between(foundA[0], k)(k_))
+      ) {
+        foundA = [k_, a]
+      }
+    })
+
+    return foundA === null ? O.none : O.some(foundA[1])
+  }
+
+/**
+ * @internal
+ */
+export const splitLookupLE =
+  <K>(ordK: Ord.Ord<K>) =>
+  (k: K) =>
+  <A>(
+    m: ReadonlyMap<K, A>
+  ): readonly [ReadonlyMap<K, A>, O.Option<A>, ReadonlyMap<K, A>] => {
+    const [smaller, x, larger] = splitLookup(ordK)(k)(m)
+    return O.isSome(x)
+      ? [smaller, x, larger]
+      : pipe(
+          maxView(ordK)(smaller),
+          O.fold(
+            () => [smaller, O.none, larger],
+            ([v, smaller_]) => [smaller_, O.some(v), larger]
+          )
+        )
   }

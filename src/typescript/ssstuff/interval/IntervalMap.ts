@@ -2,6 +2,8 @@ import { match } from "../matchers"
 import { Ord, RA, RM, O, pipe, tuple, N } from "../fp-ts-imports"
 import * as Ex from "./Extended"
 import * as I from "./Interval"
+import * as IS from "./IntervalSet"
+import { not } from "fp-ts/lib/function"
 
 const matchOnTag = match.on("_tag")
 
@@ -53,46 +55,55 @@ export const alter =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(f: (x: O.Option<A>) => O.Option<A>) =>
   (interval: I.Interval<K>) =>
-  (original: IntervalMap<K, A>): IntervalMap<K, A> =>
-    I.isEmpty(interval) ? original : original
+  (original: IntervalMap<K, A>): IntervalMap<K, A> => {
+    if (I.isEmpty(interval)) {
+      return original
+    }
 
-export const splitLookupLE =
-  <K>(ordK: Ord.Ord<K>) =>
-  (k: K) =>
-  <A>(
-    m: ReadonlyMap<K, A>
-  ): readonly [ReadonlyMap<K, A>, O.Option<A>, ReadonlyMap<K, A>] => {
-    const [smaller, x, larger] = RM.splitLookup(ordK)(k)(m)
-    return O.isSome(x)
-      ? [smaller, x, larger]
-      : pipe(
-          RM.maxView(ordK)(smaller),
-          O.fold(
-            () => [smaller, O.none, larger],
-            ([a, smaller_]) => [smaller_, O.some(a), larger]
-          )
+    const [m1, m2, m3] = split(ordK)(interval)(original)
+
+    const m2_: IntervalMap<K, A> = pipe(
+      m2,
+      RM.filterMap(([j, a]) =>
+        pipe(
+          f(O.some(a)),
+          O.map(b => tuple(j, b))
         )
+      )
+    )
+
+    const js = Array.from(
+      IS.difference(ordK)(IS.singleton(interval), keysSet(ordK)(m2)).values()
+    )
+
+    const m2__ = pipe(
+      f(O.none),
+      O.fold(
+        () => RM.empty,
+        a =>
+          pipe(
+            js,
+            RA.map(j => tuple(j, a)),
+            fromReadonlyArray(ordK)
+          )
+      )
+    )
+
+    return RM.readonlyArrayUnions(Ex.getOrd(ordK))([m1, m2_, m2__, m3])
   }
 
-export const upTo = <A>(interval: I.Interval<A>): I.Interval<A> =>
-  pipe(
-    I.lowerBound(interval),
-    matchOnTag({
-      NegInf: () => I.empty,
-      Finite: ({ value }) => I.lessThan(value),
-      PosInf: () => I.infinite,
-    })
-  )
+const xs: IntervalMap<number, string> = new Map([
+  [Ex.finite(2), [I.between(2, 10), "a"]],
+])
 
-export const downTo = <A>(interval: I.Interval<A>): I.Interval<A> =>
-  pipe(
-    I.upperBound(interval),
-    matchOnTag({
-      NegInf: () => I.infinite,
-      Finite: ({ value }) => I.greaterThan(value),
-      PosInf: () => I.empty,
-    })
-  )
+export const keysSet =
+  <K>(ordK: Ord.Ord<K>) =>
+  <A>(m: IntervalMap<K, A>): IS.IntervalSet<K> =>
+    pipe(
+      Array.from(m.entries()),
+      RA.map(([_, [i, _a]]) => i),
+      IS.fromReadonlyArray(ordK)
+    )
 
 export const insert =
   <K>(ordK: Ord.Ord<K>) =>
@@ -134,15 +145,15 @@ export const split =
     m: IntervalMap<K, A>
   ): readonly [IntervalMap<K, A>, IntervalMap<K, A>, IntervalMap<K, A>] => {
     const ordExK = Ex.getOrd(ordK)
-    const [smaller, m1, xs] = splitLookupLE(ordExK)(I.lowerBound(i))(m)
-    const [middle, m2, larger] = splitLookupLE(ordExK)(I.upperBound(i))(xs)
+    const [smaller, m1, xs] = RM.splitLookupLE(ordExK)(I.lowerBound(i))(m)
+    const [middle, m2, larger] = RM.splitLookupLE(ordExK)(I.upperBound(i))(xs)
 
     const x: IntervalMap<K, A> = pipe(
       m1,
       O.fold(
         () => RM.empty,
         ([j, b]) => {
-          const k = I.intersection(ordK)(upTo(i), j)
+          const k = I.intersection(ordK)(I.upTo(i), j)
           return I.isEmpty(k)
             ? smaller
             : RM.upsertAt(Ex.getOrd(ordK))<readonly [I.Interval<K>, A]>(
@@ -160,25 +171,38 @@ export const split =
 
     const y: IntervalMap<K, A> = pipe(
       ms,
-      RA.filter(([j, _b]) => !I.isEmpty(I.intersection(ordK)(i, j))),
-      RA.map(([j, b]) => {
-        const k = I.intersection(ordK)(i, j)
-        return RM.singleton(I.lowerBound(k), tuple(k, b))
-      }),
+      RA.filterMap(([j, b]) =>
+        pipe(
+          I.intersection(ordK)(i, j),
+          O.fromPredicate(not(I.isEmpty)),
+          O.map(k => RM.singleton(I.lowerBound(k), tuple(k, b)))
+        )
+      ),
       RA.prepend(middle),
       RM.readonlyArrayUnions(ordExK)
     )
 
     const z: IntervalMap<K, A> = pipe(
       ms,
-      RA.filter(([j, _b]) => !I.isEmpty(I.intersection(ordK)(downTo(i), j))),
-      RA.map(([j, b]) => {
-        const k = I.intersection(ordK)(downTo(i), j)
-        return RM.singleton(I.lowerBound(k), tuple(k, b))
-      }),
+      RA.filterMap(([j, b]) =>
+        pipe(
+          I.intersection(ordK)(I.downTo(i), j),
+          O.fromPredicate(not(I.isEmpty)),
+          O.map(k => RM.singleton(I.lowerBound(k), tuple(k, b)))
+        )
+      ),
       RA.prepend(larger),
       RM.readonlyArrayUnions(ordExK)
     )
 
     return tuple(x, y, z)
   }
+
+export const lookup =
+  <K>(ordK: Ord.Ord<K>) =>
+  (k: K) =>
+  <A>(m: IntervalMap<K, A>): O.Option<A> =>
+    pipe(
+      RM.lookupLE(Ex.getOrd(ordK))(Ex.finite(k))(m),
+      O.filterMap(([i, x]) => (I.member(ordK)(k)(i) ? O.some(x) : O.none))
+    )

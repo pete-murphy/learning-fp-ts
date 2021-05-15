@@ -1,6 +1,7 @@
 import * as fc from "fast-check"
 import * as N from "fp-ts/Number"
 
+import * as Ex from "./Extended"
 import * as _ from "./Interval"
 
 const arbitraryIntervalNum: fc.Arbitrary<_.Interval<number>> = fc
@@ -89,9 +90,84 @@ describe("Interval meet semilattice", () => {
 })
 
 describe("lowerBound", () => {
-  it("")
+  // it("")
 })
 
 describe("upperBound", () => {})
 
-describe("intersection", () => {})
+describe("intersection", () => {
+  const intersection = _.intersection(N.Ord)
+  const member = _.member(N.Ord)
+
+  test("if an interval i contains x, the intersection of i and singleton x is singleton x", () => {
+    fc.assert(
+      fc.property(fc.integer(), arbitraryIntervalNum, (n, i) => {
+        fc.pre(member(n)(i))
+
+        const b = _.singleton(n)
+        expect(intersection(b, i)).toEqual(b)
+      })
+    )
+  })
+
+  test("two distinct singletons have no intersection", () => {
+    fc.assert(
+      fc.property(fc.integer(), fc.integer(), (n, m) => {
+        fc.pre(n !== m)
+
+        expect(intersection(_.singleton(n), _.singleton(m))).toEqual(_.empty)
+      })
+    )
+  })
+
+  test("intersection is commutative", () => {
+    fc.assert(
+      fc.property(arbitraryIntervalNum, arbitraryIntervalNum, (a, b) => {
+        const ab = intersection(a, b)
+        const ba = intersection(b, a)
+
+        expect(ab).toEqual(ba)
+      })
+    )
+  })
+
+  test("intersection is associative", () => {
+    fc.assert(
+      fc.property(
+        arbitraryIntervalNum,
+        arbitraryIntervalNum,
+        arbitraryIntervalNum,
+        (a, b, c) => {
+          const left = intersection(a, intersection(b, c))
+          const right = intersection(intersection(a, b), c)
+
+          expect(left).toEqual(right)
+        }
+      )
+    )
+  })
+})
+
+describe("interval", () => {
+  const interval = _.interval(N.Ord)
+  const intersection = _.intersection(N.Ord)
+  test("two disjoint intervals have no intersection", () => {
+    const a = interval(Ex.finite(10), Ex.posInf)
+    const b = interval(Ex.negInf, Ex.finite(0))
+
+    const actual = intersection(a, b)
+    const expected = _.empty
+
+    expect(actual).toEqual(expected)
+  })
+
+  test("intersection of an interval with a subinterval is the subinterval", () => {
+    const a = interval(Ex.finite(10), Ex.posInf)
+    const b = interval(Ex.finite(10), Ex.finite(20))
+
+    const actual = intersection(a, b)
+    const expected = b
+
+    expect(actual).toEqual(expected)
+  })
+})

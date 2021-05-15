@@ -1,6 +1,10 @@
 import * as fc from "fast-check"
-import * as N from "fp-ts/Number"
-import { RM, Sg, RA, tuple, Ord, pipe } from "../fp-ts-imports"
+import * as N from "fp-ts/number"
+import * as RM from "fp-ts/ReadonlyMap"
+import { tuple, pipe, constVoid } from "fp-ts/function"
+import * as O from "fp-ts/Option"
+import * as Ord from "fp-ts/Ord"
+import * as RA from "fp-ts/ReadonlyArray"
 import { match } from "../matchers"
 import * as Ex from "./Extended"
 import * as I from "./Interval"
@@ -31,6 +35,105 @@ const arbitraryIntervalMapNumString: fc.Arbitrary<
     )
   )
   .map(mk)
+
+// -- | pick up an element from the interval if the interval is not empty.
+// pickup :: (Real r, Fractional r) => Interval r -> Maybe r
+// pickup i = case (lowerBound' i, upperBound' i) of
+//   ((NegInf,_), (PosInf,_))             -> Just 0
+//   ((Finite x1, in1), (PosInf,_))       -> Just $ case in1 of
+//     Open   -> x1 + 1
+//     Closed -> x1
+//   ((NegInf,_), (Finite x2, in2))       -> Just $ case in2 of
+//     Open   -> x2 - 1
+//     Closed -> x2
+//   ((Finite x1, in1), (Finite x2, in2)) ->
+//     case x1 `compare` x2 of
+//       GT -> Nothing
+//       LT -> Just $ (x1+x2) / 2
+//       EQ -> if in1 == Closed && in2 == Closed then Just x1 else Nothing
+//   _ -> Nothing
+
+const matchOnTag = match.on("_tag")
+
+const pickup = (interval: I.Interval<number>): O.Option<number> =>
+  pipe(tuple(I.lowerBound(interval), I.upperBound(interval)), ([l, u]) =>
+    pipe(
+      l,
+      matchOnTag({
+        NegInf: () =>
+          pipe(
+            u,
+            matchOnTag({
+              NegInf: () => O.none,
+              Finite: ({ value }) => O.some(value),
+              PosInf: () => O.some(0),
+            })
+          ),
+        Finite: x =>
+          pipe(
+            u,
+            matchOnTag({
+              NegInf: () => O.none,
+              Finite: y =>
+                x.value > y.value ? O.none : O.some((x.value + y.value) / 2),
+              PosInf: () => O.some(x.value),
+            })
+          ),
+        PosInf: () => O.none,
+      })
+    )
+  )
+
+describe("pickup", () => {
+  const memberNumInterval = I.member(N.Ord)
+  test("picked-up num is always member of original interval", () => {
+    fc.assert(
+      fc.property(arbitraryIntervalNum, i => {
+        pipe(
+          pickup(i),
+          O.fold(constVoid, n => {
+            expect(memberNumInterval(n)(i)).toBe(true)
+          })
+        )
+      }),
+      { numRuns: 10000 }
+    )
+  })
+})
+
+describe("alter", () => {
+  test('alter (const Nothing) (between 0 10) (fromList [between 0 10, "A"]) == fromList []', () => {
+    const m = mk([[I.between(0, 10), "A"]])
+    const actual = _.alter(N.Ord)((): O.Option<string> => O.none)(
+      I.between(0, 10)
+    )(m)
+    const expected = RM.empty
+
+    expect(actual).toEqual(expected)
+  })
+
+  test("Looking up after altering with f at key is same as applying f after lookup at k", () => {
+    const lookup = _.lookup(N.Ord)
+    const alter = _.alter(N.Ord)
+    fc.assert(
+      fc.property(
+        arbitraryIntervalMapNumString,
+        arbitraryIntervalNum,
+        (m, i) => {
+          pipe(
+            pickup(i),
+            O.fold(constVoid, k => {
+              const f = O.map(x => `${x}-foo`)
+              const lookupAfter = lookup(k)(alter(f)(i)(m))
+              const applyAfter = f(lookup(k)(m))
+              expect(lookupAfter).toEqual(applyAfter)
+            })
+          )
+        }
+      )
+    )
+  })
+})
 
 describe("split", () => {
   test("case 1", () => {
@@ -83,47 +186,51 @@ describe("split", () => {
     expect(actual[2]).toEqual(RM.empty)
   })
 
-  // test("keys in the triplets increase left-to-right", () => {
-  //   fc.assert(
-  //     fc.property(
-  //       arbitraryIntervalMapNumString,
-  //       arbitraryIntervalNum,
-  //       (m, i) => {
-  //         const [small, middle, large] = _.split(N.Ord)(i)(m)
+  test("keys in the triplet increase left-to-right", () => {
+    const coerce: (n: Ex.Extended<number>) => number = match.on("_tag")({
+      NegInf: () => -Infinity,
+      Finite: ({ value }) => value,
+      PosInf: () => Infinity,
+    })
 
-  //         const keys = RM.keys(Ex.getOrd(N.Ord))
+    fc.assert(
+      fc.property(
+        arbitraryIntervalMapNumString,
+        arbitraryIntervalNum,
+        (m, i) => {
+          const [small, middle, large] = _.split(N.Ord)(i)(m)
 
-  //         const min = Ord.min(Ex.getOrd(N.Ord))
-  //         const max = Ord.max(Ex.getOrd(N.Ord))
+          const keys = RM.keys(Ex.getOrd(N.Ord))
 
-  //         const smallKeys = keys(small)
-  //         const middleKeys = keys(middle)
-  //         const largeKeys = keys(large)
+          const smallKeys = keys(small)
+          const middleKeys = keys(middle)
+          const largeKeys = keys(large)
 
-  //         const last = <A>(xs: ReadonlyArray<A>) => xs[xs.length - 1]
+          pipe(
+            O.Do,
+            O.apS("maxFromSmall", RA.last(smallKeys)),
+            O.apS("minFromMiddle", RA.head(middleKeys)),
+            O.fold(constVoid, ({ maxFromSmall, minFromMiddle }) =>
+              expect(coerce(maxFromSmall)).toBeLessThanOrEqual(
+                coerce(minFromMiddle)
+              )
+            )
+          )
 
-  //         const coerceWithDefault = (
-  //           n: Ex.Extended<number> | undefined,
-  //           def: number
-  //         ): number =>
-  //           n
-  //             ? pipe(
-  //                 n,
-  //                 match.on("_tag")({
-  //                   NegInf: () => -Infinity,
-  //                   Finite: ({ value }) => value,
-  //                   PosInf: () => Infinity,
-  //                 })
-  //               )
-  //             : def
-
-  //         expect(
-  //           coerceWithDefault(last(smallKeys), -Infinity)
-  //         ).toBeLessThanOrEqual(coerceWithDefault(middleKeys[0], 0))
-  //       }
-  //     )
-  //   )
-  // })
+          pipe(
+            O.Do,
+            O.apS("maxFromMiddle", RA.last(middleKeys)),
+            O.apS("minFromLarge", RA.head(largeKeys)),
+            O.fold(constVoid, ({ maxFromMiddle, minFromLarge }) =>
+              expect(coerce(maxFromMiddle)).toBeLessThanOrEqual(
+                coerce(minFromLarge)
+              )
+            )
+          )
+        }
+      )
+    )
+  })
 })
 
 describe("insert", () => {

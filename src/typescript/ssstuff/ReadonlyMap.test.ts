@@ -1,14 +1,29 @@
 import * as _ from "./ReadonlyMap"
 import * as N from "fp-ts/number"
-import * as Str from "fp-ts/string"
 import * as RA from "fp-ts/ReadonlyArray"
 import * as O from "fp-ts/Option"
+import * as Ord from "fp-ts/Ord"
 import * as Sg from "fp-ts/Semigroup"
 import * as Eq from "fp-ts/Eq"
-import { constant, tuple } from "fp-ts/function"
+import { constant, pipe, tuple } from "fp-ts/function"
 import * as fc from "fast-check"
 
 const mk = _.fromFoldable(N.Ord, Sg.first<string>(), RA.Foldable)
+
+const mkTupN = _.fromFoldable(
+  Ord.tuple(N.Ord, N.Ord),
+  Sg.first<string>(),
+  RA.Foldable
+)
+
+const arbitraryMapTupleNumString: fc.Arbitrary<
+  ReadonlyMap<[number, number], string>
+> = fc
+  .set(fc.integer())
+  .map(ns => ns.map(n => tuple(n, 0)))
+  .chain(pairs =>
+    fc.array(fc.string()).map(strs => new Map(RA.zip(pairs, strs)))
+  )
 
 describe("splitLookup", () => {
   const splitLookup = _.splitLookup(N.Ord)
@@ -224,15 +239,6 @@ describe("readonlyArrayUnions", () => {
   })
 })
 
-const arbitraryMapTupleNumString: fc.Arbitrary<
-  ReadonlyMap<[number, number], string>
-> = fc
-  .set(fc.integer())
-  .map(ns => ns.map(n => tuple(n, 0)))
-  .chain(pairs =>
-    fc.array(fc.string()).map(strs => new Map(RA.zip(pairs, strs)))
-  )
-
 describe("union", () => {
   it('union (fromList [(5, "a"), (3, "b")]) (fromList [(5, "A"), (7, "C")]) == fromList [(3, "b"), (5, "a"), (7, "C")]', () => {
     const union = _.union(N.Eq)
@@ -282,6 +288,76 @@ describe("union", () => {
           const unioned = union(_.singleton(k, v), m)
           const inserted = insert(k, v)(m)
           expect(unioned).toEqual(inserted)
+        }
+      )
+    )
+  })
+})
+
+describe("lookupLE", () => {
+  const lookupLE = _.lookupLE(N.Ord)
+  const m = mk([
+    [5, "a"],
+    [3, "b"],
+  ])
+
+  const ordTup = Ord.tuple(N.Ord, N.Ord)
+  const lookupLETup = _.lookupLE(ordTup)
+  const leqTup = Ord.leq(ordTup)
+
+  it('lookupLE 2 (fromList [(5, "a"), (3, "b")]) == Nothing', () => {
+    const actual = lookupLE(2)(m)
+    const expected = O.none
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('lookupLE 3 (fromList [(5, "a"), (3, "b")]) == Just "b"', () => {
+    const actual = lookupLE(3)(m)
+    const expected = O.some("b")
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('lookupLE 4 (fromList [(5, "a"), (3, "b")]) == Just "b"', () => {
+    const actual = lookupLE(4)(m)
+    const expected = O.some("b")
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('lookupLE 5 (fromList [(5, "a"), (3, "b")]) == Just "a"', () => {
+    const actual = lookupLE(5)(m)
+    const expected = O.some("a")
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('lookupLE 6 (fromList [(5, "a"), (3, "b")]) == Just "a"', () => {
+    const actual = lookupLE(6)(m)
+    const expected = O.some("a")
+
+    expect(actual).toEqual(expected)
+  })
+
+  it("same as converting to array and taking last value where key is less than or equal to k", () => {
+    fc.assert(
+      fc.property(
+        fc.tuple(fc.integer(), fc.integer()),
+        arbitraryMapTupleNumString,
+        (k, m) => {
+          const vOption = lookupLETup(k)(m)
+
+          pipe(
+            m,
+            _.toReadonlyArray(ordTup),
+            RA.takeLeftWhile(([k_, _]) => leqTup(k_, k)),
+            RA.last,
+            O.map(([_, v]) => v),
+            vOption_ => {
+              expect(vOption_).toEqual(vOption)
+            }
+          )
         }
       )
     )
