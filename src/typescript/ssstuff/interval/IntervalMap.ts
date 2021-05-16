@@ -51,57 +51,12 @@ export const insertWith =
 //               Just a -> fromList [(j,a) | j <- IntervalSet.toList js]
 //       in IntervalMap $ Map.unions [m1, m2', m2'', m3]
 
-export const alter =
-  <K>(ordK: Ord.Ord<K>) =>
-  <A>(f: (x: O.Option<A>) => O.Option<A>) =>
-  (interval: I.Interval<K>) =>
-  (original: IntervalMap<K, A>): IntervalMap<K, A> => {
-    if (I.isEmpty(interval)) {
-      return original
-    }
-
-    const [m1, m2, m3] = split(ordK)(interval)(original)
-
-    const m2_: IntervalMap<K, A> = pipe(
-      m2,
-      RM.filterMap(([j, a]) =>
-        pipe(
-          f(O.some(a)),
-          O.map(b => tuple(j, b))
-        )
-      )
-    )
-
-    const js = Array.from(
-      IS.difference(ordK)(IS.singleton(interval), keysSet(ordK)(m2)).values()
-    )
-
-    const m2__ = pipe(
-      f(O.none),
-      O.fold(
-        () => RM.empty,
-        a =>
-          pipe(
-            js,
-            RA.map(j => tuple(j, a)),
-            fromReadonlyArray(ordK)
-          )
-      )
-    )
-
-    return RM.readonlyArrayUnions(Ex.getOrd(ordK))([m1, m2_, m2__, m3])
-  }
-
-const xs: IntervalMap<number, string> = new Map([
-  [Ex.finite(2), [I.between(2, 10), "a"]],
-])
-
 export const keysSet =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(m: IntervalMap<K, A>): IS.IntervalSet<K> =>
     pipe(
-      Array.from(m.entries()),
-      RA.map(([_, [i, _a]]) => i),
+      m,
+      RM.collect(Ex.getOrd(ordK))((_k, [i, _a]) => i),
       IS.fromReadonlyArray(ordK)
     )
 
@@ -171,26 +126,20 @@ export const split =
 
     const y: IntervalMap<K, A> = pipe(
       ms,
-      RA.filterMap(([j, b]) =>
-        pipe(
-          I.intersection(ordK)(i, j),
-          O.fromPredicate(not(I.isEmpty)),
-          O.map(k => RM.singleton(I.lowerBound(k), tuple(k, b)))
-        )
-      ),
+      RA.chain(([j, b]) => {
+        const k = I.intersection(ordK)(i, j)
+        return I.isEmpty(k) ? [] : [RM.singleton(I.lowerBound(k), tuple(k, b))]
+      }),
       RA.prepend(middle),
       RM.readonlyArrayUnions(ordExK)
     )
 
     const z: IntervalMap<K, A> = pipe(
       ms,
-      RA.filterMap(([j, b]) =>
-        pipe(
-          I.intersection(ordK)(I.downTo(i), j),
-          O.fromPredicate(not(I.isEmpty)),
-          O.map(k => RM.singleton(I.lowerBound(k), tuple(k, b)))
-        )
-      ),
+      RA.chain(([j, b]) => {
+        const k = I.intersection(ordK)(I.downTo(i), j)
+        return I.isEmpty(k) ? [] : [RM.singleton(I.lowerBound(k), tuple(k, b))]
+      }),
       RA.prepend(larger),
       RM.readonlyArrayUnions(ordExK)
     )
@@ -206,3 +155,51 @@ export const lookup =
       RM.lookupLE(Ex.getOrd(ordK))(Ex.finite(k))(m),
       O.filterMap(([i, x]) => (I.member(ordK)(k)(i) ? O.some(x) : O.none))
     )
+
+export const alter =
+  <K>(ordK: Ord.Ord<K>) =>
+  <A>(f: (x: O.Option<A>) => O.Option<A>) =>
+  (interval: I.Interval<K>) =>
+  (original: IntervalMap<K, A>): IntervalMap<K, A> => {
+    if (I.isEmpty(interval)) {
+      return original
+    }
+
+    const [m1, m2, m3] = split(ordK)(interval)(original)
+
+    const m2_: IntervalMap<K, A> = pipe(
+      m2,
+      RM.filterMap(([j, a]) =>
+        pipe(
+          f(O.some(a)),
+          O.map(b => tuple(j, b))
+        )
+      )
+    )
+
+    const js = IS.difference(ordK)(IS.singleton(interval), keysSet(ordK)(m2))
+
+    const m2__ = pipe(
+      f(O.none),
+      O.fold(
+        () => RM.empty,
+        a =>
+          pipe(
+            js,
+            RM.collect(Ex.getOrd(ordK))((_, x) => x),
+            RA.map(j => tuple(j, a)),
+            fromReadonlyArray(ordK)
+          )
+      )
+    )
+
+    return RM.readonlyArrayUnions(Ex.getOrd(ordK))([m1, m2_, m2__, m3])
+    // return RM.readonlyArrayUnions(Ex.getOrd(ordK))([m1, m2_, m2__])
+  }
+
+const xs: IntervalMap<number, string> = new Map([
+  [Ex.finite(2), [I.between(2, 10), "a"]],
+])
+
+const zz = alter(N.Ord)(() => O.some("foo"))(I.between(2, 10))(xs)
+zz //?

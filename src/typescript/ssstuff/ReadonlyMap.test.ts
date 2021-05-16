@@ -237,6 +237,21 @@ describe("readonlyArrayUnions", () => {
     ])
     expect(actual).toEqual(expected)
   })
+
+  test("same as reduce with union", () => {
+    const readonlyArrayUnionsTup = _.readonlyArrayUnions(Eq.tuple(N.Eq, N.Eq))
+    const union = _.union(Eq.tuple(N.Eq, N.Eq))
+    const empty = <A>(): ReadonlyMap<readonly [number, number], A> => _.empty
+
+    fc.assert(
+      fc.property(fc.array(arbitraryMapTupleNumString), ms => {
+        const actual = readonlyArrayUnionsTup(ms)
+        const expected = pipe(ms, RA.reduce(empty(), union))
+
+        expect(actual).toEqual(expected)
+      })
+    )
+  })
 })
 
 describe("union", () => {

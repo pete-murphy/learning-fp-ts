@@ -9,6 +9,9 @@ import * as N from "fp-ts/lib/number"
 import * as Sg from "fp-ts/lib/Semigroup"
 import { pipe } from "fp-ts/lib/function"
 import * as Eq from "fp-ts/lib/Eq"
+import * as Ex from "./interval/Extended"
+import * as I from "./interval/Interval"
+import * as IS from "./interval/IntervalSet"
 
 export const maxViewWithKey =
   <K>(ordK: Ord.Ord<K>) =>

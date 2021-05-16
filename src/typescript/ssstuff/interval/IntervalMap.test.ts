@@ -36,25 +36,11 @@ const arbitraryIntervalMapNumString: fc.Arbitrary<
   )
   .map(mk)
 
-// -- | pick up an element from the interval if the interval is not empty.
-// pickup :: (Real r, Fractional r) => Interval r -> Maybe r
-// pickup i = case (lowerBound' i, upperBound' i) of
-//   ((NegInf,_), (PosInf,_))             -> Just 0
-//   ((Finite x1, in1), (PosInf,_))       -> Just $ case in1 of
-//     Open   -> x1 + 1
-//     Closed -> x1
-//   ((NegInf,_), (Finite x2, in2))       -> Just $ case in2 of
-//     Open   -> x2 - 1
-//     Closed -> x2
-//   ((Finite x1, in1), (Finite x2, in2)) ->
-//     case x1 `compare` x2 of
-//       GT -> Nothing
-//       LT -> Just $ (x1+x2) / 2
-//       EQ -> if in1 == Closed && in2 == Closed then Just x1 else Nothing
-//   _ -> Nothing
-
 const matchOnTag = match.on("_tag")
 
+/**
+ * A helper for picking a number that is *stric
+ */
 const pickup = (interval: I.Interval<number>): O.Option<number> =>
   pipe(tuple(I.lowerBound(interval), I.upperBound(interval)), ([l, u]) =>
     pipe(
@@ -65,7 +51,8 @@ const pickup = (interval: I.Interval<number>): O.Option<number> =>
             u,
             matchOnTag({
               NegInf: () => O.none,
-              Finite: ({ value }) => O.some(value),
+              // Finite: ({ value }) => O.some(value - 1),
+              Finite: ({ value }) => O.some(value - 1),
               PosInf: () => O.some(0),
             })
           ),
@@ -75,8 +62,10 @@ const pickup = (interval: I.Interval<number>): O.Option<number> =>
             matchOnTag({
               NegInf: () => O.none,
               Finite: y =>
-                x.value > y.value ? O.none : O.some((x.value + y.value) / 2),
-              PosInf: () => O.some(x.value),
+                // x.value > y.value ? O.none : O.some((x.value + y.value) / 2),
+                x.value >= y.value ? O.none : O.some((x.value + y.value) / 2),
+              PosInf: () => O.some(x.value + 1),
+              // PosInf: () => O.some(x.value),
             })
           ),
         PosInf: () => O.none,
@@ -96,7 +85,7 @@ describe("pickup", () => {
           })
         )
       }),
-      { numRuns: 10000 }
+      { numRuns: 1000 }
     )
   })
 })
@@ -130,7 +119,10 @@ describe("alter", () => {
             })
           )
         }
-      )
+      ),
+      {
+        // numRuns: 500_000,
+      }
     )
   })
 })

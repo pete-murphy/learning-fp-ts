@@ -119,7 +119,7 @@ export const interval =
             matchOnTag({
               NegInf: () => empty,
               Finite: upper_ =>
-                Ord.leq(ordA)(lower_.value, upper_.value)
+                Ord.lt(ordA)(lower_.value, upper_.value)
                   ? between(lower_.value, upper_.value)
                   : empty,
               PosInf: () => greaterThan(lower_.value),
@@ -131,6 +131,30 @@ export const interval =
 
 export const isEmpty = <A>(interval: Interval<A>): interval is Empty =>
   interval._tag === "Empty"
+
+export const isConnected =
+  <A>(ordA: Ord.Ord<A>) =>
+  (i1: Interval<A>, i2: Interval<A>): boolean => {
+    if (isEmpty(i1) || isEmpty(i2)) {
+      return true
+    }
+    return !isEmpty(intersection(ordA)(i1, i2))
+  }
+
+export const hull =
+  <A>(ordA: Ord.Ord<A>) =>
+  (i1: Interval<A>, i2: Interval<A>): Interval<A> => {
+    if (isEmpty(i1)) {
+      return i2
+    }
+    if (isEmpty(i2)) {
+      return i1
+    }
+    const minLB = Ord.min(Ex.getOrd(ordA))(lowerBound(i1), lowerBound(i2))
+    const maxUB = Ord.max(Ex.getOrd(ordA))(upperBound(i1), upperBound(i2))
+
+    return interval(ordA)(minLB, maxUB)
+  }
 
 export const getShowInterval = <A>({
   show,
@@ -320,7 +344,9 @@ export const member =
   <A>(ordA: Ord.Ord<A>) =>
   (a: A) =>
   (i: Interval<A>): boolean =>
-    Ord.between(Ex.getOrd(ordA))(lowerBound(i), upperBound(i))(Ex.finite(a))
+    Ord.between(Ex.getOrd(ordA))(lowerBound(i), upperBound(i))(Ex.finite(a)) &&
+    !Ex.getOrd(ordA).equals(Ex.finite(a), lowerBound(i)) &&
+    !Ex.getOrd(ordA).equals(Ex.finite(a), upperBound(i))
 
 /**
  * @internal
