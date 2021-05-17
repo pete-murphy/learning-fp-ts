@@ -29,7 +29,7 @@ const arbitraryIntervalNum: fc.Arbitrary<I.Interval<number>> = fc
 
 const arbitraryIntervalSetNum: fc.Arbitrary<_.IntervalSet<number>> = fc
   .array(arbitraryIntervalNum)
-  .map(_.fromReadonlyArray(N.Ord))
+  .map(mk)
 
 describe("deleteAt", () => {
   const deleteAt = _.deleteAt(N.Ord)
@@ -67,25 +67,15 @@ describe("deleteAt", () => {
   })
 
   test("case 1", () => {
-    const actual = deleteAt(I.between(1, 2))(
-      _.fromReadonlyArray(N.Ord)([I.between(0, 3)])
-    )
-    const expected = _.fromReadonlyArray(N.Ord)([
-      I.between(0, 1),
-      I.between(2, 3),
-    ])
+    const actual = deleteAt(I.between(1, 2))(mk([I.between(0, 3)]))
+    const expected = mk([I.between(0, 1), I.between(2, 3)])
 
     expect(actual).toEqual(expected)
   })
 
   test("case 2", () => {
-    const actual = deleteAt(I.between(1, 3))(
-      _.fromReadonlyArray(N.Ord)([I.between(0, 3)])
-    )
-    const expected = _.fromReadonlyArray(N.Ord)([
-      I.between(0, 1),
-      // I.between(3, 3),
-    ])
+    const actual = deleteAt(I.between(1, 3))(mk([I.between(0, 3)]))
+    const expected = mk([I.between(0, 1)])
 
     expect(actual).toEqual(expected)
   })
@@ -103,17 +93,25 @@ describe("deleteAt", () => {
     const actual = deleteAt(I.between(1, 4))(
       _.fromReadonlyArray(N.Ord)([I.between(0, 3), I.between(1, 2)])
     )
-    const expected = _.fromReadonlyArray(N.Ord)([
-      I.between(0, 1),
-      // I.between(1, 1),
+    const expected = _.fromReadonlyArray(N.Ord)([I.between(0, 1)])
+
+    expect(actual).toEqual(expected)
+  })
+
+  test("case 5", () => {
+    const original = _.fromReadonlyArray(N.Ord)([
+      I.between(0, 3),
+      I.between(1, 2),
     ])
+    const actual = deleteAt(I.between(5, 6))(original)
+    const expected = original
 
     expect(actual).toEqual(expected)
   })
 })
 
-describe("upsertAt", () => {
-  const upsertAt = _.insert(N.Ord)
+describe("insert", () => {
+  const insert = _.insert(N.Ord)
   test("inserting is commutative", () => {
     fc.assert(
       fc.property(
@@ -121,8 +119,8 @@ describe("upsertAt", () => {
         arbitraryIntervalNum,
         arbitraryIntervalNum,
         (s, i1, i2) => {
-          const i1i2 = upsertAt(i1)(upsertAt(i2)(s))
-          const i2i1 = upsertAt(i2)(upsertAt(i1)(s))
+          const i1i2 = insert(i1)(insert(i2)(s))
+          const i2i1 = insert(i2)(insert(i1)(s))
 
           expect(i1i2).toEqual(i2i1)
         }
@@ -177,12 +175,12 @@ describe("union", () => {
   })
 })
 
-describe("readonlyArrayUnions", () => {
-  const readonlyArrayUnions = _.readonlyArrayUnions(N.Ord)
+describe("unions", () => {
+  const unions = _.unions(N.Ord, RA.Foldable)
   test("unions on singleton list", () => {
     fc.assert(
       fc.property(arbitraryIntervalSetNum, a => {
-        const actual = readonlyArrayUnions([a])
+        const actual = unions([a])
 
         expect(actual).toEqual(a)
       })

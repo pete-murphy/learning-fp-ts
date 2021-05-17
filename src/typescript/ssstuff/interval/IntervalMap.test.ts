@@ -15,7 +15,7 @@ const mk = _.fromReadonlyArray(N.Ord)
 
 const arbitraryIntervalNum: fc.Arbitrary<I.Interval<number>> = fc
   .tuple(fc.integer(), fc.integer())
-  .filter(([n, m]) => n <= m)
+  .filter(([n, m]) => n < m)
   .chain(([n, m]) =>
     fc.constantFrom<I.Interval<number>>(
       I.between(n, m),
@@ -23,6 +23,17 @@ const arbitraryIntervalNum: fc.Arbitrary<I.Interval<number>> = fc
       I.lessThan(n),
       I.infinite,
       I.empty
+    )
+  )
+
+// @TODO - Pete Murphy 2021-05-17 - Is this behaving as expected?
+const arbitraryAlterFn: fc.Arbitrary<
+  (optStr: O.Option<string>) => O.Option<string>
+> = fc
+  .string()
+  .chain(str =>
+    fc.func<[O.Option<string>], O.Option<string>>(
+      fc.constantFrom(O.some(str), O.none)
     )
   )
 
@@ -51,7 +62,6 @@ const pickup = (interval: I.Interval<number>): O.Option<number> =>
             u,
             matchOnTag({
               NegInf: () => O.none,
-              // Finite: ({ value }) => O.some(value - 1),
               Finite: ({ value }) => O.some(value - 1),
               PosInf: () => O.some(0),
             })
@@ -62,10 +72,8 @@ const pickup = (interval: I.Interval<number>): O.Option<number> =>
             matchOnTag({
               NegInf: () => O.none,
               Finite: y =>
-                // x.value > y.value ? O.none : O.some((x.value + y.value) / 2),
                 x.value >= y.value ? O.none : O.some((x.value + y.value) / 2),
               PosInf: () => O.some(x.value + 1),
-              // PosInf: () => O.some(x.value),
             })
           ),
         PosInf: () => O.none,
@@ -74,14 +82,14 @@ const pickup = (interval: I.Interval<number>): O.Option<number> =>
   )
 
 describe("pickup", () => {
-  const memberNumInterval = I.member(N.Ord)
+  const elemNumInterval = I.elem(N.Ord)
   test("picked-up num is always member of original interval", () => {
     fc.assert(
       fc.property(arbitraryIntervalNum, i => {
         pipe(
           pickup(i),
           O.fold(constVoid, n => {
-            expect(memberNumInterval(n)(i)).toBe(true)
+            expect(elemNumInterval(n)(i)).toBe(true)
           })
         )
       }),
@@ -90,11 +98,12 @@ describe("pickup", () => {
   })
 })
 
-describe("alter", () => {
+describe("alterAt", () => {
   test('alter (const Nothing) (between 0 10) (fromList [between 0 10, "A"]) == fromList []', () => {
     const m = mk([[I.between(0, 10), "A"]])
-    const actual = _.alter(N.Ord)((): O.Option<string> => O.none)(
-      I.between(0, 10)
+    const actual = _.alterAt(N.Ord)(
+      I.between(0, 10),
+      (): O.Option<string> => O.none
     )(m)
     const expected = RM.empty
 
@@ -103,26 +112,23 @@ describe("alter", () => {
 
   test("Looking up after altering with f at key is same as applying f after lookup at k", () => {
     const lookup = _.lookup(N.Ord)
-    const alter = _.alter(N.Ord)
+    const alterAt = _.alterAt(N.Ord)
     fc.assert(
       fc.property(
         arbitraryIntervalMapNumString,
         arbitraryIntervalNum,
-        (m, i) => {
+        arbitraryAlterFn,
+        (m, i, f) => {
           pipe(
             pickup(i),
             O.fold(constVoid, k => {
-              const f = O.map(x => `${x}-foo`)
-              const lookupAfter = lookup(k)(alter(f)(i)(m))
+              const lookupAfter = lookup(k)(alterAt(i, f)(m))
               const applyAfter = f(lookup(k)(m))
               expect(lookupAfter).toEqual(applyAfter)
             })
           )
         }
-      ),
-      {
-        // numRuns: 500_000,
-      }
+      )
     )
   })
 })
@@ -184,13 +190,14 @@ describe("split", () => {
       Finite: ({ value }) => value,
       PosInf: () => Infinity,
     })
+    const split = _.split(N.Ord)
 
     fc.assert(
       fc.property(
         arbitraryIntervalMapNumString,
         arbitraryIntervalNum,
         (m, i) => {
-          const [small, middle, large] = _.split(N.Ord)(i)(m)
+          const [small, middle, large] = split(i)(m)
 
           const keys = RM.keys(Ex.getOrd(N.Ord))
 
@@ -225,13 +232,13 @@ describe("split", () => {
   })
 })
 
-describe("insert", () => {
-  const insert = _.insert(N.Ord)
+describe("upsertAt", () => {
+  const upsertAt = _.upsertAt(N.Ord)
 
   test("insert into empty map is same as singleton", () => {
     fc.assert(
       fc.property(arbitraryIntervalNum, fc.string(), (k, str) => {
-        const actual = insert(k, str)(RM.empty)
+        const actual = upsertAt(k, str)(RM.empty)
         const expected = _.singleton(k, str)
         expect(actual).toEqual(expected)
       })
@@ -241,7 +248,7 @@ describe("insert", () => {
   test("insert infinite returns infinite", () => {
     fc.assert(
       fc.property(arbitraryIntervalMapNumString, fc.string(), (m, str) => {
-        const actual = insert(I.infinite, str)(m)
+        const actual = upsertAt(I.infinite, str)(m)
         const expected = _.infinite(str)
         expect(actual).toEqual(expected)
       })

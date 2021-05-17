@@ -1,12 +1,13 @@
 import * as fc from "fast-check"
 import * as N from "fp-ts/Number"
+import * as Ord from "fp-ts/Ord"
 
 import * as Ex from "./Extended"
 import * as _ from "./Interval"
 
 const arbitraryIntervalNum: fc.Arbitrary<_.Interval<number>> = fc
   .tuple(fc.integer(), fc.integer())
-  .filter(([n, m]) => n <= m)
+  .filter(([n, m]) => n < m)
   .chain(([n, m]) =>
     fc.constantFrom<_.Interval<number>>(
       _.between(n, m),
@@ -63,7 +64,7 @@ describe("Interval meet semilattice", () => {
    * Idempotency of meet: forall a, meet a a == a
    */
 
-  it("meet should be associative", () => {
+  test("meet should be associative", () => {
     fc.assert(
       fc.property(
         arbitraryIntervalNum,
@@ -74,7 +75,7 @@ describe("Interval meet semilattice", () => {
     )
   })
 
-  it("meet should be commutative", () => {
+  test("meet should be commutative", () => {
     fc.assert(
       fc.property(arbitraryIntervalNum, arbitraryIntervalNum, (x, y) =>
         expect(meet(x, y)).toEqual(meet(y, x))
@@ -82,40 +83,28 @@ describe("Interval meet semilattice", () => {
     )
   })
 
-  it("meet should be idempotent", () => {
+  test("meet should be idempotent", () => {
     fc.assert(
       fc.property(arbitraryIntervalNum, x => expect(meet(x, x)).toEqual(x))
     )
   })
 })
 
-describe("lowerBound", () => {
-  // it("")
-})
-
-describe("upperBound", () => {})
-
 describe("intersection", () => {
   const intersection = _.intersection(N.Ord)
-  const member = _.member(N.Ord)
 
-  test("if an interval i contains x, the intersection of i and singleton x is singleton x", () => {
+  test("if the bounds of an interval i are outside the bounds of an interval j, the intersection of i and j is j", () => {
+    const exOrd = Ex.getOrd(N.Ord)
+    const geq = Ord.geq(exOrd)
+    const leq = Ord.leq(exOrd)
+
     fc.assert(
-      fc.property(fc.integer(), arbitraryIntervalNum, (n, i) => {
-        fc.pre(member(n)(i))
+      fc.property(arbitraryIntervalNum, arbitraryIntervalNum, (i, j) => {
+        const [ilb, iub] = [_.lowerBound(i), _.upperBound(i)]
+        const [jlb, jub] = [_.lowerBound(j), _.upperBound(j)]
+        fc.pre(leq(ilb, jlb) && geq(iub, jub))
 
-        const b = _.singleton(n)
-        expect(intersection(b, i)).toEqual(b)
-      })
-    )
-  })
-
-  test("two distinct singletons have no intersection", () => {
-    fc.assert(
-      fc.property(fc.integer(), fc.integer(), (n, m) => {
-        fc.pre(n !== m)
-
-        expect(intersection(_.singleton(n), _.singleton(m))).toEqual(_.empty)
+        expect(intersection(i, j)).toEqual(j)
       })
     )
   })

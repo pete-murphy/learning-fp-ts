@@ -1,30 +1,13 @@
-import * as O from "fp-ts/Option"
-import * as Dt from "fp-ts/Date"
-import * as N from "fp-ts/Number"
 import * as Ord from "fp-ts/Ord"
-import * as RM from "fp-ts/ReadonlyMap"
-import * as RA from "fp-ts/ReadonlyArray"
-import * as RTup from "fp-ts/ReadonlyTuple"
-import * as RNEA from "fp-ts/ReadonlyNonEmptyArray"
-import * as St from "fp-ts/State"
-import * as Lt from "fp-ts/Lattice"
 import { JoinSemilattice } from "fp-ts/JoinSemilattice"
 import { MeetSemilattice } from "fp-ts/MeetSemilattice"
 import { Lattice } from "fp-ts/Lattice"
-import * as Sg from "fp-ts/Semigroup"
 import * as Show from "fp-ts/Show"
-import * as Rg from "fp-ts/Ring"
-import * as Srg from "fp-ts/Semiring"
-import * as At from "monocle-ts/At"
-import * as T from "monocle-ts/Traversal"
-// import * as At from "monocle-ts/At"
-import { pipe, tuple } from "fp-ts/lib/function"
+import { pipe } from "fp-ts/lib/function"
 import { Functor1 } from "fp-ts/lib/Functor"
 import { match } from "../matchers"
 
 import * as Ex from "./Extended"
-
-const matchOnTag = match.on("_tag")
 
 export const URI = "Interval"
 
@@ -39,12 +22,30 @@ declare module "fp-ts/HKT" {
 /**
  * A partial translation of `data-interval`
  * (https://hackage.haskell.org/package/data-interval-2.1.0)
+ *
+ * The implementation is simplified such that there are no
+ *
  */
 export type Interval<A> =
+  /**
+   * The interval _strictly_ between two values of type `A`
+   */
   | Between<A>
+  /**
+   * The interval _strictly_ greater than a value of type `A`
+   */
   | GreaterThan<A>
+  /**
+   * The interval _strictly_ less than a value of type `A`
+   */
   | LessThan<A>
+  /**
+   * The infinite interval
+   */
   | Infinite
+  /**
+   * The empty interval
+   */
   | Empty
 
 export interface Between<A> {
@@ -71,43 +72,78 @@ export interface Empty {
   readonly _tag: "Empty"
 }
 
+// -------------------------------------------------------------------------------------
+// Constructors
+// -------------------------------------------------------------------------------------
+
+/**
+ * Constructs an interval _strictly_ between two values of type `A`.
+ *
+ * **NOTE:** It's possible to construct invalid intervals using this constructor
+ * directly (i.e., if `lower >= upper`). See also `interval`, which produces
+ * intervals that are correct-by-construction.
+ *
+ * @param lower Lower bound of interval
+ * @param upper Upper bound of interval
+ */
 export const between = <A>(lower: A, upper: A): Between<A> => ({
   _tag: "Between",
   lower,
   upper,
 })
 
+/**
+ * Constructs an interval that is _strictly_ greater than the value passed in.
+ *
+ * @param lower Lower bound of interval
+ */
 export const greaterThan = <A>(lower: A): GreaterThan<A> => ({
   _tag: "GreaterThan",
   lower,
 })
 
+/**
+ * Constructs an interval that is _strictly_ less than the value passed in.
+ *
+ * @param upper Upper bound of interval
+ */
 export const lessThan = <A>(upper: A): LessThan<A> => ({
   _tag: "LessThan",
   upper,
 })
 
+/**
+ * The infinite interval.
+ */
 export const infinite: Infinite = {
   _tag: "Infinite",
 }
 
+/**
+ * The empty interval.
+ */
 export const empty: Empty = {
   _tag: "Empty",
 }
 
-export const singleton = <A>(a: A) => between(a, a)
-
-// @TODO - Pete Murphy 2021-05-14 - NOT TESTED
+/**
+ * Produces correct-by-construction intervals on some type `A`, given an `Ord`
+ * instance as well as an upper and lower bound of type `Extended<A>` (which
+ * extends `A` to include two additional values indicating negative and positive
+ * infinity).
+ *
+ * @param ordA `Ord` instance for the interval type `A`.
+ */
 export const interval =
   <A>(ordA: Ord.Ord<A>) =>
   (lower: Ex.Extended<A>, upper: Ex.Extended<A>): Interval<A> =>
     pipe(
       lower,
-      matchOnTag({
+      match.on("_tag")({
         NegInf: () =>
           pipe(
             upper,
-            matchOnTag({
+            match.on("_tag")({
               NegInf: () => empty,
               Finite: upper_ => lessThan(upper_.value),
               PosInf: () => infinite,
@@ -116,7 +152,7 @@ export const interval =
         Finite: lower_ =>
           pipe(
             upper,
-            matchOnTag({
+            match.on("_tag")({
               NegInf: () => empty,
               Finite: upper_ =>
                 Ord.lt(ordA)(lower_.value, upper_.value)
@@ -132,36 +168,12 @@ export const interval =
 export const isEmpty = <A>(interval: Interval<A>): interval is Empty =>
   interval._tag === "Empty"
 
-export const isConnected =
-  <A>(ordA: Ord.Ord<A>) =>
-  (i1: Interval<A>, i2: Interval<A>): boolean => {
-    if (isEmpty(i1) || isEmpty(i2)) {
-      return true
-    }
-    return !isEmpty(intersection(ordA)(i1, i2))
-  }
-
-export const hull =
-  <A>(ordA: Ord.Ord<A>) =>
-  (i1: Interval<A>, i2: Interval<A>): Interval<A> => {
-    if (isEmpty(i1)) {
-      return i2
-    }
-    if (isEmpty(i2)) {
-      return i1
-    }
-    const minLB = Ord.min(Ex.getOrd(ordA))(lowerBound(i1), lowerBound(i2))
-    const maxUB = Ord.max(Ex.getOrd(ordA))(upperBound(i1), upperBound(i2))
-
-    return interval(ordA)(minLB, maxUB)
-  }
-
 export const getShowInterval = <A>({
   show,
 }: Show.Show<A>): Show.Show<Interval<A>> => ({
   show: match.on("_tag")({
     Between: ({ lower, upper }) => `between(${show(lower)}, ${show(upper)})`,
-    GreaterThan: ({ lower }) => `greaterThn(${show(lower)})`,
+    GreaterThan: ({ lower }) => `greaterThan(${show(lower)})`,
     LessThan: ({ upper }) => `lessThan(${show(upper)})`,
     Infinite: () => `infinite`,
     Empty: () => `empty`,
@@ -173,7 +185,7 @@ export const map: <A, B>(f: (a: A) => B) => (fa: Interval<A>) => Interval<B> =
     match.on("_tag")({
       Between: ({ lower, upper }) => between(f(lower), f(upper)),
       GreaterThan: ({ lower }) => greaterThan(f(lower)),
-      LessThan: ({ upper }) => greaterThan(f(upper)),
+      LessThan: ({ upper }) => lessThan(f(upper)),
       Infinite: () => infinite,
       Empty: () => empty,
     })
@@ -311,6 +323,9 @@ export const getLattice = <A>(ordA: Ord.Ord<A>): Lattice<Interval<A>> => ({
   meet: getMeetSemilattice(ordA).meet,
 })
 
+/**
+ * Calculate the lower bound of an interval.
+ */
 export const lowerBound: <A>(interval: Interval<A>) => Ex.Extended<A> = pipe(
   match.on("_tag")({
     Between: ({ lower }) => Ex.finite(lower),
@@ -321,6 +336,9 @@ export const lowerBound: <A>(interval: Interval<A>) => Ex.Extended<A> = pipe(
   })
 )
 
+/**
+ * Calculate the upper bound of an interval.
+ */
 export const upperBound: <A>(interval: Interval<A>) => Ex.Extended<A> = pipe(
   match.on("_tag")({
     Between: ({ upper }) => Ex.finite(upper),
@@ -331,22 +349,68 @@ export const upperBound: <A>(interval: Interval<A>) => Ex.Extended<A> = pipe(
   })
 )
 
+/**
+ * Determines whether two intervals overlap (if their intersection is
+ * non-empty).
+ */
+export const isConnected =
+  <A>(ordA: Ord.Ord<A>) =>
+  (i1: Interval<A>, i2: Interval<A>): boolean => {
+    if (isEmpty(i1) || isEmpty(i2)) {
+      return true
+    }
+    return !isEmpty(intersection(ordA)(i1, i2))
+  }
+
+/**
+ * The convex hull of two intervals, i.e., the smallest interval that
+ * encompasses all of both intervals.
+ */
+export const hull =
+  <A>(ordA: Ord.Ord<A>) =>
+  (i1: Interval<A>, i2: Interval<A>): Interval<A> => {
+    if (isEmpty(i1)) {
+      return i2
+    }
+    if (isEmpty(i2)) {
+      return i1
+    }
+    const exOrd = Ex.getOrd(ordA)
+    const minLB = Ord.min(exOrd)(lowerBound(i1), lowerBound(i2))
+    const maxUB = Ord.max(exOrd)(upperBound(i1), upperBound(i2))
+
+    return interval(ordA)(minLB, maxUB)
+  }
+
+/**
+ * Calculate the intersection of two intervals.
+ */
 export const intersection =
   <A>(ordA: Ord.Ord<A>) =>
   (i1: Interval<A>, i2: Interval<A>): Interval<A> => {
+    if (isEmpty(i1) || isEmpty(i2)) {
+      return empty
+    }
     const exOrd = Ex.getOrd(ordA)
     const maxLB = Ord.max(exOrd)(lowerBound(i1), lowerBound(i2))
     const minUB = Ord.min(exOrd)(upperBound(i1), upperBound(i2))
+
     return interval(ordA)(maxLB, minUB)
   }
 
-export const member =
+/**
+ * Test whether or not a value is a member of a interval.
+ *
+ * **NOTE:** Membership is determined by _strict_ less-than or greater-than
+ * comparisons, so the lower and/or upper bounds are not considered members of
+ * an interval.
+ */
+export const elem =
   <A>(ordA: Ord.Ord<A>) =>
   (a: A) =>
   (i: Interval<A>): boolean =>
-    Ord.between(Ex.getOrd(ordA))(lowerBound(i), upperBound(i))(Ex.finite(a)) &&
-    !Ex.getOrd(ordA).equals(Ex.finite(a), lowerBound(i)) &&
-    !Ex.getOrd(ordA).equals(Ex.finite(a), upperBound(i))
+    Ord.gt(Ex.getOrd(ordA))(Ex.finite(a), lowerBound(i)) &&
+    Ord.lt(Ex.getOrd(ordA))(Ex.finite(a), upperBound(i))
 
 /**
  * @internal
@@ -354,7 +418,7 @@ export const member =
 export const upTo = <A>(interval: Interval<A>): Interval<A> =>
   pipe(
     lowerBound(interval),
-    matchOnTag({
+    match.on("_tag")({
       NegInf: () => empty,
       Finite: ({ value }) => lessThan(value),
       PosInf: () => infinite,
@@ -367,7 +431,7 @@ export const upTo = <A>(interval: Interval<A>): Interval<A> =>
 export const downTo = <A>(interval: Interval<A>): Interval<A> =>
   pipe(
     upperBound(interval),
-    matchOnTag({
+    match.on("_tag")({
       NegInf: () => infinite,
       Finite: ({ value }) => greaterThan(value),
       PosInf: () => empty,

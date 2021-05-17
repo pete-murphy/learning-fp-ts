@@ -1,18 +1,17 @@
-export * from "fp-ts/ReadonlyMap"
+export * from "fp-ts/lib/ReadonlyMap"
 
-import * as RM from "fp-ts/lib/ReadonlyMap"
-import * as Ord from "fp-ts/lib/Ord"
-import * as Fld from "fp-ts/lib/Foldable"
-import * as O from "fp-ts/lib/Option"
-import * as RA from "fp-ts/lib/ReadonlyArray"
-import * as N from "fp-ts/lib/number"
-import * as Sg from "fp-ts/lib/Semigroup"
-import { pipe } from "fp-ts/lib/function"
 import * as Eq from "fp-ts/lib/Eq"
-import * as Ex from "./interval/Extended"
-import * as I from "./interval/Interval"
-import * as IS from "./interval/IntervalSet"
+import { Foldable, Foldable1, Foldable2, Foldable2C } from "fp-ts/lib/Foldable"
+import { pipe } from "fp-ts/lib/function"
+import { HKT, Kind, Kind2, URIS, URIS2 } from "fp-ts/lib/HKT"
+import * as O from "fp-ts/lib/Option"
+import * as Ord from "fp-ts/lib/Ord"
+import * as RM from "fp-ts/lib/ReadonlyMap"
 
+/**
+ * Retrieves the maximal (key,value) pair of the map, and the map stripped of
+ * that element, or `O.none` if passed an empty map.
+ */
 export const maxViewWithKey =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(
@@ -20,7 +19,7 @@ export const maxViewWithKey =
   ): O.Option<readonly [readonly [K, A], ReadonlyMap<K, A>]> => {
     const gt = Ord.gt(ordK)
     let max: null | [K, A] = null
-    let m_: Map<K, A> = new Map()
+    const m_ = new Map<K, A>()
 
     m.forEach((a, k) => {
       if (max === null) {
@@ -35,6 +34,10 @@ export const maxViewWithKey =
     return max === null ? O.none : O.some([max, m_])
   }
 
+/**
+ * Retrieves the minimal (key,value) pair of the map, and the map stripped of
+ * that element, or `O.none` if passed an empty map.
+ */
 export const minViewWithKey =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(
@@ -42,7 +45,7 @@ export const minViewWithKey =
   ): O.Option<readonly [readonly [K, A], ReadonlyMap<K, A>]> => {
     const lt = Ord.lt(ordK)
     let min: null | [K, A] = null
-    let m_: Map<K, A> = new Map()
+    const m_ = new Map<K, A>()
 
     m.forEach((a, k) => {
       if (min === null) {
@@ -57,6 +60,10 @@ export const minViewWithKey =
     return min === null ? O.none : O.some([min, m_])
   }
 
+/**
+ * Retrieves the value associated with maximal key of the map, and the map
+ * stripped of that element, or `O.none` if passed an empty map.
+ */
 export const maxView =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(m: ReadonlyMap<K, A>): O.Option<readonly [A, ReadonlyMap<K, A>]> =>
@@ -66,6 +73,10 @@ export const maxView =
       O.map(([[_, x], m]) => [x, m])
     )
 
+/**
+ * Retrieves the value associated with minimal key of the map, and the map
+ * stripped of that element, or `O.none` if passed an empty map.
+ */
 export const minView =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(m: ReadonlyMap<K, A>): O.Option<readonly [A, ReadonlyMap<K, A>]> =>
@@ -75,6 +86,10 @@ export const minView =
       O.map(([[_, x], m]) => [x, m])
     )
 
+/**
+ * The expression (`splitLookup(ordK)(k)(map)`) splits a map just like `split`
+ * but also returns `lookup(ordK)(k)(map)`.
+ */
 export const splitLookup =
   <K>(ordK: Ord.Ord<K>) =>
   (k: K) =>
@@ -84,9 +99,9 @@ export const splitLookup =
     const lt = Ord.lt(ordK)
     const gt = Ord.gt(ordK)
 
-    let m1: Map<K, A> = new Map()
+    const m1 = new Map<K, A>()
     let o: O.Option<A> = O.none
-    let m2: Map<K, A> = new Map()
+    const m2 = new Map<K, A>()
 
     m.forEach((a, k_) => {
       if (lt(k_, k)) {
@@ -101,48 +116,78 @@ export const splitLookup =
     return [m1, o, m2]
   }
 
-export const alter =
+/**
+ * The expression (`alterAt(eqK)(k, f)(map)`) alters the value `x` at `k`, or absence thereof. `alterAt` can be used to insert, delete, or update a value in a `ReadonlyMap`.
+ *
+ * @example
+ * const lookupAfterAlter = pipe(anyMap, alterAt(eqK)(k, f), lookup(eqK)(k))
+ * const alterAfterLookup = pipe(anyMap, lookup(eqK)(k), f)
+ * expect(lookupAfterAlter).toEqual(alterAfterLookup)
+ */
+export const alterAt =
   <K>(eqK: Eq.Eq<K>) =>
-  <A>(f: (x: O.Option<A>) => O.Option<A>) =>
-  (k: K) =>
-  (m: ReadonlyMap<K, A>): ReadonlyMap<K, A> => {
-    const m_: Map<K, A> = new Map()
-    let foundA: O.Option<A> = O.none
+  <A>(k: K, f: (a: O.Option<A>) => O.Option<A>) =>
+  (m: ReadonlyMap<K, A>): ReadonlyMap<K, A> =>
+    pipe(
+      m,
+      RM.lookup(eqK)(k),
+      f,
+      O.fold(
+        () => RM.deleteAt(eqK)(k)(m),
+        a => RM.upsertAt(eqK)(k, a)(m)
+      )
+    )
 
-    m.forEach((a, k_) => {
-      if (eqK.equals(k, k_)) {
-        foundA = O.some(a)
-      } else {
-        m_.set(k_, a)
-      }
-    })
+/**
+ * The union of a `Foldable` of maps.
+ *
+ * **NOTE:** `unions` is left-biased—i.e., duplicate keys in subsequent maps
+ * when traversing the `Foldable` from left-to-right will be ignored.
+ */
+export function unions<F extends URIS2, K>(
+  eqK: Eq.Eq<K>,
+  F: Foldable2<F>
+): <E, A>(fa: Kind2<F, E, ReadonlyMap<K, A>>) => ReadonlyMap<K, A>
+export function unions<F extends URIS2, E, K>(
+  eqK: Eq.Eq<K>,
+  F: Foldable2C<F, E>
+): <A>(fa: Kind2<F, E, ReadonlyMap<K, A>>) => ReadonlyMap<K, A>
+export function unions<F extends URIS, K>(
+  eqK: Eq.Eq<K>,
+  F: Foldable1<F>
+): <A>(fa: Kind<F, ReadonlyMap<K, A>>) => ReadonlyMap<K, A>
+export function unions<F, K>(
+  eqK: Eq.Eq<K>,
+  F: Foldable<F>
+): <A>(fa: HKT<F, ReadonlyMap<K, A>>) => ReadonlyMap<K, A> {
+  return <A>(fa: HKT<F, ReadonlyMap<K, A>>) =>
+    F.reduce<ReadonlyMap<K, A>, ReadonlyMap<K, A>>(fa, RM.empty, union(eqK))
+}
 
-    const alteredA = f(foundA)
-    if (O.isSome(alteredA)) {
-      m_.set(k, alteredA.value)
-    }
-
-    return m_
-  }
-
-// @TODO - Pete Murphy 2021-05-14 - Fixing the Foldable instance to Array, this
-// could be generalized though
-export const readonlyArrayUnions =
-  <K>(eqK: Eq.Eq<K>) =>
-  <A>(ms: ReadonlyArray<ReadonlyMap<K, A>>): ReadonlyMap<K, A> => {
-    const m_: Map<K, A> = new Map()
-
-    ms.forEach(m => {
-      m.forEach((a, k) => {
-        if (!RM.member(eqK)(k)(m_)) {
-          m_.set(k, a)
-        }
-      })
-    })
-
-    return m_
-  }
-
+/**
+ * The expression (`union(eqK)(m1, m2)`) takes the left-biased union of `m1` and
+ * `m2`. It prefers `m1` when duplicate keys are encountered.
+ *
+ * @example
+ * expect(
+ *   union(N.Eq)(
+ *     new Map([
+ *       [5, 'a'],
+ *       [3, 'b'],
+ *     ]),
+ *     new Map([
+ *       [5, 'A'],
+ *       [7, 'C'],
+ *     ]),
+ *   ),
+ * ).toEqual(
+ *   new Map([
+ *     [3, 'b'],
+ *     [5, 'a'],
+ *     [7, 'C'],
+ *   ]),
+ * )
+ */
 export const union =
   <K>(eqK: Eq.Eq<K>) =>
   <A>(m1: ReadonlyMap<K, A>, m2: ReadonlyMap<K, A>): ReadonlyMap<K, A> => {
@@ -158,6 +203,10 @@ export const union =
     return m_
   }
 
+/**
+ * Find largest key smaller or equal to the given one and return the
+ * corresponding (key, value) pair.
+ */
 export const lookupLE =
   <K>(ordK: Ord.Ord<K>) =>
   (k: K) =>
@@ -186,6 +235,9 @@ export const lookupLE =
 
 /**
  * @internal
+ *
+ * Pete Murphy 2021-05-16 - Marking this as "internal", it seems to just be
+ * useful for `IntervalMap`/`IntervalSet` operations.
  */
 export const splitLookupLE =
   <K>(ordK: Ord.Ord<K>) =>

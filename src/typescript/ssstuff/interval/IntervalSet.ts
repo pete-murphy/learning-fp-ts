@@ -1,6 +1,20 @@
-import { B, RM, Ord, O, pipe, Sg, RA, tuple, N, RNEA } from "../fp-ts-imports"
+import {
+  B,
+  RM,
+  Ord,
+  O,
+  pipe,
+  Sg,
+  RA,
+  tuple,
+  N,
+  RNEA,
+  Eq,
+} from "../fp-ts-imports"
 import * as I from "./Interval"
 import * as Ex from "./Extended"
+import { HKT, Kind, Kind2, URIS, URIS2 } from "fp-ts/lib/HKT"
+import { Foldable, Foldable1, Foldable2, Foldable2C } from "fp-ts/lib/Foldable"
 
 export type IntervalSet<A> = ReadonlyMap<Ex.Extended<A>, I.Interval<A>>
 
@@ -38,7 +52,10 @@ export const deleteAt =
     const [_, m2, larger] = RM.splitLookupLE(exOrd)(I.upperBound(i))(xs)
     const intersection = I.intersection(ordA)
 
-    return readonlyArrayUnions(ordA)([
+    return unions(
+      ordA,
+      RA.Foldable
+    )([
       smaller,
       pipe(
         m1,
@@ -126,7 +143,10 @@ export const insert =
     const ordEx = Ex.getOrd(ordA)
     const [smaller, m1, xs] = RM.splitLookupLE(ordEx)(I.lowerBound(i))(s)
     const [_, m2, larger] = RM.splitLookupLE(ordEx)(I.upperBound(i))(xs)
-    return RM.readonlyArrayUnions(ordEx)([
+    return RM.unions(
+      ordEx,
+      RA.Foldable
+    )([
       smaller,
       fromReadonlyArray(ordA)([
         i,
@@ -137,11 +157,6 @@ export const insert =
     ])
   }
 
-// union :: Ord r => IntervalSet r -> IntervalSet r -> IntervalSet r
-// union is1@(IntervalSet m1) is2@(IntervalSet m2) =
-//   if Map.size m1 >= Map.size m2
-//   then foldl' (\is i -> insert i is) is1 (toList is2)
-//   else foldl' (\is i -> insert i is) is2 (toList is1)
 export const union =
   <A>(ordA: Ord.Ord<A>) =>
   (s1: IntervalSet<A>, s2: IntervalSet<A>) =>
@@ -157,27 +172,22 @@ export const union =
           RA.reduce(s2, (s, [_, i]) => insert(ordA)(i)(s))
         )
 
-export const readonlyArrayUnions: <A>(
-  ordA: Ord.Ord<A>
-) => (intervalSets: ReadonlyArray<IntervalSet<A>>) => IntervalSet<A> = ordA =>
-  RA.reduce(RM.empty, union(ordA))
-
-const actual: IntervalSet<number> = insert(N.Ord)(I.between(1, 4))(
-  fromReadonlyArray(N.Ord)([I.between(0, 3), I.between(1, 2)])
-)
-actual
-// // const expected = fromReadonlyArray(N.Ord)([
-// //   I.between(0, 1),
-// //   // I.between(0, 3),
-// //   I.between(1, 1),
-// // ])
-
-// /**
-//  * delete (1 <=..< 4) (fromList [0 <=..< 3, 1 <=..< 2])
-//  *
-//  *
-//  */
-
-// // const actual: IntervalSet<number> = deleteAt(N.Ord)(I.between(2, 19))(
-// //   fromReadonlyArray(N.Ord)([I.between(1, 5), I.between(0, 8)])
-// // )
+export function unions<F extends URIS2, A>(
+  ordA: Ord.Ord<A>,
+  F: Foldable2<F>
+): <E>(fa: Kind2<F, E, IntervalSet<A>>) => IntervalSet<A>
+export function unions<F extends URIS2, E, A>(
+  ordA: Ord.Ord<A>,
+  F: Foldable2C<F, E>
+): (fa: Kind2<F, E, IntervalSet<A>>) => IntervalSet<A>
+export function unions<F extends URIS, A>(
+  ordA: Ord.Ord<A>,
+  F: Foldable1<F>
+): (fa: Kind<F, IntervalSet<A>>) => IntervalSet<A>
+export function unions<F, A>(
+  ordA: Ord.Ord<A>,
+  F: Foldable<F>
+): (fa: HKT<F, IntervalSet<A>>) => IntervalSet<A> {
+  return (fa: HKT<F, IntervalSet<A>>) =>
+    F.reduce<IntervalSet<A>, IntervalSet<A>>(fa, RM.empty, union(ordA))
+}
