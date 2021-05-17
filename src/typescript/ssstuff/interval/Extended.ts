@@ -26,17 +26,17 @@ export const posInf = {
   _tag: "PosInf" as const,
 }
 
-const matchOnTag = match.on("_tag")
+const fold = match.on("_tag")
 
 export const getOrd = <A>(ordA: Ord.Ord<A>): Ord.Ord<Extended<A>> =>
   Ord.fromCompare((x, y) =>
     pipe(
       x,
-      matchOnTag({
+      fold({
         NegInf: () =>
           pipe(
             y,
-            matchOnTag({
+            fold({
               NegInf: () => 0,
               Finite: () => -1,
               PosInf: () => -1,
@@ -45,7 +45,7 @@ export const getOrd = <A>(ordA: Ord.Ord<A>): Ord.Ord<Extended<A>> =>
         Finite: x_ =>
           pipe(
             y,
-            matchOnTag({
+            fold({
               NegInf: () => 1,
               Finite: y_ => ordA.compare(x_.value, y_.value),
               PosInf: () => -1,
@@ -54,7 +54,7 @@ export const getOrd = <A>(ordA: Ord.Ord<A>): Ord.Ord<Extended<A>> =>
         PosInf: () =>
           pipe(
             y,
-            matchOnTag({
+            fold({
               NegInf: () => 1,
               Finite: () => 1,
               PosInf: () => 0,

@@ -105,7 +105,8 @@ describe("intersection", () => {
         fc.pre(leq(ilb, jlb) && geq(iub, jub))
 
         expect(intersection(i, j)).toEqual(j)
-      })
+      }),
+      { numRuns: 20_000 }
     )
   })
 
@@ -116,7 +117,8 @@ describe("intersection", () => {
         const ba = intersection(b, a)
 
         expect(ab).toEqual(ba)
-      })
+      }),
+      { numRuns: 20_000 }
     )
   })
 
@@ -132,7 +134,8 @@ describe("intersection", () => {
 
           expect(left).toEqual(right)
         }
-      )
+      ),
+      { numRuns: 20_000 }
     )
   })
 })

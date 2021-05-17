@@ -8,6 +8,7 @@ import {
   RA,
   tuple,
   N,
+  St,
   RNEA,
   Eq,
 } from "../fp-ts-imports"
@@ -18,12 +19,12 @@ import { Foldable, Foldable1, Foldable2, Foldable2C } from "fp-ts/lib/Foldable"
 
 export type IntervalSet<A> = ReadonlyMap<Ex.Extended<A>, I.Interval<A>>
 
-export const singleton = <A>(interval: I.Interval<A>): IntervalSet<A> =>
-  I.isEmpty(interval)
-    ? RM.empty
-    : RM.singleton(I.lowerBound(interval), interval)
-
-export const infinite = singleton(I.infinite)
+export const singleton =
+  <A>(ordA: Ord.Ord<A>) =>
+  (interval: I.Interval<A>): IntervalSet<A> =>
+    I.isEmpty_(ordA)(interval)
+      ? RM.empty
+      : RM.singleton(I.lowerBound(interval), interval)
 
 export const empty = RM.empty
 
@@ -39,14 +40,12 @@ export const deleteAt =
   <A>(ordA: Ord.Ord<A>) =>
   (i: I.Interval<A>) =>
   (s: IntervalSet<A>): IntervalSet<A> => {
-    if (I.isEmpty(i)) {
-      return s
-    }
-
+    const isEmpty = I.isEmpty_(ordA)
     const exOrd = Ex.getOrd(ordA)
 
-    I.lowerBound(i) //?
-    I.upperBound(i) //?
+    if (isEmpty(i)) {
+      return s
+    }
 
     const [smaller, m1, xs] = RM.splitLookupLE(exOrd)(I.lowerBound(i))(s)
     const [_, m2, larger] = RM.splitLookupLE(exOrd)(I.upperBound(i))(xs)
@@ -66,7 +65,7 @@ export const deleteAt =
               [I.upTo(i), I.downTo(i)],
               RA.chain(i_ => {
                 const k = intersection(i_, j)
-                return I.isEmpty(k) ? [] : [tuple(I.lowerBound(k), k)]
+                return isEmpty(k) ? [] : [tuple(I.lowerBound(k), k)]
               }),
               RM.fromFoldable(exOrd, Sg.first<I.Interval<A>>(), RA.Foldable)
             )
@@ -76,7 +75,7 @@ export const deleteAt =
         m2,
         O.chain(j => {
           const j_ = intersection(I.downTo(i), j)
-          return I.isEmpty(j_) ? O.none : O.some(tuple(I.lowerBound(j_), j_))
+          return isEmpty(j_) ? O.none : O.some(tuple(I.lowerBound(j_), j_))
         }),
         O.fold(
           () => RM.empty,
@@ -87,18 +86,27 @@ export const deleteAt =
     ])
   }
 
+/**
+ * Equivalent to `flow(RA.map(singleton), unions(ordA, RA.foldable))`
+ */
 export const fromReadonlyArray = <A>(ordA: Ord.Ord<A>) => {
+  const isEmpty = I.isEmpty_(ordA)
+  const ordByLowerBound = pipe(
+    Ex.getOrd(ordA),
+    Ord.contramap((i: I.Interval<A>) => I.lowerBound(i))
+  )
+
   const g = (
     x: I.Interval<A>,
     zs: ReadonlyArray<I.Interval<A>>
   ): ReadonlyArray<I.Interval<A>> => {
     const zs_ = RNEA.fromReadonlyArray(zs)
     if (O.isNone(zs_)) {
-      return !I.isEmpty(x) ? [x] : []
+      return !isEmpty(x) ? [x] : []
     }
     const [y, ys] = RNEA.unprepend(zs_.value)
 
-    return I.isEmpty(x)
+    return isEmpty(x)
       ? g(y, ys)
       : I.isConnected(ordA)(x, y)
       ? g(I.hull(ordA)(x, y), ys)
@@ -108,36 +116,18 @@ export const fromReadonlyArray = <A>(ordA: Ord.Ord<A>) => {
   return (intervals: ReadonlyArray<I.Interval<A>>): IntervalSet<A> =>
     pipe(
       intervals,
-      RA.sort(
-        pipe(
-          Ex.getOrd(ordA),
-          Ord.contramap((i: I.Interval<A>) => I.lowerBound(i))
-        )
-      ),
+      RA.sort(ordByLowerBound),
       RA.reduceRight([], g),
       RA.map(i => tuple(I.lowerBound(i), i)),
       RM.fromFoldable(Ex.getOrd(ordA), Sg.first<I.Interval<A>>(), RA.Foldable)
     )
 }
 
-// insert :: Ord r => Interval r -> IntervalSet r -> IntervalSet r
-// insert i is | Interval.null i = is
-// insert i (IntervalSet is) = IntervalSet $
-//   case splitLookupLE (Interval.lowerBound i) is of
-//     (smaller, m1, xs) ->
-//       case splitLookupLE (Interval.upperBound i) xs of
-//         (_, m2, larger) ->
-//           Map.unions
-//           [ smaller
-//           , case fromList $ i : maybeToList m1 ++ maybeToList m2 of
-//               IntervalSet m -> m
-//           , larger
-//           ]
 export const insert =
   <A>(ordA: Ord.Ord<A>) =>
   (i: I.Interval<A>) =>
   (s: IntervalSet<A>): IntervalSet<A> => {
-    if (I.isEmpty(i)) {
+    if (I.isEmpty_(ordA)(i)) {
       return s
     }
     const ordEx = Ex.getOrd(ordA)

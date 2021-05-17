@@ -1,11 +1,8 @@
-import { match } from "../matchers"
 import { Ord, RA, RM, O, pipe, tuple, N } from "../fp-ts-imports"
 import * as Ex from "./Extended"
 import * as I from "./Interval"
 import * as IS from "./IntervalSet"
 import { not } from "fp-ts/lib/function"
-
-const matchOnTag = match.on("_tag")
 
 export type IntervalMap<R, A> = ReadonlyMap<
   Ex.Extended<R>,
@@ -15,8 +12,10 @@ export type IntervalMap<R, A> = ReadonlyMap<
 export const infinite = <A>(a: A) =>
   RM.singleton(I.lowerBound(I.infinite), tuple(I.infinite, a))
 
-export const singleton = <K, A>(i: I.Interval<K>, a: A): IntervalMap<K, A> =>
-  I.isEmpty(i) ? RM.empty : RM.singleton(I.lowerBound(i), [i, a])
+export const singleton =
+  <K>(ordA: Ord.Ord<K>) =>
+  <A>(i: I.Interval<K>, a: A): IntervalMap<K, A> =>
+    I.isEmpty_(ordA)(i) ? RM.empty : RM.singleton(I.lowerBound(i), [i, a])
 
 // -- | Insert with a function, combining new value and old value.
 // -- @'insertWith' f key value mp@ will insert the pair (interval, value) into @mp@.
@@ -33,7 +32,7 @@ export const upsertAtWith =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(interval: I.Interval<K>, a: A, f: (x: A, y: A) => A) =>
   (original: IntervalMap<K, A>): IntervalMap<K, A> =>
-    I.isEmpty(interval)
+    I.isEmpty_(ordK)(interval)
       ? original
       : pipe(
           original,
@@ -74,7 +73,7 @@ export const upsertAt =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(i: I.Interval<K>, a: A) =>
   (m: IntervalMap<K, A>): IntervalMap<K, A> => {
-    if (I.isEmpty(i)) {
+    if (I.isEmpty_(ordK)(i)) {
       return m
     }
 
@@ -110,9 +109,12 @@ export const split =
     m: IntervalMap<K, A>
   ): readonly [IntervalMap<K, A>, IntervalMap<K, A>, IntervalMap<K, A>] => {
     const ordExK = Ex.getOrd(ordK)
+    const isEmpty = I.isEmpty_(ordK)
+    const unionsRA = RM.unions(ordExK, RA.Foldable)
+
     const [smaller, m1, xs] = RM.splitLookupLE(ordExK)(I.lowerBound(i))(m)
     const [middle, m2, larger] = RM.splitLookupLE(ordExK)(I.upperBound(i))(xs)
-    const unionsRA = RM.unions(ordExK, RA.Foldable)
+    const ms = RA.compact([m1, m2])
 
     const x: IntervalMap<K, A> = pipe(
       m1,
@@ -120,7 +122,7 @@ export const split =
         () => RM.empty,
         ([j, b]) => {
           const k = I.intersection(ordK)(I.upTo(i), j)
-          return I.isEmpty(k)
+          return isEmpty(k)
             ? smaller
             : RM.upsertAt(Ex.getOrd(ordK))<readonly [I.Interval<K>, A]>(
                 I.lowerBound(k),
@@ -130,16 +132,11 @@ export const split =
       )
     )
 
-    const ms: ReadonlyArray<readonly [I.Interval<K>, A]> = [
-      ...O.toReadonlyArray(m1),
-      ...O.toReadonlyArray(m2),
-    ]
-
     const y: IntervalMap<K, A> = pipe(
       ms,
       RA.chain(([j, b]) => {
         const k = I.intersection(ordK)(i, j)
-        return I.isEmpty(k) ? [] : [RM.singleton(I.lowerBound(k), tuple(k, b))]
+        return isEmpty(k) ? [] : [RM.singleton(I.lowerBound(k), tuple(k, b))]
       }),
       RA.prepend(middle),
       unionsRA
@@ -149,7 +146,7 @@ export const split =
       ms,
       RA.chain(([j, b]) => {
         const k = I.intersection(ordK)(I.downTo(i), j)
-        return I.isEmpty(k) ? [] : [RM.singleton(I.lowerBound(k), tuple(k, b))]
+        return isEmpty(k) ? [] : [RM.singleton(I.lowerBound(k), tuple(k, b))]
       }),
       RA.prepend(larger),
       unionsRA
@@ -171,7 +168,7 @@ export const alterAt =
   <K>(ordK: Ord.Ord<K>) =>
   <A>(interval: I.Interval<K>, f: (x: O.Option<A>) => O.Option<A>) =>
   (original: IntervalMap<K, A>): IntervalMap<K, A> => {
-    if (I.isEmpty(interval)) {
+    if (I.isEmpty_(ordK)(interval)) {
       return original
     }
 
@@ -187,7 +184,10 @@ export const alterAt =
       )
     )
 
-    const js = IS.difference(ordK)(IS.singleton(interval), keysSet(ordK)(m2))
+    const js = IS.difference(ordK)(
+      IS.singleton(ordK)(interval),
+      keysSet(ordK)(m2)
+    )
 
     const m2__ = pipe(
       f(O.none),

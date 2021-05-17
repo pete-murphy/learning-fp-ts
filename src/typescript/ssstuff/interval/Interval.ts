@@ -23,16 +23,18 @@ declare module "fp-ts/HKT" {
  * A partial translation of `data-interval`
  * (https://hackage.haskell.org/package/data-interval-2.1.0)
  *
- * The implementation is simplified such that there are no
- *
+ * The implementation is simplified to only consider closed-open intervals. This
+ * entails that there is no valid singleton interval (`between(1, 1)`, for
+ * example, would be invalid) because that would require the single point be
+ * both open _and_ closed.
  */
 export type Interval<A> =
   /**
-   * The interval _strictly_ between two values of type `A`
+   * The closed-open interval between two values of type `A`
    */
   | Between<A>
   /**
-   * The interval _strictly_ greater than a value of type `A`
+   * The interval greater than _or equal to_ a value of type `A`
    */
   | GreaterThan<A>
   /**
@@ -77,11 +79,11 @@ export interface Empty {
 // -------------------------------------------------------------------------------------
 
 /**
- * Constructs an interval _strictly_ between two values of type `A`.
+ * Constructs an interval _strictly_ between two values of type `A`
  *
- * **NOTE:** It's possible to construct invalid intervals using this constructor
- * directly (i.e., if `lower >= upper`). See also `interval`, which produces
- * intervals that are correct-by-construction.
+ * **NOTE:** It is possible to construct invalid intervals using this
+ * constructor directly (i.e., if `lower >= upper`). See also `interval`, which
+ * produces intervals that are correct-by-construction.
  *
  * @param lower Lower bound of interval
  * @param upper Upper bound of interval
@@ -93,7 +95,7 @@ export const between = <A>(lower: A, upper: A): Between<A> => ({
 })
 
 /**
- * Constructs an interval that is _strictly_ greater than the value passed in.
+ * Constructs an interval that is greater than _or equal to_ the value passed in
  *
  * @param lower Lower bound of interval
  */
@@ -103,7 +105,7 @@ export const greaterThan = <A>(lower: A): GreaterThan<A> => ({
 })
 
 /**
- * Constructs an interval that is _strictly_ less than the value passed in.
+ * Constructs an interval that is _strictly_ less than the value passed in
  *
  * @param upper Upper bound of interval
  */
@@ -113,14 +115,14 @@ export const lessThan = <A>(upper: A): LessThan<A> => ({
 })
 
 /**
- * The infinite interval.
+ * The infinite interval
  */
 export const infinite: Infinite = {
   _tag: "Infinite",
 }
 
 /**
- * The empty interval.
+ * The empty interval
  */
 export const empty: Empty = {
   _tag: "Empty",
@@ -130,7 +132,8 @@ export const empty: Empty = {
  * Produces correct-by-construction intervals on some type `A`, given an `Ord`
  * instance as well as an upper and lower bound of type `Extended<A>` (which
  * extends `A` to include two additional values indicating negative and positive
- * infinity).
+ * infinity). Passing a lower bound that is greater than _or equal to_ the upper
+ * bound will produce the empty interval.
  *
  * @param ordA `Ord` instance for the interval type `A`.
  */
@@ -165,8 +168,17 @@ export const interval =
       })
     )
 
-export const isEmpty = <A>(interval: Interval<A>): interval is Empty =>
-  interval._tag === "Empty"
+/**
+ * Test whether an interval is empty. Because we are defining intervals as
+ * closed-open, we say that an interval is empty if it matches either the
+ * `empty` constructor, or if its lower bound is greater-than-or-equal to its
+ * upper bound.
+ */
+export const isEmpty_ =
+  <A>(ordA: Ord.Ord<A>) =>
+  (interval: Interval<A>): boolean =>
+    interval._tag === "Empty" ||
+    Ord.geq(Ex.getOrd(ordA))(lowerBound(interval), upperBound(interval))
 
 export const getShowInterval = <A>({
   show,
@@ -179,23 +191,6 @@ export const getShowInterval = <A>({
     Empty: () => `empty`,
   }),
 })
-
-export const map: <A, B>(f: (a: A) => B) => (fa: Interval<A>) => Interval<B> =
-  f =>
-    match.on("_tag")({
-      Between: ({ lower, upper }) => between(f(lower), f(upper)),
-      GreaterThan: ({ lower }) => greaterThan(f(lower)),
-      LessThan: ({ upper }) => lessThan(f(upper)),
-      Infinite: () => infinite,
-      Empty: () => empty,
-    })
-
-const _map: Functor1<URI>["map"] = (fa, f) => pipe(fa, map(f))
-
-export const Functor: Functor1<URI> = {
-  URI,
-  map: _map,
-}
 
 export const getJoinSemilattice = <A>(
   ordA: Ord.Ord<A>
@@ -356,10 +351,17 @@ export const upperBound: <A>(interval: Interval<A>) => Ex.Extended<A> = pipe(
 export const isConnected =
   <A>(ordA: Ord.Ord<A>) =>
   (i1: Interval<A>, i2: Interval<A>): boolean => {
-    if (isEmpty(i1) || isEmpty(i2)) {
+    if (isEmpty_(ordA)(i1) || isEmpty_(ordA)(i2)) {
       return true
     }
-    return !isEmpty(intersection(ordA)(i1, i2))
+    const [i1lb, i1ub] = [lowerBound(i1), upperBound(i1)]
+    const [i2lb, i2ub] = [lowerBound(i2), upperBound(i2)]
+    const eq = Ex.getOrd(ordA).equals
+    return (
+      !isEmpty_(ordA)(intersection(ordA)(i1, i2)) ||
+      eq(i1ub, i2lb) ||
+      eq(i2ub, i1lb)
+    )
   }
 
 /**
@@ -369,10 +371,10 @@ export const isConnected =
 export const hull =
   <A>(ordA: Ord.Ord<A>) =>
   (i1: Interval<A>, i2: Interval<A>): Interval<A> => {
-    if (isEmpty(i1)) {
+    if (isEmpty_(ordA)(i1)) {
       return i2
     }
-    if (isEmpty(i2)) {
+    if (isEmpty_(ordA)(i2)) {
       return i1
     }
     const exOrd = Ex.getOrd(ordA)
@@ -388,7 +390,7 @@ export const hull =
 export const intersection =
   <A>(ordA: Ord.Ord<A>) =>
   (i1: Interval<A>, i2: Interval<A>): Interval<A> => {
-    if (isEmpty(i1) || isEmpty(i2)) {
+    if (isEmpty_(ordA)(i1) || isEmpty_(ordA)(i2)) {
       return empty
     }
     const exOrd = Ex.getOrd(ordA)
@@ -409,7 +411,7 @@ export const elem =
   <A>(ordA: Ord.Ord<A>) =>
   (a: A) =>
   (i: Interval<A>): boolean =>
-    Ord.gt(Ex.getOrd(ordA))(Ex.finite(a), lowerBound(i)) &&
+    Ord.geq(Ex.getOrd(ordA))(Ex.finite(a), lowerBound(i)) &&
     Ord.lt(Ex.getOrd(ordA))(Ex.finite(a), upperBound(i))
 
 /**

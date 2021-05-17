@@ -11,7 +11,7 @@ import * as I from "./Interval"
 
 import * as _ from "./IntervalMap"
 
-const mk = _.fromReadonlyArray(N.Ord)
+const make = _.fromReadonlyArray(N.Ord)
 
 const arbitraryIntervalNum: fc.Arbitrary<I.Interval<number>> = fc
   .tuple(fc.integer(), fc.integer())
@@ -45,7 +45,7 @@ const arbitraryIntervalMapNumString: fc.Arbitrary<
       fc.string().map(str => tuple(interval, str))
     )
   )
-  .map(mk)
+  .map(make)
 
 const matchOnTag = match.on("_tag")
 
@@ -73,7 +73,7 @@ const pickup = (interval: I.Interval<number>): O.Option<number> =>
               NegInf: () => O.none,
               Finite: y =>
                 x.value >= y.value ? O.none : O.some((x.value + y.value) / 2),
-              PosInf: () => O.some(x.value + 1),
+              PosInf: () => O.some(x.value),
             })
           ),
         PosInf: () => O.none,
@@ -93,14 +93,14 @@ describe("pickup", () => {
           })
         )
       }),
-      { numRuns: 1000 }
+      { numRuns: 10000 }
     )
   })
 })
 
 describe("alterAt", () => {
   test('alter (const Nothing) (between 0 10) (fromList [between 0 10, "A"]) == fromList []', () => {
-    const m = mk([[I.between(0, 10), "A"]])
+    const m = make([[I.between(0, 10), "A"]])
     const actual = _.alterAt(N.Ord)(
       I.between(0, 10),
       (): O.Option<string> => O.none
@@ -135,15 +135,17 @@ describe("alterAt", () => {
 
 describe("split", () => {
   test("case 1", () => {
-    const m: _.IntervalMap<number, string> = mk([
+    const m: _.IntervalMap<number, string> = make([
       [I.between(2, 10), "A"],
       [I.between(10, 20), "B"],
       [I.between(20, 30), "C"],
     ])
 
-    const smaller: _.IntervalMap<number, string> = mk([[I.between(2, 5), "A"]])
-    const middle: _.IntervalMap<number, string> = mk([[I.between(5, 9), "A"]])
-    const larger: _.IntervalMap<number, string> = mk([
+    const smaller: _.IntervalMap<number, string> = make([
+      [I.between(2, 5), "A"],
+    ])
+    const middle: _.IntervalMap<number, string> = make([[I.between(5, 9), "A"]])
+    const larger: _.IntervalMap<number, string> = make([
       [I.between(9, 10), "A"],
       [I.between(10, 20), "B"],
       [I.between(20, 30), "C"],
@@ -157,7 +159,7 @@ describe("split", () => {
   })
 
   test("case 2", () => {
-    const m: _.IntervalMap<number, string> = mk([
+    const m: _.IntervalMap<number, string> = make([
       [I.between(2, 10), "A"],
       [I.between(10, 20), "B"],
       [I.between(20, 30), "C"],
@@ -171,7 +173,7 @@ describe("split", () => {
   })
 
   test("case 3", () => {
-    const m: _.IntervalMap<number, string> = mk([
+    const m: _.IntervalMap<number, string> = make([
       [I.between(2, 10), "A"],
       [I.between(10, 20), "B"],
       [I.between(20, 30), "C"],
@@ -234,12 +236,13 @@ describe("split", () => {
 
 describe("upsertAt", () => {
   const upsertAt = _.upsertAt(N.Ord)
+  const singleton = _.singleton(N.Ord)
 
   test("insert into empty map is same as singleton", () => {
     fc.assert(
       fc.property(arbitraryIntervalNum, fc.string(), (k, str) => {
         const actual = upsertAt(k, str)(RM.empty)
-        const expected = _.singleton(k, str)
+        const expected = singleton(k, str)
         expect(actual).toEqual(expected)
       })
     )
