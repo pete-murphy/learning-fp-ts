@@ -5,7 +5,7 @@ import { tuple, pipe, constVoid } from "fp-ts/function"
 import * as O from "fp-ts/Option"
 import * as Ord from "fp-ts/Ord"
 import * as RA from "fp-ts/ReadonlyArray"
-import { match } from "../matchers"
+import { match } from "../matchers.ignore"
 import * as Ex from "./Extended"
 import * as I from "./Interval"
 import * as IM from "./IntervalMap"
@@ -14,7 +14,9 @@ import * as _ from "./IntervalSet"
 
 const mk = _.fromReadonlyArray(N.Ord)
 
-const arbitraryIntervalNum: fc.Arbitrary<I.Interval<number>> = fc
+const arbitraryIntervalNum: fc.Arbitrary<
+  I.Interval<number>
+> = fc
   .tuple(fc.integer(), fc.integer())
   .filter(([n, m]) => n < m)
   .chain(([n, m]) =>
@@ -27,23 +29,30 @@ const arbitraryIntervalNum: fc.Arbitrary<I.Interval<number>> = fc
     )
   )
 
-const arbitraryIntervalSetNum: fc.Arbitrary<_.IntervalSet<number>> = fc
-  .array(arbitraryIntervalNum)
-  .map(mk)
+const arbitraryIntervalSetNum: fc.Arbitrary<
+  _.IntervalSet<number>
+> = fc.array(arbitraryIntervalNum).map(mk)
 
 describe("deleteAt", () => {
   const deleteAt = _.deleteAt(N.Ord)
 
   describe("unit tests", () => {
     test("case 1", () => {
-      const actual = deleteAt(I.between(1, 2))(mk([I.between(0, 3)]))
-      const expected = mk([I.between(0, 1), I.between(2, 3)])
+      const actual = deleteAt(I.between(1, 2))(
+        mk([I.between(0, 3)])
+      )
+      const expected = mk([
+        I.between(0, 1),
+        I.between(2, 3),
+      ])
 
       expect(actual).toEqual(expected)
     })
 
     test("case 2", () => {
-      const actual = deleteAt(I.between(1, 3))(mk([I.between(0, 3)]))
+      const actual = deleteAt(I.between(1, 3))(
+        mk([I.between(0, 3)])
+      )
       const expected = mk([I.between(0, 1)])
 
       expect(actual).toEqual(expected)
@@ -53,16 +62,23 @@ describe("deleteAt", () => {
       const actual = deleteAt(I.between(1, 4))(
         _.fromReadonlyArray(N.Ord)([I.between(0, 3)])
       )
-      const expected = _.fromReadonlyArray(N.Ord)([I.between(0, 1)])
+      const expected = _.fromReadonlyArray(N.Ord)([
+        I.between(0, 1),
+      ])
 
       expect(actual).toEqual(expected)
     })
 
     test("case 4", () => {
       const actual = deleteAt(I.between(1, 4))(
-        _.fromReadonlyArray(N.Ord)([I.between(0, 3), I.between(1, 2)])
+        _.fromReadonlyArray(N.Ord)([
+          I.between(0, 3),
+          I.between(1, 2),
+        ])
       )
-      const expected = _.fromReadonlyArray(N.Ord)([I.between(0, 1)])
+      const expected = _.fromReadonlyArray(N.Ord)([
+        I.between(0, 1),
+      ])
 
       expect(actual).toEqual(expected)
     })
@@ -221,14 +237,20 @@ describe("fromReadonlyArray", () => {
     })
 
     test("on adjacent intervals returns union", () => {
-      const actual = fromReadonlyArray([I.between(0, 1), I.between(1, 2)])
+      const actual = fromReadonlyArray([
+        I.between(0, 1),
+        I.between(1, 2),
+      ])
       const expected = singleton(I.between(0, 2))
 
       expect(actual).toEqual(expected)
     })
 
     test("on overlapping intervals returns union", () => {
-      const actual = fromReadonlyArray([I.between(0, 2), I.between(1, 3)])
+      const actual = fromReadonlyArray([
+        I.between(0, 2),
+        I.between(1, 3),
+      ])
       const expected = singleton(I.between(0, 3))
 
       expect(actual).toEqual(expected)

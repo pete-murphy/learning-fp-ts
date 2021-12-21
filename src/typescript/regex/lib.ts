@@ -2,8 +2,9 @@ import { Char, fromString } from "./Char"
 
 type RE = (str: string) => Array<string>
 
-function toArray(matches: RegExpMatchArray | null): Array<string> {
-  matches
+function toArray(
+  matches: RegExpMatchArray | null
+): Array<string> {
   return matches ? [matches[0]] : []
 }
 
@@ -18,12 +19,14 @@ function toRE(pat: string): RE {
 // const char: (c: Char) => RE = c => toRE(c._A)
 const char: (c: string) => RE = toRE
 const anyChar: RE = toRE(".")
-const cat: (re1: RE) => (re2: RE) => RE = re1 => re2 => str =>
-  re1(str).concat(re2(str))
+const cat: (re1: RE) => (re2: RE) => RE =
+  re1 => re2 => str =>
+    re1(str).concat(re2(str))
 const optional: (re: RE) => RE = re => toRE(`${re}?`)
-const either: (re1: RE) => (re2: RE) => RE = re1 => re2 => str =>
-  re1(str) || re2(str)
-const star: (re: RE) => RE = re => str => re()
+const either: (re1: RE) => (re2: RE) => RE =
+  re1 => re2 => str =>
+    re1(str) || re2(str)
+const star: (re: RE) => RE = re => toRE(`${re}*`) // str => re(str)
 const emptyMatch: RE = toRE("")
 const fail: RE = _ => []
 

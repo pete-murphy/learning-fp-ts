@@ -42,6 +42,7 @@ export const deleteAt =
   (s: IntervalSet<A>): IntervalSet<A> => {
     const isEmpty = I.isEmpty_(ordA)
     const exOrd = Ex.getOrd(ordA)
+    const intersection = I.intersection(ordA)
 
     if (isEmpty(i)) {
       return s
@@ -49,7 +50,6 @@ export const deleteAt =
 
     const [smaller, m1, xs] = RM.splitLookupLE(exOrd)(I.lowerBound(i))(s)
     const [_, m2, larger] = RM.splitLookupLE(exOrd)(I.upperBound(i))(xs)
-    const intersection = I.intersection(ordA)
 
     return unions(
       ordA,

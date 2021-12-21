@@ -10,8 +10,8 @@ import {
   AppSchema,
   createSchema,
   interpreter,
-} from "./schemable/AppSchemable"
-import { DecoderSchemable } from "./schemable/exports"
+} from "./schemable-ignore/AppSchemable"
+import { DecoderSchemable } from "./schemable-ignore/exports"
 
 /**
  * @internal
@@ -59,18 +59,13 @@ const M: MonadThrow2C<E.URI, D.DecodeError> = {
  * exported from `Kleisli` and the `chain` function below *could* be fleshed out
  * with a full `Monad` instance, but for now `chain` is all we need.
  */
-const chain_ = <M extends URIS2, E>(
-  M: Monad2C<M, E>
-) => <A, B, I>(
-  f: (a: A) => K.Kleisli<M, I, E, B>
-) => (
-  ia: K.Kleisli<M, I, E, A>
-): K.Kleisli<M, I, E, B> => ({
-  decode: i =>
-    M.chain(ia.decode(i), (a: A) =>
-      f(a).decode(i)
-    ),
-})
+const chain_ =
+  <M extends URIS2, E>(M: Monad2C<M, E>) =>
+  <A, B, I>(f: (a: A) => K.Kleisli<M, I, E, B>) =>
+  (ia: K.Kleisli<M, I, E, A>): K.Kleisli<M, I, E, B> => ({
+    decode: i =>
+      M.chain(ia.decode(i), (a: A) => f(a).decode(i)),
+  })
 
 export const chain = chain_(M)
 
@@ -86,9 +81,7 @@ const FooSchema: AppSchema<{
   })
 )
 
-const decoderFoo = interpreter(DecoderSchemable)(
-  FooSchema
-)
+const decoderFoo = interpreter(DecoderSchemable)(FooSchema)
 
 // interface Decoder<I, A> extends K.Kleisli<E.URI, I, DecodeError, A> {}
 // type Decoder<I, A> = K.Kleisli<E.URI          , I, DecodeError, A>

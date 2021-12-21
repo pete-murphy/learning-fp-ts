@@ -1,5 +1,5 @@
-import { match } from "../matchers"
-import { Ord, pipe } from "../fp-ts-imports"
+import { match } from "../matchers.ignore"
+import { Eq, Ord, pipe } from "../fp-ts-imports"
 
 export type Extended<A> =
   | {
@@ -28,7 +28,9 @@ export const posInf = {
 
 const fold = match.on("_tag")
 
-export const getOrd = <A>(ordA: Ord.Ord<A>): Ord.Ord<Extended<A>> =>
+export const getOrd = <A>(
+  ordA: Ord.Ord<A>
+): Ord.Ord<Extended<A>> =>
   Ord.fromCompare((x, y) =>
     pipe(
       x,
@@ -47,7 +49,8 @@ export const getOrd = <A>(ordA: Ord.Ord<A>): Ord.Ord<Extended<A>> =>
             y,
             fold({
               NegInf: () => 1,
-              Finite: y_ => ordA.compare(x_.value, y_.value),
+              Finite: y_ =>
+                ordA.compare(x_.value, y_.value),
               PosInf: () => -1,
             })
           ),
@@ -63,3 +66,26 @@ export const getOrd = <A>(ordA: Ord.Ord<A>): Ord.Ord<Extended<A>> =>
       })
     )
   )
+
+export const getEq = <A>(
+  eqA: Eq.Eq<A>
+): Eq.Eq<Extended<A>> =>
+  Eq.fromEquals((x, y) =>
+    x._tag === "Finite" && y._tag === "Finite"
+      ? eqA.equals(x.value, y.value)
+      : x._tag === y._tag
+  )
+
+export const clampFinite =
+  <A>(ordA: Ord.Ord<A>) =>
+  (min: A, max: A) =>
+  (exA: Extended<A>): A =>
+    pipe(
+      exA,
+      fold({
+        NegInf: () => min,
+        Finite: ({ value }) =>
+          Ord.clamp(ordA)(min, max)(value),
+        PosInf: () => max,
+      })
+    )

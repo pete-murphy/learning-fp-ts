@@ -5,7 +5,7 @@ import { Lattice } from "fp-ts/Lattice"
 import * as Show from "fp-ts/Show"
 import { pipe } from "fp-ts/lib/function"
 import { Functor1 } from "fp-ts/lib/Functor"
-import { match } from "../matchers"
+import { match } from "../matchers.ignore"
 
 import * as Ex from "./Extended"
 
@@ -88,7 +88,10 @@ export interface Empty {
  * @param lower Lower bound of interval
  * @param upper Upper bound of interval
  */
-export const between = <A>(lower: A, upper: A): Between<A> => ({
+export const between = <A>(
+  lower: A,
+  upper: A
+): Between<A> => ({
   _tag: "Between",
   lower,
   upper,
@@ -99,7 +102,9 @@ export const between = <A>(lower: A, upper: A): Between<A> => ({
  *
  * @param lower Lower bound of interval
  */
-export const greaterThan = <A>(lower: A): GreaterThan<A> => ({
+export const greaterThan = <A>(
+  lower: A
+): GreaterThan<A> => ({
   _tag: "GreaterThan",
   lower,
 })
@@ -139,7 +144,10 @@ export const empty: Empty = {
  */
 export const interval =
   <A>(ordA: Ord.Ord<A>) =>
-  (lower: Ex.Extended<A>, upper: Ex.Extended<A>): Interval<A> =>
+  (
+    lower: Ex.Extended<A>,
+    upper: Ex.Extended<A>
+  ): Interval<A> =>
     pipe(
       lower,
       match.on("_tag")({
@@ -178,14 +186,19 @@ export const isEmpty_ =
   <A>(ordA: Ord.Ord<A>) =>
   (interval: Interval<A>): boolean =>
     interval._tag === "Empty" ||
-    Ord.geq(Ex.getOrd(ordA))(lowerBound(interval), upperBound(interval))
+    Ord.geq(Ex.getOrd(ordA))(
+      lowerBound(interval),
+      upperBound(interval)
+    )
 
 export const getShowInterval = <A>({
   show,
 }: Show.Show<A>): Show.Show<Interval<A>> => ({
   show: match.on("_tag")({
-    Between: ({ lower, upper }) => `between(${show(lower)}, ${show(upper)})`,
-    GreaterThan: ({ lower }) => `greaterThan(${show(lower)})`,
+    Between: ({ lower, upper }) =>
+      `between(${show(lower)}, ${show(upper)})`,
+    GreaterThan: ({ lower }) =>
+      `greaterThan(${show(lower)})`,
     LessThan: ({ upper }) => `lessThan(${show(upper)})`,
     Infinite: () => `infinite`,
     Empty: () => `empty`,
@@ -207,9 +220,14 @@ export const getJoinSemilattice = <A>(
               y,
               match.on("_tag")({
                 Between: y_ =>
-                  between(min(x_.lower, y_.lower), max(x_.upper, y_.upper)),
-                GreaterThan: y_ => greaterThan(min(x_.lower, y_.lower)),
-                LessThan: y_ => lessThan(max(x_.upper, y_.upper)),
+                  between(
+                    min(x_.lower, y_.lower),
+                    max(x_.upper, y_.upper)
+                  ),
+                GreaterThan: y_ =>
+                  greaterThan(min(x_.lower, y_.lower)),
+                LessThan: y_ =>
+                  lessThan(max(x_.upper, y_.upper)),
                 Infinite: () => infinite,
                 Empty: () => x_,
               })
@@ -218,8 +236,10 @@ export const getJoinSemilattice = <A>(
             pipe(
               y,
               match.on("_tag")({
-                Between: y_ => greaterThan(min(x_.lower, y_.lower)),
-                GreaterThan: y_ => greaterThan(min(x_.lower, y_.lower)),
+                Between: y_ =>
+                  greaterThan(min(x_.lower, y_.lower)),
+                GreaterThan: y_ =>
+                  greaterThan(min(x_.lower, y_.lower)),
                 LessThan: () => infinite,
                 Infinite: () => infinite,
                 Empty: () => x_,
@@ -229,9 +249,11 @@ export const getJoinSemilattice = <A>(
             pipe(
               y,
               match.on("_tag")({
-                Between: y_ => lessThan(max(x_.upper, y_.upper)),
+                Between: y_ =>
+                  lessThan(max(x_.upper, y_.upper)),
                 GreaterThan: () => infinite,
-                LessThan: y_ => lessThan(max(x_.upper, y_.upper)),
+                LessThan: y_ =>
+                  lessThan(max(x_.upper, y_.upper)),
                 Infinite: () => infinite,
                 Empty: () => x_,
               })
@@ -262,15 +284,21 @@ export const getMeetSemilattice = <A>(
                 Between: y_ => {
                   const lower = max(x_.lower, y_.lower)
                   const upper = min(x_.upper, y_.upper)
-                  return gt(lower, upper) ? empty : between(lower, upper)
+                  return gt(lower, upper)
+                    ? empty
+                    : between(lower, upper)
                 },
                 GreaterThan: y_ => {
                   const lower = max(x_.lower, y_.lower)
-                  return gt(lower, x_.upper) ? empty : between(lower, x_.upper)
+                  return gt(lower, x_.upper)
+                    ? empty
+                    : between(lower, x_.upper)
                 },
                 LessThan: y_ => {
                   const upper = min(x_.upper, y_.upper)
-                  return lt(upper, x_.lower) ? empty : between(x_.lower, upper)
+                  return lt(upper, x_.lower)
+                    ? empty
+                    : between(x_.lower, upper)
                 },
                 Infinite: () => x_,
                 Empty: () => empty,
@@ -282,11 +310,16 @@ export const getMeetSemilattice = <A>(
               match.on("_tag")({
                 Between: y_ => {
                   const lower = max(x_.lower, y_.lower)
-                  return gt(lower, y_.upper) ? empty : between(lower, y_.upper)
+                  return gt(lower, y_.upper)
+                    ? empty
+                    : between(lower, y_.upper)
                 },
-                GreaterThan: y_ => greaterThan(max(x_.lower, y_.lower)),
+                GreaterThan: y_ =>
+                  greaterThan(max(x_.lower, y_.lower)),
                 LessThan: y_ =>
-                  gt(x_.lower, y_.upper) ? empty : between(x_.lower, y_.upper),
+                  gt(x_.lower, y_.upper)
+                    ? empty
+                    : between(x_.lower, y_.upper),
                 Infinite: () => x_,
                 Empty: () => empty,
               })
@@ -297,11 +330,16 @@ export const getMeetSemilattice = <A>(
               match.on("_tag")({
                 Between: y_ => {
                   const upper = min(x_.upper, y_.upper)
-                  return lt(upper, y_.lower) ? empty : between(y_.lower, upper)
+                  return lt(upper, y_.lower)
+                    ? empty
+                    : between(y_.lower, upper)
                 },
                 GreaterThan: y_ =>
-                  gt(y_.lower, x_.upper) ? empty : between(y_.lower, x_.upper),
-                LessThan: y_ => lessThan(min(x_.upper, y_.upper)),
+                  gt(y_.lower, x_.upper)
+                    ? empty
+                    : between(y_.lower, x_.upper),
+                LessThan: y_ =>
+                  lessThan(min(x_.upper, y_.upper)),
                 Infinite: () => x_,
                 Empty: () => empty,
               })
@@ -313,7 +351,9 @@ export const getMeetSemilattice = <A>(
   }
 }
 
-export const getLattice = <A>(ordA: Ord.Ord<A>): Lattice<Interval<A>> => ({
+export const getLattice = <A>(
+  ordA: Ord.Ord<A>
+): Lattice<Interval<A>> => ({
   join: getJoinSemilattice(ordA).join,
   meet: getMeetSemilattice(ordA).meet,
 })
@@ -321,7 +361,9 @@ export const getLattice = <A>(ordA: Ord.Ord<A>): Lattice<Interval<A>> => ({
 /**
  * Calculate the lower bound of an interval.
  */
-export const lowerBound: <A>(interval: Interval<A>) => Ex.Extended<A> = pipe(
+export const lowerBound: <A>(
+  interval: Interval<A>
+) => Ex.Extended<A> = pipe(
   match.on("_tag")({
     Between: ({ lower }) => Ex.finite(lower),
     GreaterThan: ({ lower }) => Ex.finite(lower),
@@ -334,7 +376,9 @@ export const lowerBound: <A>(interval: Interval<A>) => Ex.Extended<A> = pipe(
 /**
  * Calculate the upper bound of an interval.
  */
-export const upperBound: <A>(interval: Interval<A>) => Ex.Extended<A> = pipe(
+export const upperBound: <A>(
+  interval: Interval<A>
+) => Ex.Extended<A> = pipe(
   match.on("_tag")({
     Between: ({ upper }) => Ex.finite(upper),
     GreaterThan: () => Ex.posInf,
@@ -378,8 +422,14 @@ export const hull =
       return i1
     }
     const exOrd = Ex.getOrd(ordA)
-    const minLB = Ord.min(exOrd)(lowerBound(i1), lowerBound(i2))
-    const maxUB = Ord.max(exOrd)(upperBound(i1), upperBound(i2))
+    const minLB = Ord.min(exOrd)(
+      lowerBound(i1),
+      lowerBound(i2)
+    )
+    const maxUB = Ord.max(exOrd)(
+      upperBound(i1),
+      upperBound(i2)
+    )
 
     return interval(ordA)(minLB, maxUB)
   }
@@ -394,8 +444,14 @@ export const intersection =
       return empty
     }
     const exOrd = Ex.getOrd(ordA)
-    const maxLB = Ord.max(exOrd)(lowerBound(i1), lowerBound(i2))
-    const minUB = Ord.min(exOrd)(upperBound(i1), upperBound(i2))
+    const maxLB = Ord.max(exOrd)(
+      lowerBound(i1),
+      lowerBound(i2)
+    )
+    const minUB = Ord.min(exOrd)(
+      upperBound(i1),
+      upperBound(i2)
+    )
 
     return interval(ordA)(maxLB, minUB)
   }
@@ -417,7 +473,9 @@ export const elem =
 /**
  * @internal
  */
-export const upTo = <A>(interval: Interval<A>): Interval<A> =>
+export const upTo = <A>(
+  interval: Interval<A>
+): Interval<A> =>
   pipe(
     lowerBound(interval),
     match.on("_tag")({
@@ -430,7 +488,9 @@ export const upTo = <A>(interval: Interval<A>): Interval<A> =>
 /**
  * @internal
  */
-export const downTo = <A>(interval: Interval<A>): Interval<A> =>
+export const downTo = <A>(
+  interval: Interval<A>
+): Interval<A> =>
   pipe(
     upperBound(interval),
     match.on("_tag")({

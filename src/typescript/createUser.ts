@@ -3,21 +3,19 @@ import * as RE from "fp-ts/ReaderEither"
 import { pipe } from "fp-ts/lib/function"
 import { iso, Newtype } from "newtype-ts"
 
-const isMinLength: (
-  len: number
-) => (str: string) => E.Either<string, string> = len =>
-  E.fromPredicate(
-    str => str.length >= len,
-    () => "must be larger."
-  )
+const isMinLength: (len: number) => (str: string) => E.Either<string, string> =
+  len =>
+    E.fromPredicate(
+      str => str.length >= len,
+      () => "must be larger."
+    )
 
-const isMaxLength: (
-  len: number
-) => (str: string) => E.Either<string, string> = len =>
-  E.fromPredicate(
-    str => str.length <= len,
-    () => "has to be shorter."
-  )
+const isMaxLength: (len: number) => (str: string) => E.Either<string, string> =
+  len =>
+    E.fromPredicate(
+      str => str.length <= len,
+      () => "has to be shorter."
+    )
 
 interface Username
   extends Newtype<{ readonly Username: unique symbol }, string> {}

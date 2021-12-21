@@ -1,13 +1,14 @@
 import { array, traverse } from "fp-ts/lib/Array"
-import { flow } from "fp-ts/lib/function"
+import { flow, pipe } from "fp-ts/lib/function"
 import { monoidSum } from "fp-ts/lib/Monoid"
-import { pipe } from "fp-ts/lib/pipeable"
 import * as L from "monocle-ts/lib/Lens"
 import * as O from "monocle-ts/lib/Optional"
 import * as T from "monocle-ts/lib/Traversal"
 import * as I from "monocle-ts/lib/Ix"
 import { Applicative } from "fp-ts/lib/Applicative"
 import { HKT } from "fp-ts/lib/HKT"
+import { RA, Str } from "../ssstuff/fp-ts-imports"
+import { match, matchS } from "../ssstuff/matchers.ignore"
 
 const ex1 = [
   [0, 1, 2],
@@ -43,16 +44,44 @@ type Person = {
   money: number
 }
 
-const ex2: Array<Person> = [
+const ex2: ReadonlyArray<Person> = [
   { name: "Ritchie", money: 100_000 },
   { name: "Archie", money: 32 },
   { name: "Reggie", money: 4350 },
 ]
 
+const t2_ = pipe(
+  T.id<ReadonlyArray<Person>>(),
+  // T.traverse(RA.Traversable),
+  // T.filter(),
+  // T.(person => person.money > 1000),
+  T.findFirst(person => person.money > 1000),
+  T.prop("name"),
+  // T.modify(name => `Rich ${name}`),
+  // T.foldMap(RA.getMonoid())
+  T.fold(Str.Monoid)
+)(ex2) //?
+
+const t3_ = pipe(
+  ex2,
+  pipe(
+    T.id<ReadonlyArray<Person>>(),
+    // T.filter(),
+    // T.(person => person.money > 1000),
+    // T.findFirst(person => person.money > 1000),
+    T.traverse(RA.Traversable),
+    T.prop("name"),
+    // T.modify(name => `Rich ${name}`),
+    // T.foldMap(RA.getMonoid())
+    T.fold(Str.Monoid)
+  )
+) //?
+
 const t2 = pipe(
   L.id<Array<Person>>(),
   L.traverse(array),
   T.filter(x => x.money > 1000),
+
   T.modify(
     pipe(
       L.id<Person>(),
@@ -65,16 +94,21 @@ const t2 = pipe(
 // t2(ex2) //?
 
 const worded: T.Traversal<string, string> = {
-  modifyF: <F>(F: Applicative<F>) => (f: (str: string) => HKT<F, string>) =>
-    flow(
-      (str: string) => str.split(/\s+/),
-      traverse(F)(f),
-      fa => F.map(fa, ws => ws.join(" "))
-    ),
+  modifyF:
+    <F>(F: Applicative<F>) =>
+    (f: (str: string) => HKT<F, string>) =>
+      flow(
+        (str: string) => str.split(/\s+/),
+        traverse(F)(f),
+        fa => F.map(fa, ws => ws.join(" "))
+      ),
 }
 
 const arrayTraversal = <A>(): T.Traversal<Array<A>, A> => ({
-  modifyF: <F>(F: Applicative<F>) => (f: (a: A) => HKT<F, A>) => traverse(F)(f),
+  modifyF:
+    <F>(F: Applicative<F>) =>
+    (f: (a: A) => HKT<F, A>) =>
+      traverse(F)(f),
 })
 
 const uppercaseWordsStartingWithFOrA = pipe(

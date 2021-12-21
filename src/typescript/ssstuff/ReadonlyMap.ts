@@ -234,13 +234,10 @@ export const lookupLE =
   }
 
 /**
- * @internal
- *
- * Pete Murphy 2021-05-16 - Marking this as "internal", it seems to just be
- * useful for `IntervalMap`/`IntervalSet` operations.
- *
- * Like `splitLookup` but if the lookup part fails, it returns the maximum lookup
- * from the smaller map. Mnemonically, "split lookup, less-than-or-equal."
+ * Like `splitLookup` but if the lookup part fails, it returns the maximum
+ * lookup from the smaller map, effectively looking up the closest key that is
+ * less than or equal to the key passed in. Mnemonically, "split lookup,
+ * less-than-or-equal."
  */
 export const splitLookupLE =
   <K>(ordK: Ord.Ord<K>) =>

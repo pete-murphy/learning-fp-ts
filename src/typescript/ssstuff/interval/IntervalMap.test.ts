@@ -5,7 +5,7 @@ import { tuple, pipe, constVoid } from "fp-ts/function"
 import * as O from "fp-ts/Option"
 import * as Ord from "fp-ts/Ord"
 import * as RA from "fp-ts/ReadonlyArray"
-import { match } from "../matchers"
+import { match } from "../matchers.ignore"
 import * as Ex from "./Extended"
 import * as I from "./Interval"
 
@@ -13,7 +13,9 @@ import * as _ from "./IntervalMap"
 
 const make = _.fromReadonlyArray(N.Ord)
 
-const arbitraryIntervalNum: fc.Arbitrary<I.Interval<number>> = fc
+const arbitraryIntervalNum: fc.Arbitrary<
+  I.Interval<number>
+> = fc
   .tuple(fc.integer(), fc.integer())
   .filter(([n, m]) => n < m)
   .chain(([n, m]) =>
@@ -52,33 +54,39 @@ const matchOnTag = match.on("_tag")
 /**
  * A helper for picking a number that is *stric
  */
-const pickup = (interval: I.Interval<number>): O.Option<number> =>
-  pipe(tuple(I.lowerBound(interval), I.upperBound(interval)), ([l, u]) =>
-    pipe(
-      l,
-      matchOnTag({
-        NegInf: () =>
-          pipe(
-            u,
-            matchOnTag({
-              NegInf: () => O.none,
-              Finite: ({ value }) => O.some(value - 1),
-              PosInf: () => O.some(0),
-            })
-          ),
-        Finite: x =>
-          pipe(
-            u,
-            matchOnTag({
-              NegInf: () => O.none,
-              Finite: y =>
-                x.value >= y.value ? O.none : O.some((x.value + y.value) / 2),
-              PosInf: () => O.some(x.value),
-            })
-          ),
-        PosInf: () => O.none,
-      })
-    )
+const pickup = (
+  interval: I.Interval<number>
+): O.Option<number> =>
+  pipe(
+    tuple(I.lowerBound(interval), I.upperBound(interval)),
+    ([l, u]) =>
+      pipe(
+        l,
+        matchOnTag({
+          NegInf: () =>
+            pipe(
+              u,
+              matchOnTag({
+                NegInf: () => O.none,
+                Finite: ({ value }) => O.some(value - 1),
+                PosInf: () => O.some(0),
+              })
+            ),
+          Finite: x =>
+            pipe(
+              u,
+              matchOnTag({
+                NegInf: () => O.none,
+                Finite: y =>
+                  x.value >= y.value
+                    ? O.none
+                    : O.some((x.value + y.value) / 2),
+                PosInf: () => O.some(x.value),
+              })
+            ),
+          PosInf: () => O.none,
+        })
+      )
   )
 
 describe("pickup", () => {
@@ -122,7 +130,9 @@ describe("alterAt", () => {
           pipe(
             pickup(i),
             O.fold(constVoid, k => {
-              const lookupAfter = lookup(k)(alterAt(i, f)(m))
+              const lookupAfter = lookup(k)(
+                alterAt(i, f)(m)
+              )
               const applyAfter = f(lookup(k)(m))
               expect(lookupAfter).toEqual(applyAfter)
             })
@@ -144,7 +154,9 @@ describe("split", () => {
     const smaller: _.IntervalMap<number, string> = make([
       [I.between(2, 5), "A"],
     ])
-    const middle: _.IntervalMap<number, string> = make([[I.between(5, 9), "A"]])
+    const middle: _.IntervalMap<number, string> = make([
+      [I.between(5, 9), "A"],
+    ])
     const larger: _.IntervalMap<number, string> = make([
       [I.between(9, 10), "A"],
       [I.between(10, 20), "B"],
@@ -187,11 +199,12 @@ describe("split", () => {
   })
 
   test("keys in the triplet increase left-to-right", () => {
-    const coerce: (n: Ex.Extended<number>) => number = match.on("_tag")({
-      NegInf: () => -Infinity,
-      Finite: ({ value }) => value,
-      PosInf: () => Infinity,
-    })
+    const coerce: (n: Ex.Extended<number>) => number =
+      match.on("_tag")({
+        NegInf: () => -Infinity,
+        Finite: ({ value }) => value,
+        PosInf: () => Infinity,
+      })
     const split = _.split(N.Ord)
 
     fc.assert(
@@ -211,10 +224,12 @@ describe("split", () => {
             O.Do,
             O.apS("maxFromSmall", RA.last(smallKeys)),
             O.apS("minFromMiddle", RA.head(middleKeys)),
-            O.fold(constVoid, ({ maxFromSmall, minFromMiddle }) =>
-              expect(coerce(maxFromSmall)).toBeLessThanOrEqual(
-                coerce(minFromMiddle)
-              )
+            O.fold(
+              constVoid,
+              ({ maxFromSmall, minFromMiddle }) =>
+                expect(
+                  coerce(maxFromSmall)
+                ).toBeLessThanOrEqual(coerce(minFromMiddle))
             )
           )
 
@@ -222,10 +237,12 @@ describe("split", () => {
             O.Do,
             O.apS("maxFromMiddle", RA.last(middleKeys)),
             O.apS("minFromLarge", RA.head(largeKeys)),
-            O.fold(constVoid, ({ maxFromMiddle, minFromLarge }) =>
-              expect(coerce(maxFromMiddle)).toBeLessThanOrEqual(
-                coerce(minFromLarge)
-              )
+            O.fold(
+              constVoid,
+              ({ maxFromMiddle, minFromLarge }) =>
+                expect(
+                  coerce(maxFromMiddle)
+                ).toBeLessThanOrEqual(coerce(minFromLarge))
             )
           )
         }
@@ -240,21 +257,29 @@ describe("upsertAt", () => {
 
   test("insert into empty map is same as singleton", () => {
     fc.assert(
-      fc.property(arbitraryIntervalNum, fc.string(), (k, str) => {
-        const actual = upsertAt(k, str)(RM.empty)
-        const expected = singleton(k, str)
-        expect(actual).toEqual(expected)
-      })
+      fc.property(
+        arbitraryIntervalNum,
+        fc.string(),
+        (k, str) => {
+          const actual = upsertAt(k, str)(RM.empty)
+          const expected = singleton(k, str)
+          expect(actual).toEqual(expected)
+        }
+      )
     )
   })
 
   test("insert infinite returns infinite", () => {
     fc.assert(
-      fc.property(arbitraryIntervalMapNumString, fc.string(), (m, str) => {
-        const actual = upsertAt(I.infinite, str)(m)
-        const expected = _.infinite(str)
-        expect(actual).toEqual(expected)
-      })
+      fc.property(
+        arbitraryIntervalMapNumString,
+        fc.string(),
+        (m, str) => {
+          const actual = upsertAt(I.infinite, str)(m)
+          const expected = _.infinite(str)
+          expect(actual).toEqual(expected)
+        }
+      )
     )
   })
 })

@@ -18,25 +18,20 @@ type Input = {
   str: string
 }
 
-const inputUncons: (
-  input: Input
-) => Option<[string, Input]> = input =>
+const inputUncons: (input: Input) => Option<[string, Input]> = input =>
   input.str.length === 0
     ? O.none
-    : O.some([
-        input.str[0],
-        { loc: input.loc + 1, str: input.str.slice(1) },
-      ])
+    : O.some([input.str[0], { loc: input.loc + 1, str: input.str.slice(1) }])
+
+export const URI = "StateEither_"
+
+export type URI = typeof URI
 
 declare module "fp-ts/lib/HKT" {
   interface URItoKind3<R, E, A> {
-    readonly StateEither: StateEither<R, E, A>
+    readonly [URI]: StateEither<R, E, A>
   }
 }
-
-export const URI = "StateEither"
-
-export type URI = typeof URI
 
 type StateEither<I, E, A> = StT.StateT2<E.URI, I, E, A>
 
@@ -60,8 +55,7 @@ const charP: (char: string) => Parser<string> = char => input =>
     input,
     inputUncons,
     O.fold(
-      () =>
-        E.left(Error(`Expected '${char}', but reached end of input`)),
+      () => E.left(Error(`Expected '${char}', but reached end of input`)),
       ([y, ys]) =>
         char === y
           ? E.right(tuple(char, ys))
@@ -74,8 +68,7 @@ const stringP: (str: string) => Parser<string> = str => input =>
     input,
     pipe([...str], A.traverse(stateEither)(charP)),
     E.fold(
-      () =>
-        E.left(Error(`Expected '${str}', but found '${input.str}'`)),
+      () => E.left(Error(`Expected '${str}', but found '${input.str}'`)),
       ([chars, input_]) => E.right([chars.join(""), input_])
     )
   )
