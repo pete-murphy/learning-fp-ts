@@ -37,7 +37,7 @@
     "fp-ts-indexed-monad": "^2.10.3",
     "fp-ts-laws": "^0.2.1",
     "fp-ts-std": "^0.10.1",
-    "immer": "^7.0.9",
+    "immer": "^9.0.6",
     "immutable": "^4.0.0-rc.12",
     "immutable-ext": "^1.1.5",
     "io-ts": "^2.2.11",
