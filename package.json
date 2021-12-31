@@ -23,6 +23,7 @@
     "@types/node-fetch": "^2.5.2",
     "@types/ramda": "^0.27.6",
     "@types/react": "^16.9.23",
+    "@types/uuid": "^8.3.3",
     "babel-jest": "^24.9.0",
     "babel-tape-runner": "^3.0.0",
     "big.js": "^6.1.1",
@@ -64,6 +65,7 @@
     "tsconfig-paths": "^3.9.0",
     "typelevel-ts": "^0.4.0",
     "typescript": "4.1.2",
+    "uuid": "^8.3.2",
     "xhr2": "^0.2.0"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ import { HKT } from "fp-ts/HKT"
 import * as RA from "fp-ts/ReadonlyArray"
 import { pipe } from "fp-ts/function"
 import * as T from "monocle-ts/Traversal"
+import * as O from "fp-ts/Option"
 
 interface A {
   value: string
@@ -15,12 +16,16 @@ interface C {
 }
 type ABC = A | B | C
 
+declare const abc: ABC
+
 function isA(abc: ABC): abc is A {
   return "value" in abc
 }
 function isB(abc: ABC): abc is B {
   return "list" in abc
 }
+
+pipe(abc, O.fromPredicate(isA), x => x)
 
 const both = <S1, S2, A>(
   t1: T.Traversal<S1, A>,
