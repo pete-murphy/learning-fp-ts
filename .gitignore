@@ -1,5 +1,7 @@
 node_modules
 src/**/*.json
+src/**/*.csv
 *.ignore.*
 *-ignore*
 report.*.json
+.psc-ide-port

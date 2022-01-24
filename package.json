@@ -60,7 +60,7 @@
     "retry-ts": "^0.1.2",
     "tape": "^4.11.0",
     "ts-jest": "^24.1.0",
-    "ts-node": "^9.0.0",
+    "ts-node": "^10.4.0",
     "ts-pattern": "^3.2.1",
     "tsconfig-paths": "^3.9.0",
     "typelevel-ts": "^0.4.0",

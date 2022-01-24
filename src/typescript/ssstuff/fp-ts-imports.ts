@@ -3,6 +3,7 @@ import * as B from "fp-ts/boolean"
 import * as Com from "fp-ts/Comonad"
 import * as Dt from "fp-ts/Date"
 import * as E from "fp-ts/Either"
+import * as Fn from "fp-ts/function"
 import * as IO from "fp-ts/IO"
 import * as IOE from "fp-ts/IOEither"
 import * as Id from "fp-ts/Identity"
@@ -12,7 +13,6 @@ import * as N from "fp-ts/number"
 import * as RA from "fp-ts/ReadonlyArray"
 import * as RE from "fp-ts/ReaderEither"
 import * as _RM from "fp-ts/ReadonlyMap"
-import * as RNEA from "fp-ts/ReadonlyNonEmptyArray"
 import * as RR from "fp-ts/ReadonlyRecord"
 import * as RS from "fp-ts/ReadonlySet"
 import * as RT from "fp-ts/ReaderTask"
@@ -43,7 +43,7 @@ import {
   flow,
   identity,
   pipe,
-  tuple,
+  tuple
 } from "fp-ts/function"
 import { not } from "fp-ts/Predicate"
 
@@ -52,6 +52,7 @@ import * as O from "./Option"
 import * as RTE from "./ReaderTaskEither.ignore"
 import * as Tree from "./Tree"
 import * as RD from "./RemoteData.ignore"
+import * as RNEA from "./ReadonlyNonEmptyArray"
 
 export {
   Ap,
@@ -62,6 +63,7 @@ export {
   E,
   Eq,
   Fld,
+  Fn,
   IO,
   IOE,
   Id,
@@ -98,5 +100,5 @@ export {
   identity,
   not,
   pipe,
-  tuple,
+  tuple
 }

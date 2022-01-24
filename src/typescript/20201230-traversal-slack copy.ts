@@ -3,7 +3,10 @@ import * as RA from "fp-ts/ReadonlyArray"
 import * as E from "fp-ts/Either"
 import * as T from "monocle-ts/Traversal"
 import * as RD from "@devexperts/remote-data-ts"
-import { Traversable1, Traversable2 } from "fp-ts/lib/Traversable"
+import {
+  Traversable1,
+  Traversable2
+} from "fp-ts/lib/Traversable"
 import { O } from "./ssstuff/fp-ts-imports"
 import { HKT, Kind, URIS } from "fp-ts/lib/HKT"
 import { Applicative } from "fp-ts/lib/Applicative"
