@@ -11,7 +11,7 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": ["es2020"],
+    "lib": ["esnext"],
     "jsx": "react"
   },
   "baseUrl": "src"

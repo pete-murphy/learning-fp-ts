@@ -53,6 +53,7 @@
     "node-fetch": "^2.6.0",
     "parser-ts": "^0.6.15",
     "partial.lenses": "^14.17.0",
+    "pino": "^7.8.0",
     "prelude-ts": "^1.0.0",
     "query-string": "^6.10.1",
     "ramda": "^0.26.1",
