@@ -2,7 +2,7 @@
 //   readonly run: () => T[K]
 //   readonly label: [K in keyof T] }
 
-import { pipe, RA } from "./ssstuff/fp-ts-imports"
+import { pipe, RA } from "./lib/fp-ts-imports"
 
 // const structMap: <I, O extends { [K in keyof I]: unknown }>(
 //   f: <K extends keyof I>(ii: I[K]) => O[K]

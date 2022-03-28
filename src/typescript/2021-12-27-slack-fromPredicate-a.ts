@@ -1,7 +1,7 @@
 import * as O from "fp-ts/lib/Option"
 import * as RA from "fp-ts/lib/ReadonlyArray"
 import { pipe } from "fp-ts/lib/function"
-import { RNEA } from "./ssstuff/fp-ts-imports"
+import { RNEA } from "./lib/fp-ts-imports"
 
 declare function isString(x: unknown): x is string
 declare const foo: unknown

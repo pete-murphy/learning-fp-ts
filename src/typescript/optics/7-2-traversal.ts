@@ -7,13 +7,13 @@ import * as T from "monocle-ts/lib/Traversal"
 import * as I from "monocle-ts/lib/Ix"
 import { Applicative } from "fp-ts/lib/Applicative"
 import { HKT } from "fp-ts/lib/HKT"
-import { RA, Str } from "../ssstuff/fp-ts-imports"
-import { match, matchS } from "../ssstuff/matchers.ignore"
+import { RA, Str } from "../lib/fp-ts-imports"
+import { match, matchS } from "../lib/matchers.ignore"
 
 const ex1 = [
   [0, 1, 2],
   [3, 4],
-  [5, 6, 7, 8],
+  [5, 6, 7, 8]
 ]
 
 // Write a traversal that focuses the 6th element of nested list
@@ -47,7 +47,7 @@ type Person = {
 const ex2: ReadonlyArray<Person> = [
   { name: "Ritchie", money: 100_000 },
   { name: "Archie", money: 32 },
-  { name: "Reggie", money: 4350 },
+  { name: "Reggie", money: 4350 }
 ]
 
 const t2_ = pipe(
@@ -101,14 +101,14 @@ const worded: T.Traversal<string, string> = {
         (str: string) => str.split(/\s+/),
         traverse(F)(f),
         fa => F.map(fa, ws => ws.join(" "))
-      ),
+      )
 }
 
 const arrayTraversal = <A>(): T.Traversal<Array<A>, A> => ({
   modifyF:
     <F>(F: Applicative<F>) =>
     (f: (a: A) => HKT<F, A>) =>
-      traverse(F)(f),
+      traverse(F)(f)
 })
 
 const uppercaseWordsStartingWithFOrA = pipe(

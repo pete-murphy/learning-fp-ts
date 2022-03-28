@@ -10,7 +10,7 @@ import {
   TE,
   T,
   constant
-} from "./ssstuff/fp-ts-imports"
+} from "./lib/fp-ts-imports"
 
 interface Foo {
   name: string

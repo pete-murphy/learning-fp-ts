@@ -1,4 +1,4 @@
-import { O, pipe } from "./ssstuff/fp-ts-imports"
+import { O, pipe } from "./lib/fp-ts-imports"
 
 type Result = {
   data: number

@@ -4,7 +4,7 @@ import * as O from "fp-ts/Option"
 import * as Re from "fp-ts/Reader"
 import { pipe, tupled, untupled } from "fp-ts/function"
 import { sequenceS, sequenceT } from "fp-ts/lib/Apply"
-import { RD } from "./ssstuff/fp-ts-imports"
+import { RD } from "./lib/fp-ts-imports"
 
 const testArray: RNEA.ReadonlyNonEmptyArray<string> = [
   "someKey",

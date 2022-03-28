@@ -1,6 +1,6 @@
 import { pipe, tuple } from "fp-ts/function"
 import * as RA from "fp-ts/ReadonlyArray"
-import { Ap } from "./ssstuff/fp-ts-imports"
+import { Ap } from "./lib/fp-ts-imports"
 
 pipe(
   RA.Do,
@@ -21,7 +21,7 @@ pipe(
 RA.comprehension(
   [
     [1, 2, 3],
-    ["a", "b", "c"],
+    ["a", "b", "c"]
   ],
   tuple
 )

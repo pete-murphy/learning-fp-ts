@@ -1,4 +1,11 @@
-import { O, pipe, RA, RNEA, TE, Mon } from "./ssstuff/fp-ts-imports"
+import {
+  O,
+  pipe,
+  RA,
+  RNEA,
+  TE,
+  Mon
+} from "./lib/fp-ts-imports"
 
 type User = {}
 declare const userGroup1: ReadonlyArray<User>
@@ -18,7 +25,7 @@ RA.sequence(TE.ApplicativeSeq)(tasks_)()
 const tasks = pipe(
   [
     O.map(writeToDb)(RNEA.fromReadonlyArray(userGroup1)),
-    O.map(removeFromDb)(RNEA.fromReadonlyArray(userGroup2)),
+    O.map(removeFromDb)(RNEA.fromReadonlyArray(userGroup2))
   ],
   RA.compact
 )

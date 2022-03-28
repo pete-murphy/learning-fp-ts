@@ -1,4 +1,4 @@
-import { RR, N } from "./ssstuff/fp-ts-imports"
+import { RR, N } from "./lib/fp-ts-imports"
 
 let fn = (n: number): string => n.toString()
 
@@ -11,12 +11,12 @@ const m2 = RR.getIntersectionSemigroup(N.SemigroupSum)
 
 const r1 = {
   a: 1,
-  b: 2,
+  b: 2
 }
 
 const r2 = {
   b: 3,
-  c: 4,
+  c: 4
 }
 
 console.log(m1.concat(r1, r2))

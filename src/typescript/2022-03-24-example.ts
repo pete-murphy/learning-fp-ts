@@ -1,9 +1,4 @@
-import {
-  pipe,
-  RA,
-  RNEA,
-  Str
-} from "./ssstuff/fp-ts-imports"
+import { pipe, RA, RNEA, Str } from "./lib/fp-ts-imports"
 
 export const joinWith =
   (separator: string) =>

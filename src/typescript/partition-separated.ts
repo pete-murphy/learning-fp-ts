@@ -1,4 +1,4 @@
-import { O, pipe, RA } from "./ssstuff/fp-ts-imports"
+import { O, pipe, RA } from "./lib/fp-ts-imports"
 import * as Sep from "fp-ts/Separated"
 
 type X = {
@@ -8,8 +8,12 @@ type X = {
 
 declare const xs: ReadonlyArray<X>
 
-const isNoneKey = (x: X): x is { key: O.None; value: number } => O.isNone(x.key)
-const isSomeKey = (x: X): x is { key: O.Some<string>; value: number } =>
+const isNoneKey = (
+  x: X
+): x is { key: O.None; value: number } => O.isNone(x.key)
+const isSomeKey = (
+  x: X
+): x is { key: O.Some<string>; value: number } =>
   O.isSome(x.key)
 
 pipe(

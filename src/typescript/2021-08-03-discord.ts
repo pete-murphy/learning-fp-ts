@@ -1,4 +1,4 @@
-import { flow, O, RA as A } from "./ssstuff/fp-ts-imports"
+import { flow, O, RA as A } from "./lib/fp-ts-imports"
 
 const f = flow(A.of, A.head)
 
@@ -9,6 +9,8 @@ const f__ = flow(
   as => (A.isEmpty(as) ? O.none : O.some(as[0]))
 )
 
-const f___ = flow(a => (A.isEmpty([a]) ? O.none : O.some(a)))
+const f___ = flow(a =>
+  A.isEmpty([a]) ? O.none : O.some(a)
+)
 
 const f____ = flow(a => O.some(a))

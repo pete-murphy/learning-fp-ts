@@ -8,7 +8,7 @@ import * as RNEA from "fp-ts/ReadonlyNonEmptyArray"
 import { pipe } from "fp-ts/function"
 import * as Str from "fp-ts/string"
 import * as Ord from "fp-ts/Ord"
-import { TE } from "../ssstuff/fp-ts-imports"
+import { TE } from "../lib/fp-ts-imports"
 import fetch from "node-fetch"
 
 type Row = {

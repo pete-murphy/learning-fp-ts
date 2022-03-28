@@ -3,7 +3,7 @@ import { flow, pipe, tuple } from "fp-ts/lib/function"
 import * as T from "monocle-ts/lib/Traversal"
 import { Applicative } from "fp-ts/lib/Applicative"
 import { HKT } from "fp-ts/lib/HKT"
-import { RA } from "../ssstuff/fp-ts-imports"
+import { RA } from "../lib/fp-ts-imports"
 
 const getIndexed = <A>(): T.Traversal<
   ReadonlyArray<A>,
@@ -11,7 +11,11 @@ const getIndexed = <A>(): T.Traversal<
 > => ({
   modifyF:
     <F>(F: Applicative<F>) =>
-    (f: (array: readonly [number, A]) => HKT<F, readonly [number, A]>) =>
+    (
+      f: (
+        array: readonly [number, A]
+      ) => HKT<F, readonly [number, A]>
+    ) =>
       flow(
         RA.mapWithIndex((i, a: A) => tuple(i, a)),
         RA.traverse(F)(f),
@@ -20,7 +24,7 @@ const getIndexed = <A>(): T.Traversal<
             fa,
             RA.map(([_, a]) => a)
           )
-      ),
+      )
 })
 
 const keyValued: T.Traversal<
@@ -43,18 +47,20 @@ const keyValued: T.Traversal<
           F.map(
             fa,
             flow(
-              Arr.map(({ key, value }) => tuple(key, value)),
+              Arr.map(({ key, value }) =>
+                tuple(key, value)
+              ),
               Object.fromEntries
             )
           )
-      ),
+      )
 }
 
 const example = {
   foo1: "foo1",
   foo2: true,
   bar1: "hello",
-  bar2: () => {},
+  bar2: () => {}
 }
 
 // pipe()

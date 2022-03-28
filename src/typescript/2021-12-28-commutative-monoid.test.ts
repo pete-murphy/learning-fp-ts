@@ -1,12 +1,5 @@
 import * as fc from "fast-check"
-import {
-  B,
-  N,
-  O,
-  RA,
-  RS,
-  Sg,
-} from "./ssstuff/fp-ts-imports"
+import { B, N, O, RA, RS, Sg } from "./lib/fp-ts-imports"
 
 const commutativity = <A, B>(
   arbA: fc.Arbitrary<A>,
@@ -59,11 +52,11 @@ describe("Commutative monoids", () => {
       fc.frequency(
         {
           arbitrary: fc.constant<O.Option<number>>(O.none),
-          weight: 1,
+          weight: 1
         },
         {
           arbitrary: fc.float().map(O.some),
-          weight: 5,
+          weight: 5
         }
       ),
       O.getMonoid(Sg.max(N.Ord)).concat
@@ -75,11 +68,11 @@ describe("Commutative monoids", () => {
       fc.frequency(
         {
           arbitrary: fc.constant<O.Option<number>>(O.none),
-          weight: 1,
+          weight: 1
         },
         {
           arbitrary: fc.float().map(O.some),
-          weight: 5,
+          weight: 5
         }
       ),
       O.getMonoid(Sg.min(N.Ord)).concat

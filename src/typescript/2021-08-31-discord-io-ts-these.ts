@@ -4,11 +4,11 @@ import * as E from "fp-ts/Either"
 import * as O from "fp-ts/Option"
 import * as RA from "fp-ts/ReadonlyArray"
 import { constVoid, flow, pipe } from "fp-ts/function"
-import { RD } from "./ssstuff/fp-ts-imports"
+import { RD } from "./lib/fp-ts-imports"
 
 const UserModel = t.type({
   name: t.string,
-  email: t.string,
+  email: t.string
 })
 
 type UserModel = t.TypeOf<typeof UserModel>
@@ -25,15 +25,19 @@ const validateUsers: (
 
 const validateUsers_: (
   users: ReadonlyArray<UserModel>
-) => Th.These<ReadonlyArray<Error>, ReadonlyArray<UserModel>> =
-  Th.traverseReadonlyArrayWithIndex(RA.getSemigroup<Error>())((_, user) =>
-    pipe(
-      user,
-      UserModel.decode,
-      E.mapLeft(_ => [Error("Invalid user")]),
-      Th.FromEither.fromEither
-    )
+) => Th.These<
+  ReadonlyArray<Error>,
+  ReadonlyArray<UserModel>
+> = Th.traverseReadonlyArrayWithIndex(
+  RA.getSemigroup<Error>()
+)((_, user) =>
+  pipe(
+    user,
+    UserModel.decode,
+    E.mapLeft(_ => [Error("Invalid user")]),
+    Th.FromEither.fromEither
   )
+)
 
 // const responseBody = t.(...)
 

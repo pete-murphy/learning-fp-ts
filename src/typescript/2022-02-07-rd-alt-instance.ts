@@ -1,4 +1,4 @@
-import { pipe, RD } from "./ssstuff/fp-ts-imports"
+import { pipe, RD } from "./lib/fp-ts-imports"
 
 const x0 = pipe(
   RD.initial,

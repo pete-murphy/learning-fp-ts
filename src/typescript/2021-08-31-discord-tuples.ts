@@ -1,4 +1,10 @@
-import { RA as A, flow, pipe, O, RTup as Tup } from "./ssstuff/fp-ts-imports"
+import {
+  RA as A,
+  flow,
+  pipe,
+  O,
+  RTup as Tup
+} from "./lib/fp-ts-imports"
 
 export const selectFirstFromTuples = <T extends unknown>(
   elements: Array<[T, boolean]>,

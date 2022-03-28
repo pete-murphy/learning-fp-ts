@@ -10,12 +10,14 @@ import {
   Sg,
   Str,
   St,
-  tuple,
-} from "./ssstuff/fp-ts-imports"
+  tuple
+} from "./lib/fp-ts-imports"
 import * as Endo from "fp-ts/Endomorphism"
 
 RA.unfold([1, 1], ([n, m]) =>
-  n > Number.MAX_SAFE_INTEGER ? O.none : O.some([n, [m, n + m]])
+  n > Number.MAX_SAFE_INTEGER
+    ? O.none
+    : O.some([n, [m, n + m]])
 ).length //?
 
 // pipe(
@@ -28,7 +30,10 @@ RA.unfold([1, 1], ([n, m]) =>
 // ) //?
 
 const nTimes = <A>(n: number, f: (a: A) => A) =>
-  pipe(RA.replicate(n, f), Mn.concatAll(Endo.getMonoid<A>()))
+  pipe(
+    RA.replicate(n, f),
+    Mn.concatAll(Endo.getMonoid<A>())
+  )
 
 const increment = (n: number) => n + 1
 

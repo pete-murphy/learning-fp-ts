@@ -6,7 +6,7 @@ import * as TaskEither from "fp-ts/TaskEither"
 import * as T from "monocle-ts/Traversal"
 import * as Opt from "monocle-ts/Optional"
 import * as Pr from "monocle-ts/Prism"
-import { Eq, N, RA } from "./ssstuff/fp-ts-imports"
+import { Eq, N, RA } from "./lib/fp-ts-imports"
 
 const one = O.some([1, 2])
 const other = O.some([2, 3])

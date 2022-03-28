@@ -11,7 +11,7 @@ import {
   T,
   constant,
   Eq
-} from "./ssstuff/fp-ts-imports"
+} from "./lib/fp-ts-imports"
 
 const always: Eq.Eq<any> = { equals: (x, y) => true }
 

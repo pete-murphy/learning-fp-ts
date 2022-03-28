@@ -1,5 +1,5 @@
 import { pipe } from "fp-ts/lib/function"
-import { O } from "./ssstuff/fp-ts-imports"
+import { O } from "./lib/fp-ts-imports"
 
 type CustomPrize = {
   readonly type: "Custom"

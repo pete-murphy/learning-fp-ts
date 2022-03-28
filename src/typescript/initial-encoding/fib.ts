@@ -1,5 +1,5 @@
 import { flow, pipe } from "fp-ts/lib/function"
-import { RNEA } from "../ssstuff/fp-ts-imports"
+import { RNEA } from "../lib/fp-ts-imports"
 import * as Ev from "./Eval"
 
 function fib(n: bigint): Ev.Eval<bigint> {

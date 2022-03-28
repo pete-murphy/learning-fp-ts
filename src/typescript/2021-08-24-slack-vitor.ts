@@ -1,4 +1,4 @@
-import { E, pipe, IOE } from "./ssstuff/fp-ts-imports"
+import { E, pipe, IOE } from "./lib/fp-ts-imports"
 
 type NotAuthenticated = {}
 type User = {
@@ -13,8 +13,9 @@ const updateA = (a: A): E.Either<Error, A> => E.right(a) // not doing anything f
 
 declare const user: User
 // authenticate :: Token -> Either NotAuthenticated User
-const authenticate = (token: string): E.Either<NotAuthenticated, User> =>
-  E.right(user)
+const authenticate = (
+  token: string
+): E.Either<NotAuthenticated, User> => E.right(user)
 
 // withAuthenticated :: (User -> z) -> Token -> Either NotAuthenticated z
 const withAuthenticated =
@@ -23,9 +24,14 @@ const withAuthenticated =
     pipe(authenticate(token), E.map(f))
 
 // updateOnlyIfAuthenticated :: Token -> Either NotAuthenticated (a -> Either Error a)
-const updateOnlyIfAuthenticated = withAuthenticated(() => updateA)
+const updateOnlyIfAuthenticated = withAuthenticated(
+  () => updateA
+)
 
-pipe(updateOnlyIfAuthenticated("mytoken"), apMA("updatethis"))
+pipe(
+  updateOnlyIfAuthenticated("mytoken"),
+  apMA("updatethis")
+)
 
 // log :: User -> a -> void
 const log =
@@ -35,7 +41,12 @@ const log =
 
 function apMA(
   arg0: string
-): (a: E.Either<NotAuthenticated, (a: A) => E.Either<Error, A>>) => unknown {
+): (
+  a: E.Either<
+    NotAuthenticated,
+    (a: A) => E.Either<Error, A>
+  >
+) => unknown {
   throw new Error("Function not implemented.")
 }
 
@@ -43,7 +54,10 @@ declare const a: A
 
 pipe(
   IOE.Do,
-  IOE.apS("authenticatedUser", IOE.fromEither(authenticate("someToken"))),
+  IOE.apS(
+    "authenticatedUser",
+    IOE.fromEither(authenticate("someToken"))
+  ),
   IOE.apSW("updatedA", IOE.fromEither(updateA(a))),
   IOE.chainFirstW(({ authenticatedUser, updatedA }) =>
     IOE.fromIO(() => log(authenticatedUser)(updatedA))

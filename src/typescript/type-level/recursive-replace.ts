@@ -2,11 +2,12 @@ import * as G from "io-ts/lib/Guard"
 import * as t from "io-ts"
 import * as R from "fp-ts/Record"
 import { pipe } from "fp-ts/lib/function"
-import { O } from "../ssstuff/fp-ts-imports"
-import { isNotNil, isObject } from "../ssstuff/typeGuards"
+import { O } from "../lib/fp-ts-imports"
+import { isNotNil, isObject } from "../lib/typeGuards"
 
 export const NoneGuard: G.Guard<unknown, O.None> = {
-  is: (u: unknown): u is O.None => isObject(u) && u === O.none,
+  is: (u: unknown): u is O.None =>
+    isObject(u) && u === O.none
 }
 
 export const SomeGuard = <A>(
@@ -16,11 +17,17 @@ export const SomeGuard = <A>(
     isObject(u) &&
     (u as O.Some<A>)._tag === "Some" &&
     isNotNil((u as O.Some<A>).value) &&
-    value.is((u as O.Some<A>).value),
+    value.is((u as O.Some<A>).value)
 })
 
 // https://www.reddit.com/r/typescript/comments/hr19a2/cool_helper_type_that_will_allow_you_to/
-type Primitive = string | number | bigint | boolean | null | undefined
+type Primitive =
+  | string
+  | number
+  | bigint
+  | boolean
+  | null
+  | undefined
 
 type Coerce<S, A, B> = S extends A | Primitive
   ? S extends A
@@ -33,7 +40,11 @@ type Coerce<S, A, B> = S extends A | Primitive
 const optionGuard = G.union(NoneGuard, SomeGuard(G.id()))
 
 const coerce = <S>(s: S) =>
-  optionGuard.is(s) ? fn(s) : t.UnknownRecord.is(s) ? pipe(s, R.map(coerce)) : s
+  optionGuard.is(s)
+    ? fn(s)
+    : t.UnknownRecord.is(s)
+    ? pipe(s, R.map(coerce))
+    : s
 
 // const coerce =
 //   <A, B>(fn: (a: A) => B, guard: Guard<unknown, A>) =>

@@ -12,7 +12,7 @@ import {
   constant,
   Mn,
   Apl
-} from "./ssstuff/fp-ts-imports"
+} from "./lib/fp-ts-imports"
 
 // Oops, pressed enter too early, sorry... Well anyway I want
 // Promise<Material[]>, I was thinking I could maybe use

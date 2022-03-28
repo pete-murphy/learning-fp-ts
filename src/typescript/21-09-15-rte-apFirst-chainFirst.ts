@@ -1,4 +1,4 @@
-import { Ap, pipe, RT, RTE, T } from "./ssstuff/fp-ts-imports"
+import { Ap, pipe, RT, RTE, T } from "./lib/fp-ts-imports"
 
 // type C = string
 // type E = string
@@ -26,7 +26,10 @@ const yb = pipe(
 
 const main1 = () => {
   console.time("a")
-  pipe(x, RTE.apFirst(y))({})().then(() => console.timeEnd("a"))
+  pipe(
+    x,
+    RTE.apFirst(y)
+  )({})().then(() => console.timeEnd("a"))
 }
 const main2 = () => {
   console.time("b")

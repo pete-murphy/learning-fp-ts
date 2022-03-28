@@ -17,7 +17,7 @@ import {
   RTup,
   Str,
   tuple
-} from "./ssstuff/fp-ts-imports"
+} from "./lib/fp-ts-imports"
 
 type Table<K, A> = [
   ReadonlyArray<K>,

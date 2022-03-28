@@ -6,8 +6,8 @@ import {
   RA,
   RR,
   Str,
-  tuple,
-} from "./ssstuff/fp-ts-imports"
+  tuple
+} from "./lib/fp-ts-imports"
 
 type KeyValPairs<Rec extends Record<string, unknown>> = {
   [K in keyof Rec]: [K, Rec[K]]
@@ -33,7 +33,7 @@ export const diffRows =
 const ex0 = diffRows({
   foo: Str.Eq,
   bar: Str.Eq,
-  baz: N.Eq,
+  baz: N.Eq
 })(
   { foo: "a", bar: "b", baz: 0 },
   { foo: "a", bar: "b", baz: 0 }
@@ -42,7 +42,7 @@ const ex0 = diffRows({
 const ex1 = diffRows({
   foo: Str.Eq,
   bar: Str.Eq,
-  baz: N.Eq,
+  baz: N.Eq
 })(
   { foo: "a", bar: "b", baz: 0 },
   { foo: "a", bar: "b", baz: 1 }
@@ -51,7 +51,7 @@ const ex1 = diffRows({
 const ex2 = diffRows({
   foo: Str.Eq,
   bar: Str.Eq,
-  baz: N.Eq,
+  baz: N.Eq
 })(
   { foo: "a", bar: "b", baz: 0 },
   { foo: "x", bar: "b", baz: 1 }

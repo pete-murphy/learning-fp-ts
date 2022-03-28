@@ -7,7 +7,7 @@ import {
   Traversable1,
   Traversable2
 } from "fp-ts/lib/Traversable"
-import { O } from "./ssstuff/fp-ts-imports"
+import { O } from "./lib/fp-ts-imports"
 import { HKT, Kind, URIS } from "fp-ts/lib/HKT"
 import { Applicative } from "fp-ts/lib/Applicative"
 

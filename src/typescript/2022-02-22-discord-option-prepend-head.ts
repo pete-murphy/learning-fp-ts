@@ -1,7 +1,7 @@
 import * as A from "fp-ts/lib/Array"
 import { pipe } from "fp-ts/lib/function"
 import * as S from "fp-ts/lib/string"
-import { NEA, O } from "./ssstuff/fp-ts-imports"
+import { NEA, O } from "./lib/fp-ts-imports"
 
 // Take a list of strings and convert elements to upper case
 // for all but the first element. The first element should be

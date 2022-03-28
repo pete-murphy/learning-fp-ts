@@ -1,4 +1,4 @@
-import { Ord, pipe, RS, Str } from "./ssstuff/fp-ts-imports"
+import { Ord, pipe, RS, Str } from "./lib/fp-ts-imports"
 
 type X = "a" | "b" | "c"
 declare const mySet: ReadonlySet<X>

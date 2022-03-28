@@ -5,7 +5,7 @@ import {
   RA,
   Re,
   Sg
-} from "./ssstuff/fp-ts-imports"
+} from "./lib/fp-ts-imports"
 import * as Endo from "fp-ts/Endomorphism"
 
 const addOne = (n: number) => n + 1

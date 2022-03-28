@@ -1,9 +1,19 @@
-import { E, flow, pipe, RA, RNEA } from "./ssstuff/fp-ts-imports"
+import {
+  E,
+  flow,
+  pipe,
+  RA,
+  RNEA
+} from "./lib/fp-ts-imports"
 
-const isPositiveInteger = (n: number) => n > 0 && Number.isInteger(n)
+const isPositiveInteger = (n: number) =>
+  n > 0 && Number.isInteger(n)
 
-const amean = (values: RNEA.ReadonlyNonEmptyArray<number>): number =>
-  values.reduce((reduced, value) => reduced + value, 0) / values.length
+const amean = (
+  values: RNEA.ReadonlyNonEmptyArray<number>
+): number =>
+  values.reduce((reduced, value) => reduced + value, 0) /
+  values.length
 
 export const sma = (
   values: readonly number[],
@@ -28,7 +38,9 @@ export const sma = (
           flow(
             RA.takeLeft(p),
             RNEA.fromReadonlyArray,
-            E.fromOption(() => Error(`Unexpected empty array`)),
+            E.fromOption(() =>
+              Error(`Unexpected empty array`)
+            ),
             E.map(amean)
           )
         )

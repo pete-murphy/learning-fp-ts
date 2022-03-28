@@ -1,7 +1,7 @@
 import { pipe } from "fp-ts/function"
 import * as Opt from "monocle-ts/Optional"
 import * as L from "monocle-ts/Lens"
-import { O } from "./ssstuff/fp-ts-imports"
+import { O } from "./lib/fp-ts-imports"
 
 type Foo = {
   readonly bar1: O.Option<{

@@ -1,4 +1,4 @@
-import { pipe, RA, Str } from "./ssstuff/fp-ts-imports"
+import { pipe, RA, Str } from "./lib/fp-ts-imports"
 
 const words = ["a", "a", "A", "AA", "apple", "Apple"]
 

@@ -7,7 +7,7 @@ import {
   Str,
   Fld,
   Mn
-} from "./ssstuff/fp-ts-imports"
+} from "./lib/fp-ts-imports"
 import * as crypto from "crypto"
 
 const charSet32_ = "2346789bdfghjmnpqrtBDFGHJLMNPQRT"

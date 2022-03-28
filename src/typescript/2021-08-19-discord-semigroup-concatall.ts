@@ -1,7 +1,7 @@
 import { MonoidAny, SemigroupAny } from "fp-ts/lib/boolean"
 import { pipe } from "fp-ts/lib/function"
 import { identity } from "lodash"
-import { O, RA, RNEA } from "./ssstuff/fp-ts-imports"
+import { O, RA, RNEA } from "./lib/fp-ts-imports"
 
 declare const authLoading: boolean
 declare const applicationsLoading: boolean
@@ -12,12 +12,16 @@ const loading_ = SemigroupAny.concat(
   SemigroupAny.concat(applicationsLoading, marketsLoading)
 )
 
-const loading = authLoading || applicationsLoading || marketsLoading
+const loading =
+  authLoading || applicationsLoading || marketsLoading
 
 declare const manyLoadingStates: RNEA.ReadonlyNonEmptyArray<boolean>
 
 pipe(manyLoadingStates, RNEA.concatAll(SemigroupAny))
-pipe(manyLoadingStates, RNEA.foldMap(SemigroupAny)(identity))
+pipe(
+  manyLoadingStates,
+  RNEA.foldMap(SemigroupAny)(identity)
+)
 
 const option1 = O.none // option
 const option2 = O.some(1)

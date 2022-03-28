@@ -1,6 +1,6 @@
 import { Option } from "fp-ts/lib/Option"
 import { Task } from "fp-ts/lib/Task"
-import { O, pipe, RA, T } from "./ssstuff/fp-ts-imports"
+import { O, pipe, RA, T } from "./lib/fp-ts-imports"
 
 // RA.unfold
 
@@ -13,7 +13,8 @@ const unfoldTask = <A, B>(
     T.chain(
       O.fold(
         () => T.of<readonly A[]>([]),
-        ([a, b]) => pipe(unfoldTask(b, f), T.map(RA.prepend(a)))
+        ([a, b]) =>
+          pipe(unfoldTask(b, f), T.map(RA.prepend(a)))
       )
     )
   )
@@ -21,7 +22,11 @@ const unfoldTask = <A, B>(
 const z = unfoldTask(90, n =>
   pipe(
     T.delay(100)(
-      T.of(n > 56 ? O.some([String.fromCharCode(n), n - 1]) : O.none)
+      T.of(
+        n > 56
+          ? O.some([String.fromCharCode(n), n - 1])
+          : O.none
+      )
     )
   )
 )
@@ -39,11 +44,7 @@ const main = () => {
 const unfoldTask_ = <A, B>(
   b: B,
   f: (b: B) => Task<Option<readonly [A, B]>>
-): Task<readonly A[]> =>
-  {
-
-    let done = false
-    while (!done) {
-
-    }
-  }
+): Task<readonly A[]> => {
+  let done = false
+  while (!done) {}
+}

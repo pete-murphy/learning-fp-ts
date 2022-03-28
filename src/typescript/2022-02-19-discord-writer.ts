@@ -15,7 +15,7 @@ import {
   Ap,
   Sg,
   O
-} from "./ssstuff/fp-ts-imports"
+} from "./lib/fp-ts-imports"
 import * as W from "fp-ts/Writer"
 import * as Ch from "fp-ts/Chain"
 // import { pipeable } from "fp-ts/pipeable";

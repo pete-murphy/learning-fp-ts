@@ -1,4 +1,4 @@
-import { Ap, pipe, RT, RTE, T } from "./ssstuff/fp-ts-imports"
+import { Ap, pipe, RT, RTE, T } from "./lib/fp-ts-imports"
 
 // type C = string
 // type E = string

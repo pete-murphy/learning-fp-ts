@@ -1,4 +1,4 @@
-import { pipe, TE } from "./ssstuff/fp-ts-imports"
+import { pipe, TE } from "./lib/fp-ts-imports"
 
 const f = TE.tryCatch(
   () => {
@@ -8,8 +8,14 @@ const f = TE.tryCatch(
   () => 9
 )
 
-const result: TE.TaskEither<number, string> = pipe(TE.left(42), TE.apFirst(f))
-const result2: TE.TaskEither<number, string> = pipe(TE.left(49), TE.apSecond(f))
+const result: TE.TaskEither<number, string> = pipe(
+  TE.left(42),
+  TE.apFirst(f)
+)
+const result2: TE.TaskEither<number, string> = pipe(
+  TE.left(49),
+  TE.apSecond(f)
+)
 
 const resultR: TE.TaskEither<number, string> = pipe(
   TE.right("foo"),

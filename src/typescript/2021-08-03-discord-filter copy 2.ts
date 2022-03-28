@@ -1,4 +1,4 @@
-import { identity, pipe, RA as A, Re } from "./ssstuff/fp-ts-imports"
+import { identity, pipe, RA as A, Re } from "./lib/fp-ts-imports"
 
 declare const selectedCategories: ReadonlyArray<{ value: string }>
 declare const selectedSubcategories: ReadonlyArray<{ value: string }>

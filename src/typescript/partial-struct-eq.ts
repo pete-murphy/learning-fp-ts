@@ -1,4 +1,4 @@
-import { Eq, Str } from "./ssstuff/fp-ts-imports"
+import { Eq, Str } from "./lib/fp-ts-imports"
 
 export type Example = {
   key: string
@@ -7,6 +7,13 @@ export type Example = {
   baz: boolean
 }
 
-const eqExampleByKey: Eq.Eq<Example> = Eq.struct({ key: Str.Eq })
+const eqExampleByKey: Eq.Eq<Example> = Eq.struct({
+  key: Str.Eq
+})
 
-const foo: Example = { key: "sadf", foo: "", bar: 1, baz: true }
+const foo: Example = {
+  key: "sadf",
+  foo: "",
+  bar: 1,
+  baz: true
+}

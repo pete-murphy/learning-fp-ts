@@ -1,9 +1,11 @@
-import { Ap, pipe, RTE } from "./ssstuff/fp-ts-imports"
+import { Ap, pipe, RTE } from "./lib/fp-ts-imports"
 
 type C = string
 type E = string
 declare function f(): RTE.ReaderTaskEither<C, E, number>
-declare function g(a: number): RTE.ReaderTaskEither<C, E, number>
+declare function g(
+  a: number
+): RTE.ReaderTaskEither<C, E, number>
 
 const h = pipe(
   RTE.Do,

@@ -8,7 +8,7 @@ import * as T from "fp-ts/Task"
 import * as TE from "fp-ts/TaskEither"
 import * as Str from "fp-ts/string"
 import * as Ap from "fp-ts/Apply"
-import { N, NEA, RNEA } from "./ssstuff/fp-ts-imports"
+import { N, NEA, RNEA } from "./lib/fp-ts-imports"
 
 type Actionable = {
   action?: string

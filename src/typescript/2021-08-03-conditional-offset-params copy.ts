@@ -1,6 +1,6 @@
 import { constVoid, pipe } from "fp-ts/lib/function"
 import { URLSearchParams } from "url"
-import { IO, O, RM, RR, Sg, TE } from "./ssstuff/fp-ts-imports"
+import { IO, O, RM, RR, Sg, TE } from "./lib/fp-ts-imports"
 import * as Struct from "fp-ts/struct"
 import * as uun from "fp-ts/void"
 import * as Tr from "fp-ts/Tr"
@@ -18,7 +18,10 @@ type Header = {
 }
 
 declare const makeAuthorizationHeader: IO.IO<Header>
-declare const httpGet: (url: string, h: Header) => TE.TaskEither<Error, string>
+declare const httpGet: (
+  url: string,
+  h: Header
+) => TE.TaskEither<Error, string>
 declare const decodeWith: (
   x: any
 ) => (s: string) => TE.TaskEither<Error, string>
@@ -35,7 +38,7 @@ export const getSearch = (input: Input) =>
         O.alt(() => O.of(5)),
         O.map(n => n.toString())
       ),
-      offset: input.offset,
+      offset: input.offset
     },
     RR.compact,
     paramsObj => new URLSearchParams(paramsObj).toString(),

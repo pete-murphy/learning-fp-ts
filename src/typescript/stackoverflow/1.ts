@@ -5,7 +5,7 @@ import * as Rd from "fp-ts/Reader"
 import * as RT from "fp-ts/ReaderTask"
 import * as Ap from "fp-ts/Apply"
 import * as Apl from "fp-ts/Applicative"
-import { E } from "../ssstuff/fp-ts-imports"
+import { E } from "../lib/fp-ts-imports"
 
 // function fromTaskReader<A, B>(taskReader: Task<Reader<A, B>>): ReaderTask<A, B> {
 //   return (context: A): Task<B> => pipe(

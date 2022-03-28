@@ -4,11 +4,17 @@ import * as E from "fp-ts/lib/Either"
 import * as A from "fp-ts/lib/Array"
 import * as O from "fp-ts/lib/Option"
 import { isEmpty } from "fp-ts/lib/string"
-import { flow, pipe, not, identity, constant } from "fp-ts/lib/function"
+import {
+  flow,
+  pipe,
+  not,
+  identity,
+  constant
+} from "fp-ts/lib/function"
 import { split } from "fp-ts-std/String"
 import { fromString } from "fp-ts-std/Number"
 import { product, sum } from "fp-ts-std/Array"
-import { N, RA } from "../ssstuff/fp-ts-imports"
+import { N, RA } from "../lib/fp-ts-imports"
 
 // const always = <A>(a: A) => () => a
 const sumIs2020 = flow(sum, n => n === 2020)
@@ -25,7 +31,11 @@ const parseInput = flow(
   A.filter(not(isEmpty)),
   O.traverseArray(fromString),
   O.map(RA.toArray),
-  E.fromOption(constant("Error: Something went wrong parsing the input."))
+  E.fromOption(
+    constant(
+      "Error: Something went wrong parsing the input."
+    )
+  )
 )
 
 // A.map(fromString),
@@ -37,7 +47,11 @@ const parseInput = flow(
 const combinations =
   <A>(size: number) =>
   (arr: A[]) => {
-    const fn = (size: number, acc: A[][], arr: A[]): A[][] => {
+    const fn = (
+      size: number,
+      acc: A[][],
+      arr: A[]
+    ): A[][] => {
       if (arr.length < size) {
         return acc
       }
@@ -49,7 +63,12 @@ const combinations =
       const [current, ...others] = arr
       return fn(
         size,
-        acc.concat(fn(size - 1, [], others).map(other => [current, ...other])),
+        acc.concat(
+          fn(size - 1, [], others).map(other => [
+            current,
+            ...other
+          ])
+        ),
         others
       )
     }
@@ -57,9 +76,8 @@ const combinations =
     return fn(size, [], arr)
   }
 
-const find2020Match: (a: number[]) => O.Option<number[]> = A.matchLeft(
-  constant(O.none),
-  (head, tail) =>
+const find2020Match: (a: number[]) => O.Option<number[]> =
+  A.matchLeft(constant(O.none), (head, tail) =>
     pipe(
       tail,
       A.findFirst(tailItem => sumIs2020([tailItem, head])),
@@ -68,11 +86,15 @@ const find2020Match: (a: number[]) => O.Option<number[]> = A.matchLeft(
         tailItem => O.some([head, tailItem])
       )
     )
-)
+  )
 
-const readInput = (filename: string): E.Either<string, string> => {
+const readInput = (
+  filename: string
+): E.Either<string, string> => {
   try {
-    return E.right(fs.readFileSync(filename, { encoding: "utf-8" }))
+    return E.right(
+      fs.readFileSync(filename, { encoding: "utf-8" })
+    )
   } catch (err) {
     return E.left("SDf")
   }
@@ -85,7 +107,10 @@ const solve = (arraySumCombinationSize: number) =>
       flow(
         combinations(arraySumCombinationSize),
         A.findFirst(sumIs2020),
-        O.fold(() => "none were found", flow(product, N.Show.show))
+        O.fold(
+          () => "none were found",
+          flow(product, N.Show.show)
+        )
       )
     ),
     E.fold(identity, s => `The solution is: "${s}".`)

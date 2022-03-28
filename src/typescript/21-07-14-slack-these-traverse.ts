@@ -1,4 +1,4 @@
-import { E, Mn, O, RA, Sg, Th } from "./ssstuff/fp-ts-imports"
+import { E, Mn, O, RA, Sg, Th } from "./lib/fp-ts-imports"
 import * as F from "fp-ts/function"
 import * as t from "io-ts"
 // import { formatValidationErrors } from "io-ts-reporters"
@@ -9,7 +9,10 @@ const lift = <E, B, A = unknown>(
 ): ((a: A) => Th.These<ReadonlyArray<E>, O.Option<B>>) =>
   F.flow(
     check,
-    E.foldW(e => Th.both(RA.of(e), O.none), F.flow(O.some, Th.right))
+    E.foldW(
+      e => Th.both(RA.of(e), O.none),
+      F.flow(O.some, Th.right)
+    )
   )
 
 const userV = t.type({ name: t.string })
@@ -21,17 +24,24 @@ const users = [
   { name: "validUserName" },
   { name: 9 },
   { name: "anotherValidName" },
-  { notName: "" },
+  { notName: "" }
 ]
 
-const result: Th.These<ReadonlyArray<t.Errors>, ReadonlyArray<User>> = F.pipe(
+const result: Th.These<
+  ReadonlyArray<t.Errors>,
+  ReadonlyArray<User>
+> = F.pipe(
   users,
-  RA.wither(Th.getApplicative(RA.getSemigroup<t.Errors>()))(liftedDecoder)
+  RA.wither(Th.getApplicative(RA.getSemigroup<t.Errors>()))(
+    liftedDecoder
+  )
   // Th.mapLeft(RA.map(formatValidationErrors))
 ) //?
 
 const result_ = F.pipe(
   users,
-  RA.wither(Th.getApplicative(RA.getSemigroup<t.Errors>()))(liftedDecoder),
+  RA.wither(Th.getApplicative(RA.getSemigroup<t.Errors>()))(
+    liftedDecoder
+  ),
   Th.mapLeft(RA.chain(PR.failure))
 ) //?

@@ -9,7 +9,7 @@ import {
   TE,
   T,
   constant
-} from "./ssstuff/fp-ts-imports"
+} from "./lib/fp-ts-imports"
 
 // const words = ["a", "a", "A", "AA", "apple", "Apple"]
 
