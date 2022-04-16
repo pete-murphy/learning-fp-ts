@@ -51,7 +51,7 @@
     "moment-duration-format": "^2.3.2",
     "monocle-ts": "^2.3.11",
     "newtype-ts": "^0.3.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "parser-ts": "^0.6.15",
     "partial.lenses": "^14.17.0",
     "pino": "^7.8.0",
