@@ -6,33 +6,39 @@ export const enum EvalTag {
   Defer
 }
 
-export abstract class Eval<A> {
-  readonly _A!: () => A
+// export abstract class Eval<A> {}
+export type Eval<A> = Now<A> | Chain<unknown, A> | Defer<A>
+type Now<A> = {
+  readonly _tag: EvalTag.Now
+  readonly value: A
 }
+export const now = <A>(value: A): Eval<A> => ({
+  _tag: EvalTag.Now,
+  value
+})
 
-class Now<A> extends Eval<A> {
-  readonly _tag = EvalTag.Now
-  constructor(readonly value: A) {
-    super()
-  }
+type Chain<B, A> = {
+  readonly _tag: EvalTag.Chain
+  readonly self: Eval<B>
+  readonly f: (a: B) => Eval<A>
 }
+export const chain =
+  <B, A>(f: (a: B) => Eval<A>) =>
+  (self: Eval<B>): Eval<A> =>
+    ({
+      _tag: EvalTag.Chain,
+      self,
+      f
+    } as Eval<A>)
 
-class Chain<A, B> extends Eval<B> {
-  readonly _tag = EvalTag.Chain
-  constructor(
-    readonly self: Eval<A>,
-    readonly f: (a: A) => Eval<B>
-  ) {
-    super()
-  }
+type Defer<A> = {
+  readonly _tag: EvalTag.Defer
+  readonly make: () => Eval<A>
 }
-
-class Defer<A> extends Eval<A> {
-  readonly _tag = EvalTag.Defer
-  constructor(readonly make: () => Eval<A>) {
-    super()
-  }
-}
+export const defer = <A>(make: () => Eval<A>): Eval<A> => ({
+  _tag: EvalTag.Defer,
+  make
+})
 
 type Concrete =
   | Now<unknown>
@@ -45,18 +51,6 @@ function concrete(e: Eval<unknown>): Concrete {
 
 // -----------------------------------------------------
 
-export function now<A>(a: A): Eval<A> {
-  return new Now(a)
-}
-
-export function chain<A, B>(f: (a: A) => Eval<B>) {
-  return (ma: Eval<A>) => new Chain(ma, f)
-}
-
-export function defer<A>(make: () => Eval<A>): Eval<A> {
-  return new Defer(make)
-}
-
 export function map<A, B>(f: (a: A) => B) {
   return (fa: Eval<A>) =>
     pipe(
@@ -67,18 +61,6 @@ export function map<A, B>(f: (a: A) => B) {
 
 // -----------------------------------------------------
 
-interface Stack<A> {
-  value: A
-  previous?: Stack<A>
-}
-
-function mkStack<A>(
-  value: A,
-  previous?: Stack<A>
-): Stack<A> {
-  return { value, previous }
-}
-
 class ContinuationFrame {
   constructor(
     readonly apply: (a: unknown) => Eval<unknown>
@@ -86,18 +68,14 @@ class ContinuationFrame {
 }
 
 export function unsafeRun<A>(e: Eval<A>): A {
-  let stack: Stack<ContinuationFrame> | undefined =
-    undefined
+  let stack: Array<ContinuationFrame> = []
   let current: Concrete | undefined = concrete(e)
   let value: unknown = null
 
   while (current) {
     switch (current._tag) {
       case EvalTag.Chain: {
-        stack = mkStack(
-          new ContinuationFrame(current.f),
-          stack
-        )
+        stack.push(new ContinuationFrame(current.f))
         current = concrete(current.self)
         break
       }
@@ -107,9 +85,9 @@ export function unsafeRun<A>(e: Eval<A>): A {
       }
       case EvalTag.Now: {
         value = current.value
-        if (stack) {
-          const frame: ContinuationFrame = stack.value
-          stack = stack.previous
+        if (stack.length) {
+          const frame: ContinuationFrame = stack[0]
+          stack = stack.slice(1)
           current = concrete(frame.apply(value))
         } else {
           current = undefined

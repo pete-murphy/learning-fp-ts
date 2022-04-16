@@ -1,9 +1,12 @@
+// const anim = new Promise(resolve => {animate(); setTimeout(() => { cleanupAnimation; resolve() }, milliseconds)})
 const delayedValue =
   (milliseconds: number) =>
   <A>(a: A): Promise<A> =>
     new Promise(resolve =>
       setTimeout(() => resolve(a), milliseconds)
     )
+
+// const delayedValue = (ms) => new Promise(resolve => { textAnimate(..); setTimeout(() => resolve(), ms) } )
 
 const program1 = async () => {
   const fooPromise = delayedValue(1000)("foo")

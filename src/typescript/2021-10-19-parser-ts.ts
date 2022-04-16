@@ -31,7 +31,11 @@ type Frontmatter = {
 const dashes = S.string("---")
 const colon = C.char(":")
 
-const parserDate = (input: string): P.Parser<string, Date> =>
+// const x =
+
+const parserDate = (
+  input: string
+): P.Parser<string, Date> =>
   pipe(
     input,
     IOTST.DateFromISOString.decode,
@@ -50,13 +54,15 @@ const parserField = <K extends keyof Frontmatter>(
     P.chain(parser)
   )
 
-const parserFrontMatter: P.Parser<string, Frontmatter> = Ap.sequenceS(P.parser)(
-  {
+const parserFrontMatter: P.Parser<string, Frontmatter> =
+  Ap.sequenceS(P.parser)({
     title: parserField("title", S.string),
     createdAt: parserField("createdAt", parserDate),
-    excerpt: parserField("excerpt", flow(S.string, P.optional)),
-    author: parserField("author", S.string),
-  }
-)
+    excerpt: parserField(
+      "excerpt",
+      flow(S.string, P.optional)
+    ),
+    author: parserField("author", S.string)
+  })
 
 run(parserFrontMatter, input) //?

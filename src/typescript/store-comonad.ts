@@ -28,12 +28,15 @@ const mvString = (n: number) => (str: string) =>
 pipe(
   store,
   Store.seek("d"),
-  Store.seeks(incString),
+  Store.seeks(incString), // Focus is now "e"
+  Store.seeks(decString), // Focus is now "d"
+  Store.seeks(decString),
+  Store.seeks(decString), // Focus is now "b"
   Store.experiment(RA.Functor)(s => [
     mvString(-2)(s),
-    mvString(-1)(s),
-    mvString(0)(s),
-    mvString(1)(s),
-    mvString(2)(s)
+    mvString(-1)(s), // s: "a"
+    mvString(0)(s), //  s: "b"
+    mvString(1)(s), //  s: "c"
+    mvString(2)(s) //   s: "d"
   ])
 ) //?

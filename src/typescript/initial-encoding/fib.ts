@@ -33,7 +33,7 @@ function factorial(n: bigint): Ev.Eval<bigint> {
 
 // console.log(Ev.unsafeRun(fib(100n)))
 
-console.log(Ev.unsafeRun(factorial(100n)))
+console.log(Ev.unsafeRun(factorial(1_000n)))
 
 // pipe(
 //   RNEA.range(1, 20),
