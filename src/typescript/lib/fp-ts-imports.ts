@@ -1,4 +1,5 @@
 // Data types
+import * as A from "fp-ts/Array"
 import * as B from "fp-ts/boolean"
 import * as Com from "fp-ts/Comonad"
 import * as Dt from "fp-ts/Date"
@@ -28,6 +29,7 @@ import * as Th from "fp-ts/These"
 import * as W from "fp-ts/Writer"
 
 // Type classes
+import * as Alternative from "fp-ts/Alternative"
 import * as Ap from "fp-ts/Apply"
 import * as Apl from "fp-ts/Applicative"
 import * as Eq from "fp-ts/Eq"
@@ -55,6 +57,8 @@ import * as RD from "./RemoteData.ignore"
 import * as RNEA from "./ReadonlyNonEmptyArray"
 
 export {
+  A,
+  Alternative,
   Ap,
   Apl,
   B,
