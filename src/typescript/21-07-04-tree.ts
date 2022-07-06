@@ -70,7 +70,7 @@ const flattenedTreeWithEnoughDataToRender = pipe(
       y1: (a.depth + 1) / totalNodesAtDepths.length
     }
   }),
-  Tree.fold((a, bs) => [a, ...bs.flat()])
+  Tree.fold((a, bs) => [a, ...bs.flat()]),
 )
 
 export {}

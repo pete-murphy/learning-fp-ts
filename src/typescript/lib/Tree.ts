@@ -25,6 +25,7 @@ import {
   Re,
   RT,
   RTup,
+  Sg,
   Str
 } from "./fp-ts-imports"
 import {
@@ -90,6 +91,14 @@ export const mapWithIndex = traverseWithIndex(
 
 export const foldMapWithIndex = <M>(M: Mn.Monoid<M>) =>
   traverseWithIndex(Const.getApplicative(M))
+
+export const foldMap1 =
+  <S>(S: Sg.Semigroup<S>) =>
+  <A>(f: (a: A) => S) =>
+  (tree: T.Tree<A>): S =>
+    Sg.concatAll(S)(f(tree.value))(
+      tree.forest.map(foldMap1(S)(f))
+    )
 
 // explore :: forall f g a b
 //          . Functor f

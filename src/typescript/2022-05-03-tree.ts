@@ -1,4 +1,13 @@
-import { pipe, A, St, Tree } from "./lib/fp-ts-imports"
+import { Forest } from "fp-ts/lib/Tree"
+import {
+  pipe,
+  A,
+  St,
+  Tree,
+  Sg,
+  B,
+  flow
+} from "./lib/fp-ts-imports"
 
 const exampleTree: Tree.Tree<string> = Tree.make("foo", [
   Tree.make("bar", [
@@ -41,7 +50,7 @@ pipe(
   St.evaluate<ReadonlyArray<string>>([]),
   Tree.map(JSON.stringify),
   Tree.drawTree
-) //?
+)
 
 // {"node":"foo","path":[]}
 // ├─ {"node":"bar","path":["foo"]}
@@ -86,7 +95,7 @@ pipe(
   ),
   Tree.map(JSON.stringify),
   Tree.drawTree
-) //?
+)
 
 // {"node":"foo","path":[]}
 // ├─ {"node":"bar","path":["foo"]}
@@ -111,3 +120,56 @@ pipe(
 //    ├─ {"node":"quuz-3","path":["foo","quuz"]}
 //    ├─ {"node":"quuz-4","path":["foo","quuz"]}
 //    └─ {"node":"quuz-5","path":["foo","quuz"]}
+
+const filterTree = <A>(
+  predicate: (_: A) => boolean
+): ((tree: Tree.Tree<A>) => Tree.Tree<A>) =>
+  flow(
+    Tree.extend(
+      Tree.foldMap1(
+        Sg.struct({
+          node: Sg.first<A>(),
+          hasMatchingDescendant: B.MonoidAny
+        })
+      )((node: A) => ({
+        node,
+        hasMatchingDescendant: predicate(node)
+      }))
+    ),
+    tree =>
+      Tree.make(
+        tree.value,
+        (function go(
+          forest: Forest<{
+            node: A
+            hasMatchingDescendant: boolean
+          }>
+        ): Forest<{
+          node: A
+          hasMatchingDescendant: boolean
+        }> {
+          return Tree.unfoldForest(
+            forest.filter(
+              _ => _.value.hasMatchingDescendant
+            ),
+            _ => [_.value, go(_.forest)]
+          )
+        })(tree.forest)
+      ),
+    Tree.map(({ node }) => node)
+  )
+
+pipe(
+  exampleTree,
+  filterTree(node =>
+    ["quuz-3", "quuz-2", "quux"].includes(node)
+  ),
+  Tree.map(JSON.stringify),
+  Tree.drawTree
+) //?
+
+// "foo"
+// ├─ "quux"
+// └─ "quuz"
+//    ├─ "quuz-2"
+//    └─ "quuz-3"
