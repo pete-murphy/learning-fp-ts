@@ -13,13 +13,18 @@ declare const fetchResponse: taskEither.TaskEither<
   Error,
   Response
 >
-const x: taskEither.TaskEither<Error, Response> = pipe(
-  fetchResponse,
-  taskEither.matchE(
-    taskEither.throwError, // "Re-throw" existing error
-    res =>
-      res.ok
-        ? taskEither.of(res)
-        : pipe(res, makeError, task.map(either.throwError))
+export const x: taskEither.TaskEither<Error, Response> =
+  pipe(
+    fetchResponse,
+    taskEither.matchE(
+      taskEither.throwError, // "Re-throw" existing error
+      res =>
+        res.ok
+          ? taskEither.of(res)
+          : pipe(
+              res,
+              makeError,
+              task.map(either.throwError)
+            )
+    )
   )
-)

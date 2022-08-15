@@ -1,13 +1,29 @@
 import { pipe } from "fp-ts/function"
+import { Functor2 } from "fp-ts/lib/Functor"
 import * as St from "fp-ts/State"
 import * as StT from "fp-ts/StateT"
 import * as T from "fp-ts/Task"
 
-import fs from "fs"
-
 export interface StateTask<S, A> {
   (s: S): T.Task<[A, S]>
 }
+
+export const URI = "StateTask"
+
+export type URI = typeof URI
+
+declare module "fp-ts/lib/HKT" {
+  interface URItoKind2<E, A> {
+    readonly [URI]: StateTask<E, A>
+  }
+}
+
+/**
+ * @category Functor
+ */
+export const map: <A, B>(
+  f: (a: A) => B
+) => <R>(fa: StateTask<R, A>) => StateTask<R, B> = StT.map(T.Functor)
 
 export const chain: <A, S, B>(
   f: (a: A) => StateTask<S, B>

@@ -1,15 +1,13 @@
 import {
   date,
-  option,
   function as f,
-  monoid,
   semigroup,
   readonlyArray,
   readonlyRecord,
-  readonlyNonEmptyArray,
   number
 } from "fp-ts"
 import { format } from "date-fns"
+import * as fc from "fast-check"
 
 type StringTimestamp = string
 type TipoDolencia = "hiccup" | "fever" | "constipation"
@@ -87,3 +85,38 @@ const logEntriesToStatsCollection: (
     }
   }
 }))
+
+const arbitraryLogEntry: fc.Arbitrary<LogEntry> = fc.record(
+  {
+    color: fc.constantFrom(
+      "$purple",
+      "$pink",
+      "$gray",
+      "$amber",
+      "$indigo",
+      "$tomato",
+      "$cyan"
+    ),
+    id: fc.uuid(),
+    logType: fc.constant("disease"),
+    type: fc.constantFrom(
+      "hiccup",
+      "fever",
+      "constipation"
+    ),
+    notes: fc.lorem(),
+    parent: fc.uuid(),
+    timestamp: fc
+      .date({
+        min: new Date(2022, 0, 1),
+        max: new Date(2022, 1, 1)
+      })
+      .noBias()
+  }
+)
+
+const logEntriesSample = fc.sample(arbitraryLogEntry, 200)
+
+f.pipe(logEntriesSample, logEntriesToStatsCollection, x =>
+  console.log(JSON.stringify(x, null, 2))
+) //?

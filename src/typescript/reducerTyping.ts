@@ -36,25 +36,24 @@ interface ReducerActionPayloads {
   readonly setSelectedVideo: Video
 }
 
-type ReducerAction<A = never> = (A extends ReducerActionPayloads
-  ? A
-  : never) & {
-  readonly type: A
-  readonly payload: ReducerActionPayloads[A]
-}
+type ReducerAction<A = never> =
+  (A extends ReducerActionPayloads ? A : never) & {
+    readonly type: A
+    readonly payload: ReducerActionPayloads[A]
+  }
 
-type State = {
+type State__ = {
   selectedVideo: Video | null
   videos: Video[]
 }
 
-const initialState: State = {
+const initialState: State__ = {
   selectedVideo: null,
-  videos: [],
+  videos: []
 }
 
 const reducer = <A extends ReducerActionTypes>(
-  state: State,
+  state: State__,
   action: ReducerAction<A>
 ) => {
   switch (action.type) {
