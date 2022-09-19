@@ -5,7 +5,9 @@ import * as Ord from "fp-ts/Ord"
 import * as Ex from "./Extended"
 import * as _ from "./Interval"
 
-const arbitraryIntervalNum: fc.Arbitrary<_.Interval<number>> = fc
+const arbitraryIntervalNum: fc.Arbitrary<
+  _.Interval<number>
+> = fc
   .tuple(fc.integer(), fc.integer())
   .filter(([n, m]) => n < m)
   .chain(([n, m]) =>
@@ -35,22 +37,30 @@ describe("Interval join semilattice", () => {
         arbitraryIntervalNum,
         arbitraryIntervalNum,
         arbitraryIntervalNum,
-        (x, y, z) => expect(join(x, join(y, z))).toEqual(join(join(x, y), z))
+        (x, y, z) =>
+          expect(join(x, join(y, z))).toEqual(
+            join(join(x, y), z)
+          )
       )
     )
   })
 
   it("join should be commutative", () => {
     fc.assert(
-      fc.property(arbitraryIntervalNum, arbitraryIntervalNum, (x, y) =>
-        expect(join(x, y)).toEqual(join(y, x))
+      fc.property(
+        arbitraryIntervalNum,
+        arbitraryIntervalNum,
+        (x, y) =>
+          expect(join(x, y)).toEqual(join(y, x))
       )
     )
   })
 
   it("join should be idempotent", () => {
     fc.assert(
-      fc.property(arbitraryIntervalNum, x => expect(join(x, x)).toEqual(x))
+      fc.property(arbitraryIntervalNum, x =>
+        expect(join(x, x)).toEqual(x)
+      )
     )
   })
 })
@@ -70,22 +80,30 @@ describe("Interval meet semilattice", () => {
         arbitraryIntervalNum,
         arbitraryIntervalNum,
         arbitraryIntervalNum,
-        (x, y, z) => expect(meet(x, meet(y, z))).toEqual(meet(meet(x, y), z))
+        (x, y, z) =>
+          expect(meet(x, meet(y, z))).toEqual(
+            meet(meet(x, y), z)
+          )
       )
     )
   })
 
   test("meet should be commutative", () => {
     fc.assert(
-      fc.property(arbitraryIntervalNum, arbitraryIntervalNum, (x, y) =>
-        expect(meet(x, y)).toEqual(meet(y, x))
+      fc.property(
+        arbitraryIntervalNum,
+        arbitraryIntervalNum,
+        (x, y) =>
+          expect(meet(x, y)).toEqual(meet(y, x))
       )
     )
   })
 
   test("meet should be idempotent", () => {
     fc.assert(
-      fc.property(arbitraryIntervalNum, x => expect(meet(x, x)).toEqual(x))
+      fc.property(arbitraryIntervalNum, x =>
+        expect(meet(x, x)).toEqual(x)
+      )
     )
   })
 })
@@ -99,25 +117,39 @@ describe("intersection", () => {
     const leq = Ord.leq(exOrd)
 
     fc.assert(
-      fc.property(arbitraryIntervalNum, arbitraryIntervalNum, (i, j) => {
-        const [ilb, iub] = [_.lowerBound(i), _.upperBound(i)]
-        const [jlb, jub] = [_.lowerBound(j), _.upperBound(j)]
-        fc.pre(leq(ilb, jlb) && geq(iub, jub))
+      fc.property(
+        arbitraryIntervalNum,
+        arbitraryIntervalNum,
+        (i, j) => {
+          const [ilb, iub] = [
+            _.lowerBound(i),
+            _.upperBound(i)
+          ]
+          const [jlb, jub] = [
+            _.lowerBound(j),
+            _.upperBound(j)
+          ]
+          fc.pre(leq(ilb, jlb) && geq(iub, jub))
 
-        expect(intersection(i, j)).toEqual(j)
-      }),
+          expect(intersection(i, j)).toEqual(j)
+        }
+      ),
       { numRuns: 20_000 }
     )
   })
 
   test("intersection is commutative", () => {
     fc.assert(
-      fc.property(arbitraryIntervalNum, arbitraryIntervalNum, (a, b) => {
-        const ab = intersection(a, b)
-        const ba = intersection(b, a)
+      fc.property(
+        arbitraryIntervalNum,
+        arbitraryIntervalNum,
+        (a, b) => {
+          const ab = intersection(a, b)
+          const ba = intersection(b, a)
 
-        expect(ab).toEqual(ba)
-      }),
+          expect(ab).toEqual(ba)
+        }
+      ),
       { numRuns: 20_000 }
     )
   })
@@ -129,8 +161,14 @@ describe("intersection", () => {
         arbitraryIntervalNum,
         arbitraryIntervalNum,
         (a, b, c) => {
-          const left = intersection(a, intersection(b, c))
-          const right = intersection(intersection(a, b), c)
+          const left = intersection(
+            a,
+            intersection(b, c)
+          )
+          const right = intersection(
+            intersection(a, b),
+            c
+          )
 
           expect(left).toEqual(right)
         }
@@ -155,7 +193,10 @@ describe("interval", () => {
 
   test("intersection of an interval with a subinterval is the subinterval", () => {
     const a = interval(Ex.finite(10), Ex.posInf)
-    const b = interval(Ex.finite(10), Ex.finite(20))
+    const b = interval(
+      Ex.finite(10),
+      Ex.finite(20)
+    )
 
     const actual = intersection(a, b)
     const expected = b

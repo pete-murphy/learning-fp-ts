@@ -58,6 +58,14 @@ const foo_ = pipe(
   T.map(RA.flatten)
 )
 
+type User = {}
+type Location = "LOCATION"
+
+declare const users: ReadonlyArray<User>
+declare const getLocation: (user: User) => T.Task<Location>
+
+pipe(users, T.traverseArray(getLocation)) // T.Task<ReadonlyArray<Location>
+
 // foldMapA :: (Foldable t, Monoid m, Applicative f) => (a -> f m) -> t a -> f m
 // foldMapA f = getAp . foldMap (Ap . f)
 

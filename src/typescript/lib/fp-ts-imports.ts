@@ -51,9 +51,7 @@ import { not } from "fp-ts/Predicate"
 
 import * as RM from "./ReadonlyMap"
 import * as O from "./Option"
-import * as RTE from "./ReaderTaskEither.ignore"
 import * as Tree from "./Tree"
-import * as RD from "./RemoteData.ignore"
 import * as RNEA from "./ReadonlyNonEmptyArray"
 
 export {
@@ -78,13 +76,13 @@ export {
   O,
   Ord,
   RA,
-  RD,
+  // RD,
   RM,
   RNEA,
   RR,
   RS,
   RT,
-  RTE,
+  // RTE,
   RTup,
   RE,
   Re,

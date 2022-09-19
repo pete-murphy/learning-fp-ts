@@ -9,8 +9,12 @@ import {
   RNEA,
   O,
   flow,
-  RR
+  RR,
+  Apl,
+  Str
 } from "./lib/fp-ts-imports"
+
+// import * as Tr from "fp-ts/Traversable"
 
 const input: RNEA.ReadonlyNonEmptyArray<
   ReadonlyArray<number>
@@ -57,3 +61,18 @@ const f_: (_: Input) => Output = O.chain(
 )
 
 // const f__: (_: Input) => Output = O.traverse(O.Applicative)
+
+const variations: ReadonlyArray<ReadonlyArray<string>> = [
+  ["P", "p"], // Did I capitalize the first letter?
+  ["a", "4"], // Second letter could be either of these
+  ["ssw"], // I'm sure about 'ssw'
+  ["o", "0"], // Either of these
+  ["rd"], // No variants here
+  ["", "!"] // Maybe ends in exclamation
+]
+
+pipe(
+  variations,
+  RA.sequence(RA.Applicative),
+  RA.map(str => str.join(""))
+) //?

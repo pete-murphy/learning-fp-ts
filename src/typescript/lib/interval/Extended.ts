@@ -1,5 +1,8 @@
-import { match } from "../matchers.ignore"
 import { Eq, Ord, pipe } from "../fp-ts-imports"
+import { makeMatch } from "ts-adt/MakeADT"
+import { Ordering } from "fp-ts/Ordering"
+
+const match = makeMatch("_tag")
 
 export type Extended<A> =
   | {
@@ -14,19 +17,17 @@ export type Extended<A> =
     }
 
 export const negInf = {
-  _tag: "NegInf" as const,
+  _tag: "NegInf" as const
 }
 
 export const finite = <A>(value: A) => ({
   _tag: "Finite" as const,
-  value,
+  value
 })
 
 export const posInf = {
-  _tag: "PosInf" as const,
+  _tag: "PosInf" as const
 }
-
-const fold = match.on("_tag")
 
 export const getOrd = <A>(
   ordA: Ord.Ord<A>
@@ -34,35 +35,35 @@ export const getOrd = <A>(
   Ord.fromCompare((x, y) =>
     pipe(
       x,
-      fold({
+      match({
         NegInf: () =>
           pipe(
             y,
-            fold({
-              NegInf: () => 0,
-              Finite: () => -1,
-              PosInf: () => -1,
+            match({
+              NegInf: (): Ordering => 0,
+              Finite: (): Ordering => -1,
+              PosInf: (): Ordering => -1
             })
           ),
         Finite: x_ =>
           pipe(
             y,
-            fold({
-              NegInf: () => 1,
+            match({
+              NegInf: (): Ordering => 1,
               Finite: y_ =>
                 ordA.compare(x_.value, y_.value),
-              PosInf: () => -1,
+              PosInf: (): Ordering => -1
             })
           ),
         PosInf: () =>
           pipe(
             y,
-            fold({
-              NegInf: () => 1,
-              Finite: () => 1,
-              PosInf: () => 0,
+            match({
+              NegInf: (): Ordering => 1,
+              Finite: (): Ordering => 1,
+              PosInf: (): Ordering => 0
             })
-          ),
+          )
       })
     )
   )
@@ -82,10 +83,10 @@ export const clampFinite =
   (exA: Extended<A>): A =>
     pipe(
       exA,
-      fold({
+      match({
         NegInf: () => min,
         Finite: ({ value }) =>
           Ord.clamp(ordA)(min, max)(value),
-        PosInf: () => max,
+        PosInf: () => max
       })
     )
