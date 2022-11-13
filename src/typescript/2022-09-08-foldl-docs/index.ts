@@ -5,6 +5,7 @@ import * as N from "fp-ts/number";
 import * as RA from "fp-ts/ReadonlyArray";
 import * as RNEA from "fp-ts/ReadonlyNonEmptyArray";
 import * as RR from "fp-ts/ReadonlyRecord";
+import * as Rd from "fp-ts/Reader";
 
 // Sample dataset to be used later
 import { flowers, Flower } from "./flowers";
@@ -16,10 +17,18 @@ L.fold(RA.Foldable)(L.sum)([1, 2, 3]); //-> 6
 L.foldArray(L.sum)([1, 2, 3]);
 
 // `Fold`s are `Applicative`s, so you can combine them using `Applicative` combinators:
-const average = pipe(
+const average_ = pipe(
   L.Do,
   L.apS("sum", L.sum),
   L.apSW("length", L.length),
+  L.map(({ sum, length }) => sum / length)
+);
+
+const average = pipe(
+  L.struct({
+    sum: L.sum,
+    length: L.length
+  }),
   L.map(({ sum, length }) => sum / length)
 );
 
@@ -43,9 +52,7 @@ L.foldArray(average)(RNEA.range(1, 10_000_000));
 pipe(
   RNEA.range(1, 10_000_000),
   L.foldArray(
-    L.Do,
-    L.apS("minimum", L.minimum(N.Ord)),
-    L.apS("maximum", L.maximum(N.Ord))
+    L.struct({ minimum: L.minimum(N.Ord), maximum: L.maximum(N.Ord) })
   )
 );
 //-> { minimum: O.some(1), maximum: O.some(10_000_000) }
@@ -115,33 +122,16 @@ pipe(
 pipe(
   flowers,
   L.foldArray(
-    L.Do,
-    L.apS(
-      "petalLength",
+    L.struct(
       pipe(
-        L.std,
-        L.premap((flower: Flower) => flower.petalLength)
-      )
-    ),
-    L.apS(
-      "petalWidth",
-      pipe(
-        L.std,
-        L.premap(flower => flower.petalWidth)
-      )
-    ),
-    L.apS(
-      "sepalLength",
-      pipe(
-        L.std,
-        L.premap(flower => flower.sepalLength)
-      )
-    ),
-    L.apS(
-      "sepalWidth",
-      pipe(
-        L.std,
-        L.premap(flower => flower.sepalWidth)
+        // {
+        //   petalLength: L.premap((flower: Flower) => flower.petalLength),
+        //   petalWidth: L.premap((flower: Flower) => flower.petalWidth),
+        //   sepalLength: L.premap((flower: Flower) => flower.sepalLength),
+        //   sepalWidth: L.premap((flower: Flower) => flower.sepalWidth)
+        // },
+        // RR.map(f => pipe(L.std, f))
+        RR.mapWithIndex((k, ))
       )
     ),
     L.map(RR.map(n => n.toPrecision(3)))

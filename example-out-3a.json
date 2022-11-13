@@ -1,0 +1,3130 @@
+{
+  "data": [
+    {
+      "author_id": "319102070",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@SeanMombo @WithTheCaswave @dan_abramov @selentelechia",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577362723192586257"
+        }
+      ],
+      "in_reply_to_user_id": "46210824",
+      "id": "1577373382030540806",
+      "edit_history_tweet_ids": ["1577373382030540806"]
+    },
+    {
+      "author_id": "2358510692",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 7,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @DorianDevelops @DunsinWebDev @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @reegannotraygan @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals Few better insightful accounts illuminating what is vs what isn’t in cloud and other tech than @kelseyhightower",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577368506512850961"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577373152191328256",
+      "edit_history_tweet_ids": ["1577373152191328256"]
+    },
+    {
+      "author_id": "1235138229306675200",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv I love you man. @DeniTechh ❤️",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577366373495410688"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577373101033078784",
+      "edit_history_tweet_ids": ["1577373101033078784"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@syzygiess @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv No u sister MashAllah.",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577372336138878976"
+        }
+      ],
+      "in_reply_to_user_id": "1225934677",
+      "id": "1577372763689467933",
+      "edit_history_tweet_ids": ["1577372763689467933"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 6,
+        "quote_count": 0
+      },
+      "text": "@reegannotraygan @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals I miss youuuu let’s space out soon when I’m back in BCN",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577372158447206444"
+        }
+      ],
+      "in_reply_to_user_id": "1470928421790355460",
+      "id": "1577372674757492736",
+      "edit_history_tweet_ids": ["1577372674757492736"]
+    },
+    {
+      "author_id": "1225934677",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv Legend",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577366373495410688"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577372336138878976",
+      "edit_history_tweet_ids": ["1577372336138878976"]
+    },
+    {
+      "author_id": "1470928421790355460",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 5,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals 🥺❣️",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577368506512850961"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577372158447206444",
+      "edit_history_tweet_ids": ["1577372158447206444"]
+    },
+    {
+      "author_id": "196663187",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @thestalwart",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577371865370214441",
+      "edit_history_tweet_ids": ["1577371865370214441"]
+    },
+    {
+      "author_id": "1456358823405383685",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 5,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @reegannotraygan @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals I appreciate you Deni! ❤️",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577368506512850961"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577371581017251845",
+      "edit_history_tweet_ids": ["1577371581017251845"]
+    },
+    {
+      "author_id": "397987659",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @buildsghost 🤦",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577370753946763292"
+        }
+      ],
+      "in_reply_to_user_id": "397987659",
+      "id": "1577371156834930689",
+      "edit_history_tweet_ids": ["1577371156834930689"]
+    },
+    {
+      "author_id": "1495470629927231488",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 8,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @reegannotraygan @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek Ayyyeee ty tons Deni!!!",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577368506512850961"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577371146349338624",
+      "edit_history_tweet_ids": ["1577371146349338624"]
+    },
+    {
+      "author_id": "2862793887",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @kamilkazani",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577370967063543812",
+      "edit_history_tweet_ids": ["1577370967063543812"]
+    },
+    {
+      "author_id": "23481558",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @modernserf is the only account on this app that makes me think",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577370953998286876",
+      "edit_history_tweet_ids": ["1577370953998286876"]
+    },
+    {
+      "author_id": "329622055",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @allenholub for his radical and passionate takes on everything agile",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577370934914187264",
+      "edit_history_tweet_ids": ["1577370934914187264"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @Lauramaywendel @icycodes @JeremyTechDev \n\nIF I FORGOT ANYONE PLS LET ME KNOW I love you all. ❤️",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577366373495410688"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577370894116208664",
+      "edit_history_tweet_ids": ["1577370894116208664"]
+    },
+    {
+      "author_id": "3353362143",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @PezeshkiCharles @JamieCombs",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577370892727894025",
+      "edit_history_tweet_ids": ["1577370892727894025"]
+    },
+    {
+      "author_id": "397987659",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @buildsghos, very impressed by the technical knowledge, and the analysis capacities. Every single tweet they make create a brain connection. Source of inspiration for me.",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577370753946763292",
+      "edit_history_tweet_ids": ["1577370753946763292"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 7,
+        "like_count": 10,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @waronweakness @TheRuqayyah @Quin_didi @razacodes @LadyLillyR @CStar_OW @traversymedia @ui_natalie @ux_elisa @khushbooverma_ @VittoStack @codingmilf @codewithvoid @EddyVinckk @Vizceral_ @ThisisVanshika @virtualized6ix @JessTheVC @Jas_codes @WeAreDevs @rafal_waffle @imjaewilliams",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577366373495410688"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577370734627799065",
+      "edit_history_tweet_ids": ["1577370734627799065"]
+    },
+    {
+      "author_id": "122246321",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@DavidKPiano @APKoponen @dan_abramov Oh nice! @DanHollick",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577365599126274049"
+        }
+      ],
+      "in_reply_to_user_id": "992126114",
+      "id": "1577370460551004192",
+      "edit_history_tweet_ids": ["1577370460551004192"]
+    },
+    {
+      "author_id": "1053295063449694213",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 4,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 Thank you for supporting Deni really means so much 🙏🏻🙏🏻 you have no idea!",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577367341620396032"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577369861675696150",
+      "edit_history_tweet_ids": ["1577369861675696150"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 11,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @maggie_bedro @millicode_ @joeDmarti @ANoorTM @nicolefranq @hot_girl_spring @NoahCaine @nikitagupta0791 @NimrodKramer @SchCodes @syzygiess @ibra_akv @Ibrakiim @NickPickCodes @pedrosanders_ @Miza_____pizza @mizi @Elixir_Js @anicolaspp @nicholaswwhite",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577366373495410688"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577369839601074199",
+      "edit_history_tweet_ids": ["1577369839601074199"]
+    },
+    {
+      "author_id": "73089736",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 8,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @Jazzycodes @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @reegannotraygan @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals Thanx for the notifications Deni, I will make sure I tag you everywhere now \n\nThanx for the mention, right back at ya ❤️❤️",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577368506512850961"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577369730167488532",
+      "edit_history_tweet_ids": ["1577369730167488532"]
+    },
+    {
+      "author_id": "1053295063449694213",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @J_Lieu @DThompsonDev @danielcranney @shashiwhocodes Yes please",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577364633110855690"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577369720000421888",
+      "edit_history_tweet_ids": ["1577369720000421888"]
+    },
+    {
+      "author_id": "550044825",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 2,
+        "like_count": 12,
+        "quote_count": 0
+      },
+      "text": "@J_Lieu @saraliDev @dan_abramov @DeniTechh @DThompsonDev @danielcranney @shashiwhocodes @hussien_coding @_AnthonyBeckett @CHBernasconiC @goobemaster Oh wow, never expected to end up here. \n\nI like keeping it real and honest. A few people (among many many) I love reading from:\n\n@LifeLongThinker @DmytroKrasun @sbworld @KatyCodesStuff @ewainy",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577366257803862016"
+        }
+      ],
+      "in_reply_to_user_id": "194068797",
+      "id": "1577369535954436102",
+      "edit_history_tweet_ids": ["1577369535954436102"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 13,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @saminacodes @iamsamcodes @ivybarley @KatyCodesStuff @albertkoz @kvncnls @KevinNaughtonJr @albertkoz @ShawnBasquiat @lovelacecoding @thisislalaok @python_engineer @ossia @Lookas (still can’t get enough) @codingwithlucy @luaroxydev @onwardLyn @boredabdel",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577368506512850961"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577369113692880899",
+      "edit_history_tweet_ids": ["1577369113692880899"]
+    },
+    {
+      "author_id": "1154125281516503044",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 8,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @reegannotraygan @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals Thanks for the mention Deni🙌🏽",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577368506512850961"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577369038564360192",
+      "edit_history_tweet_ids": ["1577369038564360192"]
+    },
+    {
+      "author_id": "1480481380190543877",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 6,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @reegannotraygan @eddiejaoude @heyOnuoha @ChekTek @izaye_visuals Thanks Deni🤩🫂😉",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577368506512850961"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577368805566603264",
+      "edit_history_tweet_ids": ["1577368805566603264"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 17,
+        "like_count": 25,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @reegannotraygan @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577367341620396032"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577368506512850961",
+      "edit_history_tweet_ids": ["1577368506512850961"]
+    },
+    {
+      "author_id": "2751927247",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 3,
+        "quote_count": 0
+      },
+      "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bellauvre @DailyDevTips1 Awww I love you too bro &lt;3",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577367341620396032"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577368019826786318",
+      "edit_history_tweet_ids": ["1577368019826786318"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 8,
+        "like_count": 28,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @shashiwhocodes @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577366373495410688"
+        }
+      ],
+      "in_reply_to_user_id": "1440785614673113093",
+      "id": "1577367341620396032",
+      "edit_history_tweet_ids": ["1577367341620396032"]
+    },
+    {
+      "author_id": "1210112823784697857",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@goblinodds @dan_abramov 😊",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577361297443651584"
+        }
+      ],
+      "in_reply_to_user_id": "881192533056827392",
+      "id": "1577366845216428032",
+      "edit_history_tweet_ids": ["1577366845216428032"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 8,
+        "like_count": 36,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov I have a whole list of friend I value and love here but here’s the thread I guess lmao\n\nIn no specific order EXCEPT MY OTHER BRAIN CEL @yuricodesbot \n\nSpecial shoutout to my first follower @pokecoder and my friend and mentor @theCoachNico. Also my best friend @Mansourabv \n\nAnyway",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577366373495410688",
+      "edit_history_tweet_ids": ["1577366373495410688"]
+    },
+    {
+      "author_id": "194068797",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 5,
+        "like_count": 11,
+        "quote_count": 0
+      },
+      "text": "@saraliDev @dan_abramov @DeniTechh @DThompsonDev @danielcranney @shashiwhocodes Thanks Sara! You're too kind.\n\nTo pay it forward I'll tag @hussien_coding, @_AnthonyBeckett @CHBernasconiC, @GaborPfalzer, @goobemaster \n\nThere are more, but these folks come to mind first ✨",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577361416138506240"
+        }
+      ],
+      "in_reply_to_user_id": "1053295063449694213",
+      "id": "1577366257803862016",
+      "edit_history_tweet_ids": ["1577366257803862016"]
+    },
+    {
+      "author_id": "992126114",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 4,
+        "quote_count": 0
+      },
+      "text": "@APKoponen @dan_abramov Oh, fun game\n\n@steveruizok",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577364689457119232"
+        }
+      ],
+      "in_reply_to_user_id": "523668306",
+      "id": "1577365599126274049",
+      "edit_history_tweet_ids": ["1577365599126274049"]
+    },
+    {
+      "author_id": "1360916557476597768",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0
+      },
+      "text": "@saraliDev @dan_abramov @J_Lieu @DeniTechh @DThompsonDev @shashiwhocodes Sara you're the best!",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577361416138506240"
+        }
+      ],
+      "in_reply_to_user_id": "1053295063449694213",
+      "id": "1577365369261539341",
+      "edit_history_tweet_ids": ["1577365369261539341"]
+    },
+    {
+      "author_id": "86144878",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @awhalefact is the best",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577365092836200448",
+      "edit_history_tweet_ids": ["1577365092836200448"]
+    },
+    {
+      "author_id": "523668306",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 3,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @DavidKPiano",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577364689457119232",
+      "edit_history_tweet_ids": ["1577364689457119232"]
+    },
+    {
+      "author_id": "1440785614673113093",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 3,
+        "quote_count": 0
+      },
+      "text": "@saraliDev @dan_abramov @J_Lieu @DThompsonDev @danielcranney @shashiwhocodes I need to host a tech event for all of us!",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577361416138506240"
+        }
+      ],
+      "in_reply_to_user_id": "1053295063449694213",
+      "id": "1577364633110855690",
+      "edit_history_tweet_ids": ["1577364633110855690"]
+    },
+    {
+      "author_id": "1415311517206171650",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 4,
+        "quote_count": 0
+      },
+      "text": "@saraliDev @dan_abramov @J_Lieu @DeniTechh @DThompsonDev @danielcranney You are much too kind Sara.",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577361416138506240"
+        }
+      ],
+      "in_reply_to_user_id": "1053295063449694213",
+      "id": "1577363195798253568",
+      "edit_history_tweet_ids": ["1577363195798253568"]
+    },
+    {
+      "author_id": "912495625576550401",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @visakanv naturally",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577363186277224448",
+      "edit_history_tweet_ids": ["1577363186277224448"]
+    },
+    {
+      "author_id": "362104578",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @rsnous",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577362746722508800",
+      "edit_history_tweet_ids": ["1577362746722508800"]
+    },
+    {
+      "author_id": "46210824",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@WithTheCaswave @dan_abramov @nvpkp",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577361532555792384"
+        }
+      ],
+      "in_reply_to_user_id": "434757848",
+      "id": "1577362723192586257",
+      "edit_history_tweet_ids": ["1577362723192586257"]
+    },
+    {
+      "author_id": "1515439621949304832",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov Hands down @ea_paddington",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577361801385332736",
+      "edit_history_tweet_ids": ["1577361801385332736"]
+    },
+    {
+      "author_id": "434757848",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @SeanMombo",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577361532555792384",
+      "edit_history_tweet_ids": ["1577361532555792384"]
+    },
+    {
+      "author_id": "1053295063449694213",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 4,
+        "like_count": 7,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @J_Lieu @DeniTechh @DThompsonDev @danielcranney @shashiwhocodes and many more of the amazing people I follow ✨",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577361416138506240",
+      "edit_history_tweet_ids": ["1577361416138506240"]
+    },
+    {
+      "author_id": "881192533056827392",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov gotta be @mclegibilist",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577361297443651584",
+      "edit_history_tweet_ids": ["1577361297443651584"]
+    },
+    {
+      "author_id": "2457795684",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@reactiflux @dan_abramov 😍 ...",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577333965312217089"
+        }
+      ],
+      "in_reply_to_user_id": "3122937380",
+      "id": "1577360080823267329",
+      "edit_history_tweet_ids": ["1577360080823267329"]
+    },
+    {
+      "author_id": "18333169",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@swyxio @dan_abramov @tszzl What was the tweet?",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577342634401619969"
+        }
+      ],
+      "in_reply_to_user_id": "1465910794114134018",
+      "id": "1577359654585131009",
+      "edit_history_tweet_ids": ["1577359654585131009"]
+    },
+    {
+      "author_id": "64724809",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @ClubPhotos_",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577358295135813632",
+      "edit_history_tweet_ids": ["1577358295135813632"]
+    },
+    {
+      "author_id": "135460126",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov I’ll go with @SimonHoiberg.",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577358182522945537",
+      "edit_history_tweet_ids": ["1577358182522945537"]
+    },
+    {
+      "author_id": "397551424",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @jherr",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577356412237275136",
+      "edit_history_tweet_ids": ["1577356412237275136"]
+    },
+    {
+      "author_id": "280910555",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @ghuubear",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577355913408585728",
+      "edit_history_tweet_ids": ["1577355913408585728"]
+    },
+    {
+      "author_id": "3318723770",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @RyanCarniato and @leeerob",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577354193148387328",
+      "edit_history_tweet_ids": ["1577354193148387328"]
+    },
+    {
+      "author_id": "2722742863",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@allenholub @pascale_carol @talyssonoc @dan_abramov It’s a more than well deserved mention. Your tweets are brilliant. Thanks, Allen!",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577342620715520000"
+        }
+      ],
+      "in_reply_to_user_id": "21375846",
+      "id": "1577354183392403456",
+      "edit_history_tweet_ids": ["1577354183392403456"]
+    },
+    {
+      "author_id": "1419053123075706884",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@connormcmk @dan_abramov @connormcmk 😉",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577330808066609158"
+        }
+      ],
+      "in_reply_to_user_id": "3048199165",
+      "id": "1577353402241224704",
+      "edit_history_tweet_ids": ["1577353402241224704"]
+    },
+    {
+      "author_id": "19505976",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @fchollet",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577352275713998857",
+      "edit_history_tweet_ids": ["1577352275713998857"]
+    },
+    {
+      "author_id": "261582708",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @robpalmer2 shares v interesting stuff about TC39 / webassembly - I find his thoughts super helpful  https://t.co/PyEoBXbCFv",
+      "referenced_tweets": [
+        {
+          "type": "quoted",
+          "id": "1575046530402504706"
+        },
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577351571075207168",
+      "edit_history_tweet_ids": ["1577351571075207168"]
+    },
+    {
+      "author_id": "35432643",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 7,
+        "quote_count": 0
+      },
+      "text": "@kentcdodds @thenamskov @dan_abramov @RyanCarniato",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577261251532845061"
+        }
+      ],
+      "in_reply_to_user_id": "389681470",
+      "id": "1577350986871422976",
+      "edit_history_tweet_ids": ["1577350986871422976"]
+    },
+    {
+      "author_id": "19212427",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @JoshWComeau",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577350861302398982",
+      "edit_history_tweet_ids": ["1577350861302398982"]
+    },
+    {
+      "author_id": "57470095",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @Vjeux and @notbrent",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577350305607565323",
+      "edit_history_tweet_ids": ["1577350305607565323"]
+    },
+    {
+      "author_id": "24153471",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @greg16676935420",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577350198652985344",
+      "edit_history_tweet_ids": ["1577350198652985344"]
+    },
+    {
+      "author_id": "20147163",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @elisabethirg always has knowledge and reflections to share.",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577348384066883584",
+      "edit_history_tweet_ids": ["1577348384066883584"]
+    },
+    {
+      "author_id": "15930040",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@swyxio @dan_abramov @tszzl oh shit shawn's been roonpilled",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577342634401619969"
+        }
+      ],
+      "in_reply_to_user_id": "1465910794114134018",
+      "id": "1577346968921292812",
+      "edit_history_tweet_ids": ["1577346968921292812"]
+    },
+    {
+      "author_id": "1423994664978354178",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 2,
+        "like_count": 3,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @youyuxi @antfu7 @danielcroe",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577346124549181444",
+      "edit_history_tweet_ids": ["1577346124549181444"]
+    },
+    {
+      "author_id": "330281041",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @AnthonyPAlicea",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577345148689825806",
+      "edit_history_tweet_ids": ["1577345148689825806"]
+    },
+    {
+      "author_id": "21375846",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@thewizardlucas @pascale_carol @talyssonoc @dan_abramov Thanks, Lucas!",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577280042312568833"
+        }
+      ],
+      "in_reply_to_user_id": "2722742863",
+      "id": "1577342620715520000",
+      "edit_history_tweet_ids": ["1577342620715520000"]
+    },
+    {
+      "author_id": "1016262928448843776",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @ThePrimeagen",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577341477595893766",
+      "edit_history_tweet_ids": ["1577341477595893766"]
+    },
+    {
+      "author_id": "89409492",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@CuriouZmystee @wbscodingschool @dan_abramov 😮Thanks!☺️🤗\nI can tag many accounts, but for now, let me pick @apopoutsis, @karloscode, @mvaled, ...",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577275671667437570"
+        }
+      ],
+      "in_reply_to_user_id": "1255806225150853122",
+      "id": "1577339478032764928",
+      "edit_history_tweet_ids": ["1577339478032764928"]
+    },
+    {
+      "author_id": "1391569951715061760",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@TodePond @dan_abramov &lt;3",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232454670110720"
+        }
+      ],
+      "in_reply_to_user_id": "3348112552",
+      "id": "1577337287557496834",
+      "edit_history_tweet_ids": ["1577337287557496834"]
+    },
+    {
+      "author_id": "922726665955840000",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @jherr",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577336252050903041",
+      "edit_history_tweet_ids": ["1577336252050903041"]
+    },
+    {
+      "author_id": "3122937380",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@kishore_kch @dan_abramov Thanks! We try to spot underrated tweets and tweeters",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577292590688632832"
+        }
+      ],
+      "in_reply_to_user_id": "2457795684",
+      "id": "1577333965312217089",
+      "edit_history_tweet_ids": ["1577333965312217089"]
+    },
+    {
+      "author_id": "3048199165",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @_rkauf",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577330808066609158",
+      "edit_history_tweet_ids": ["1577330808066609158"]
+    },
+    {
+      "author_id": "17534056",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov Solidly @RyanCarniato",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577330242472976384",
+      "edit_history_tweet_ids": ["1577330242472976384"]
+    },
+    {
+      "author_id": "178417991",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @RyanCarniato",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577327719423131648",
+      "edit_history_tweet_ids": ["1577327719423131648"]
+    },
+    {
+      "author_id": "30192824",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 4,
+        "quote_count": 0
+      },
+      "text": "@EddyVinckk @dan_abramov @Carnage4Life \n\n(btw I can only see a graph with a few larger nodes being drawn out, if this whole thread is visualized!)\n\nAnd because just one account doesn't do justice, for those interested in discovering interesting folks on tech Twitter:\n\nhttps://t.co/RHWRdzh6Ml",
+      "referenced_tweets": [
+        {
+          "type": "quoted",
+          "id": "1470511313713573899"
+        },
+        {
+          "type": "replied_to",
+          "id": "1577245795488702464"
+        }
+      ],
+      "in_reply_to_user_id": "633958151",
+      "id": "1577326915958067200",
+      "edit_history_tweet_ids": ["1577326915958067200"]
+    },
+    {
+      "author_id": "22676414",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dylan_piercey @RyanCarniato @t3dotgg @zBrianW @dan_abramov @Steve8708 Ryan already did it :D https://t.co/lRV8naaTs3",
+      "referenced_tweets": [
+        {
+          "type": "quoted",
+          "id": "1577322271588220928"
+        },
+        {
+          "type": "replied_to",
+          "id": "1577324483064365057"
+        }
+      ],
+      "in_reply_to_user_id": "2972914644",
+      "id": "1577325561591963648",
+      "edit_history_tweet_ids": ["1577325561591963648"]
+    },
+    {
+      "author_id": "167193309",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@LeBigLewbowski @dan_abramov @andy_matuschak",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577324293209427968"
+        }
+      ],
+      "in_reply_to_user_id": "1246097356061380611",
+      "id": "1577325200424804353",
+      "edit_history_tweet_ids": ["1577325200424804353"]
+    },
+    {
+      "author_id": "1347846274964447234",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov I’m a fan of @GergelyOrosz",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577325166690013187",
+      "edit_history_tweet_ids": ["1577325166690013187"]
+    },
+    {
+      "author_id": "1055675392231563266",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @femastery",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577324932773851136",
+      "edit_history_tweet_ids": ["1577324932773851136"]
+    },
+    {
+      "author_id": "2972914644",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 2,
+        "like_count": 5,
+        "quote_count": 0
+      },
+      "text": "@RyanCarniato @t3dotgg @zBrianW @dan_abramov @Steve8708 Also @RyanCarniato but we're probably not supposed to recurse here.",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577323877801201664"
+        }
+      ],
+      "in_reply_to_user_id": "2972914644",
+      "id": "1577324483064365057",
+      "edit_history_tweet_ids": ["1577324483064365057"]
+    },
+    {
+      "author_id": "1531399683603570688",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov Ah jeez, almost everyone. Lots of people already tagged. Let's see, how about @tottinge",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577324337857794050",
+      "edit_history_tweet_ids": ["1577324337857794050"]
+    },
+    {
+      "author_id": "1246097356061380611",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @ken_wheeler",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577324293209427968",
+      "edit_history_tweet_ids": ["1577324293209427968"]
+    },
+    {
+      "author_id": "2972914644",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 5,
+        "quote_count": 0
+      },
+      "text": "@RyanCarniato @t3dotgg @zBrianW @dan_abramov @Steve8708",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577322271588220928"
+        }
+      ],
+      "in_reply_to_user_id": "1200926075733176320",
+      "id": "1577323877801201664",
+      "edit_history_tweet_ids": ["1577323877801201664"]
+    },
+    {
+      "author_id": "13638932",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 4,
+        "quote_count": 0
+      },
+      "text": "@RyanCarniato @zachleat @JLarky @dan_abramov @Rich_Harris Communications historian here. Congrats y’all just reinvented chain letters. 😃",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577322906266193920"
+        }
+      ],
+      "in_reply_to_user_id": "1200926075733176320",
+      "id": "1577323643490553856",
+      "edit_history_tweet_ids": ["1577323643490553856"]
+    },
+    {
+      "author_id": "172170161",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @midudev",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577323590306906114",
+      "edit_history_tweet_ids": ["1577323590306906114"]
+    },
+    {
+      "author_id": "21856262",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @peduarte also @t3dotgg",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577323104707174400"
+        }
+      ],
+      "in_reply_to_user_id": "21856262",
+      "id": "1577323371590737920",
+      "edit_history_tweet_ids": ["1577323371590737920"]
+    },
+    {
+      "author_id": "21856262",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @peduarte",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577323104707174400",
+      "edit_history_tweet_ids": ["1577323104707174400"]
+    },
+    {
+      "author_id": "1200926075733176320",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0
+      },
+      "text": "@DokaKuri @dan_abramov https://t.co/Nekot6JKbT",
+      "referenced_tweets": [
+        {
+          "type": "quoted",
+          "id": "1577322271588220928"
+        },
+        {
+          "type": "replied_to",
+          "id": "1577263138982227968"
+        }
+      ],
+      "in_reply_to_user_id": "1435585081947529221",
+      "id": "1577323065985286144",
+      "edit_history_tweet_ids": ["1577323065985286144"]
+    },
+    {
+      "author_id": "1200926075733176320",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0
+      },
+      "text": "@lordson_vimal @dan_abramov https://t.co/Nekot6JKbT",
+      "referenced_tweets": [
+        {
+          "type": "quoted",
+          "id": "1577322271588220928"
+        },
+        {
+          "type": "replied_to",
+          "id": "1577256732094791681"
+        }
+      ],
+      "in_reply_to_user_id": "1556716471178657793",
+      "id": "1577323028739858432",
+      "edit_history_tweet_ids": ["1577323028739858432"]
+    },
+    {
+      "author_id": "1200926075733176320",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 7,
+        "quote_count": 0
+      },
+      "text": "@zachleat @JLarky @dan_abramov @Rich_Harris It can still be used for good.",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577302278721118210"
+        }
+      ],
+      "in_reply_to_user_id": "96383",
+      "id": "1577322906266193920",
+      "edit_history_tweet_ids": ["1577322906266193920"]
+    },
+    {
+      "author_id": "877730006709018624",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 2,
+        "quote_count": 0
+      },
+      "text": "@RyanCarniato @t3dotgg @zBrianW @dan_abramov @dylan_piercey @techgirl1908 Also @IanColdwater ❤️",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577322706227404805"
+        }
+      ],
+      "in_reply_to_user_id": "877730006709018624",
+      "id": "1577322775609577472",
+      "edit_history_tweet_ids": ["1577322775609577472"]
+    },
+    {
+      "author_id": "1200926075733176320",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 5,
+        "quote_count": 0
+      },
+      "text": "@JLarky @dan_abramov @Rich_Harris @zachleat https://t.co/Nekot6JKbT",
+      "referenced_tweets": [
+        {
+          "type": "quoted",
+          "id": "1577322271588220928"
+        },
+        {
+          "type": "replied_to",
+          "id": "1577301153393827844"
+        }
+      ],
+      "in_reply_to_user_id": "22676414",
+      "id": "1577322754436579329",
+      "edit_history_tweet_ids": ["1577322754436579329"]
+    },
+    {
+      "author_id": "877730006709018624",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 1,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@RyanCarniato @t3dotgg @zBrianW @dan_abramov @dylan_piercey @techgirl1908",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577322271588220928"
+        }
+      ],
+      "in_reply_to_user_id": "1200926075733176320",
+      "id": "1577322706227404805",
+      "edit_history_tweet_ids": ["1577322706227404805"]
+    },
+    {
+      "author_id": "16426060",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @gerrymcgovern",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577322444171378688",
+      "edit_history_tweet_ids": ["1577322444171378688"]
+    },
+    {
+      "author_id": "1200926075733176320",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 2,
+        "like_count": 17,
+        "quote_count": 2
+      },
+      "text": "@t3dotgg @zBrianW @dan_abramov @dylan_piercey",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577238587321438208"
+        }
+      ],
+      "in_reply_to_user_id": "786375418685165568",
+      "id": "1577322271588220928",
+      "edit_history_tweet_ids": ["1577322271588220928"]
+    },
+    {
+      "author_id": "1562900056784523265",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 3,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @pingnotgg",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577321388527886336",
+      "edit_history_tweet_ids": ["1577321388527886336"]
+    },
+    {
+      "author_id": "277872618",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov more than insightful: @YouVersion",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577320089321607173",
+      "edit_history_tweet_ids": ["1577320089321607173"]
+    },
+    {
+      "author_id": "903651710404501505",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @kunalstwt @eddiejaoude",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577315333333188608",
+      "edit_history_tweet_ids": ["1577315333333188608"]
+    },
+    {
+      "author_id": "116830672",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @greg16676935420",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577313962315730948",
+      "edit_history_tweet_ids": ["1577313962315730948"]
+    },
+    {
+      "author_id": "1388270448652193796",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 1,
+        "quote_count": 0
+      },
+      "text": "@dan_abramov @divine_economy",
+      "referenced_tweets": [
+        {
+          "type": "replied_to",
+          "id": "1577232048099856384"
+        }
+      ],
+      "in_reply_to_user_id": "70345946",
+      "id": "1577312721527250944",
+      "edit_history_tweet_ids": ["1577312721527250944"]
+    }
+  ],
+  "includes": {
+    "users": [
+      {
+        "id": "319102070",
+        "name": "nvpkp",
+        "username": "nvpkp"
+      },
+      {
+        "id": "46210824",
+        "name": "SHON",
+        "username": "SeanMombo"
+      },
+      {
+        "id": "2358510692",
+        "name": "Lawrence AKA Coding Paths",
+        "username": "LDLockhartJr"
+      },
+      {
+        "id": "1440785614673113093",
+        "name": "Deni🐺",
+        "username": "DeniTechh"
+      },
+      {
+        "id": "1235138229306675200",
+        "name": "Noel",
+        "username": "noel_codes"
+      },
+      {
+        "id": "1225934677",
+        "name": "ilhan | Unlearning",
+        "username": "syzygiess"
+      },
+      {
+        "id": "1470928421790355460",
+        "name": "r(eeeeeeeeeee)gan",
+        "username": "reegannotraygan"
+      },
+      {
+        "id": "196663187",
+        "name": "'); DROP Ţ̸͓̠̼͖̖̆ͫ̑̒̿ͪ͞A̐͏̠̫͔̰̖ͅͅB̉͌͒̈LE name; --",
+        "username": "fardarter"
+      },
+      {
+        "id": "70345946",
+        "name": "дэн",
+        "username": "dan_abramov"
+      },
+      {
+        "id": "1456358823405383685",
+        "name": "Jasmine",
+        "username": "Jazzycodes"
+      },
+      {
+        "id": "397987659",
+        "name": "Marvin",
+        "username": "mfrachet"
+      },
+      {
+        "id": "1495470629927231488",
+        "name": "Izzy (she/they)",
+        "username": "izaye_visuals"
+      },
+      {
+        "id": "2862793887",
+        "name": "Mycolaos",
+        "username": "Mycolaos"
+      },
+      {
+        "id": "23481558",
+        "name": "jordan",
+        "username": "jdan"
+      },
+      {
+        "id": "329622055",
+        "name": "Eric Hélier",
+        "username": "HelierEric"
+      },
+      {
+        "id": "3353362143",
+        "name": "Garrett Dailey",
+        "username": "Liber_Rex"
+      },
+      {
+        "id": "122246321",
+        "name": "Steve Ruiz",
+        "username": "steveruizok"
+      },
+      {
+        "id": "992126114",
+        "name": "David K. 🎹",
+        "username": "DavidKPiano"
+      },
+      {
+        "id": "1053295063449694213",
+        "name": "H.Sara 💻",
+        "username": "saraliDev"
+      },
+      {
+        "id": "73089736",
+        "name": "JAX | Life, Health, & Fitness Dojo",
+        "username": "44JAX44"
+      },
+      {
+        "id": "550044825",
+        "name": "Gabor",
+        "username": "GaborPfalzer"
+      },
+      {
+        "id": "194068797",
+        "name": "James Lieu 🇬🇧",
+        "username": "J_Lieu"
+      },
+      {
+        "id": "1154125281516503044",
+        "name": "Dunsin🎙️",
+        "username": "DunsinWebDev"
+      },
+      {
+        "id": "1480481380190543877",
+        "name": "🌟CHINAA Dojo🌟",
+        "username": "Yaa_gurl"
+      },
+      {
+        "id": "2751927247",
+        "name": "Ben",
+        "username": "bencodesx"
+      },
+      {
+        "id": "1210112823784697857",
+        "name": "Crispy Chicken",
+        "username": "mclegibilist"
+      },
+      {
+        "id": "881192533056827392",
+        "name": "goblin à la mode 🍨 1/100 goals",
+        "username": "goblinodds"
+      },
+      {
+        "id": "523668306",
+        "name": "Ari Koponen",
+        "username": "APKoponen"
+      },
+      {
+        "id": "1360916557476597768",
+        "name": "Daniel Cranney 🇬🇧",
+        "username": "danielcranney"
+      },
+      {
+        "id": "86144878",
+        "name": "Laís Tomaz",
+        "username": "LaisTomazz"
+      },
+      {
+        "id": "1415311517206171650",
+        "name": "Shashi Lo",
+        "username": "shashiwhocodes"
+      },
+      {
+        "id": "912495625576550401",
+        "name": "danieljamesdrake.eth",
+        "username": "DanielJDrake"
+      },
+      {
+        "id": "362104578",
+        "name": "Mathieu Dutour",
+        "username": "MathieuDutour"
+      },
+      {
+        "id": "434757848",
+        "name": "🤙Bashy🤙",
+        "username": "WithTheCaswave"
+      },
+      {
+        "id": "1515439621949304832",
+        "name": "QuentinTheDot",
+        "username": "QuentinTheDot"
+      },
+      {
+        "id": "2457795684",
+        "name": "Kishore Andra",
+        "username": "kishore_kch"
+      },
+      {
+        "id": "3122937380",
+        "name": "Reactiflux",
+        "username": "reactiflux"
+      },
+      {
+        "id": "18333169",
+        "name": "Ron Au 🦆",
+        "username": "ronvoluted"
+      },
+      {
+        "id": "1465910794114134018",
+        "name": "swyx after dark",
+        "username": "swyxio"
+      },
+      {
+        "id": "64724809",
+        "name": "Karsten",
+        "username": "kasitmp"
+      },
+      {
+        "id": "135460126",
+        "name": "Andrea Bizzotto 💙",
+        "username": "biz84"
+      },
+      {
+        "id": "397551424",
+        "name": "lxmarinkovic",
+        "username": "lxmarinkovic"
+      },
+      {
+        "id": "280910555",
+        "name": "Aiman",
+        "username": "aimanjaff"
+      },
+      {
+        "id": "3318723770",
+        "name": "Shyam 🍥",
+        "username": "shyam_lohar_"
+      },
+      {
+        "id": "2722742863",
+        "name": "Lucas, The Wizard (he/him)",
+        "username": "thewizardlucas"
+      },
+      {
+        "id": "21375846",
+        "name": "Allen Holub",
+        "username": "allenholub"
+      },
+      {
+        "id": "1419053123075706884",
+        "name": "Rafael Kaufmann (🧠,🌎)",
+        "username": "_rkauf"
+      },
+      {
+        "id": "3048199165",
+        "name": "Connor McCormick",
+        "username": "connormcmk"
+      },
+      {
+        "id": "19505976",
+        "name": "Zeke Pfeifer",
+        "username": "ezekielp"
+      },
+      {
+        "id": "261582708",
+        "name": "John Reilly ❤️🌻",
+        "username": "johnny_reilly"
+      },
+      {
+        "id": "55897406",
+        "name": "Rob Palmer",
+        "username": "robpalmer2"
+      },
+      {
+        "id": "35432643",
+        "name": "Addy Osmani",
+        "username": "addyosmani"
+      },
+      {
+        "id": "389681470",
+        "name": "Kent C. Dodds 🌌",
+        "username": "kentcdodds"
+      },
+      {
+        "id": "19212427",
+        "name": "Pierre-A Dupuy",
+        "username": "padupuy"
+      },
+      {
+        "id": "57470095",
+        "name": "Catalin Miron - 22800 subs 🤩",
+        "username": "mironcatalin"
+      },
+      {
+        "id": "24153471",
+        "name": "Alex Hatzipanis",
+        "username": "hatzipanis_"
+      },
+      {
+        "id": "20147163",
+        "name": "Pavneet Singh Saund @ Gran Canaria 🏳️‍🌈 🙌🏽",
+        "username": "pavsaund"
+      },
+      {
+        "id": "15930040",
+        "name": "Jani Eväkallio",
+        "username": "jevakallio"
+      },
+      {
+        "id": "1423994664978354178",
+        "name": "Samuel Mork Bednarz",
+        "username": "MorkSamuel"
+      },
+      {
+        "id": "330281041",
+        "name": "Alonso",
+        "username": "i0ns0"
+      },
+      {
+        "id": "1016262928448843776",
+        "name": "Abdulhamid Abdo",
+        "username": "hamidify"
+      },
+      {
+        "id": "89409492",
+        "name": "Nils",
+        "username": "nilsandrey"
+      },
+      {
+        "id": "1255806225150853122",
+        "name": "Mystica🦋",
+        "username": "CuriouZmystee"
+      },
+      {
+        "id": "1391569951715061760",
+        "name": "ideasyoucanhave",
+        "username": "ideasyoucanhave"
+      },
+      {
+        "id": "3348112552",
+        "name": "Lu Wilson",
+        "username": "TodePond"
+      },
+      {
+        "id": "922726665955840000",
+        "name": "William",
+        "username": "billmorgan92"
+      },
+      {
+        "id": "17534056",
+        "name": "Arif Muslax",
+        "username": "Muslax"
+      },
+      {
+        "id": "178417991",
+        "name": "Genesis Guerrero ❁",
+        "username": "geneguer"
+      },
+      {
+        "id": "30192824",
+        "name": "Gergely Orosz",
+        "username": "GergelyOrosz"
+      },
+      {
+        "id": "633958151",
+        "name": "Eddy Vinck",
+        "username": "EddyVinckk"
+      },
+      {
+        "id": "22676414",
+        "name": "JLarky",
+        "username": "JLarky"
+      },
+      {
+        "id": "2972914644",
+        "name": "Dylan Piercey",
+        "username": "dylan_piercey"
+      },
+      {
+        "id": "1200926075733176320",
+        "name": "Ryan Carniato",
+        "username": "RyanCarniato"
+      },
+      {
+        "id": "167193309",
+        "name": "lil uzi perf",
+        "username": "ken_wheeler"
+      },
+      {
+        "id": "1246097356061380611",
+        "name": "Lewis",
+        "username": "LeBigLewbowski"
+      },
+      {
+        "id": "1347846274964447234",
+        "name": "oli⛰️jens",
+        "username": "oli_jens_"
+      },
+      {
+        "id": "1055675392231563266",
+        "name": "Shree",
+        "username": "jssnippet"
+      },
+      {
+        "id": "1531399683603570688",
+        "name": "Jon DeWitt",
+        "username": "jon_dewitt_ts"
+      },
+      {
+        "id": "13638932",
+        "name": "David Wells",
+        "username": "DavidWells"
+      },
+      {
+        "id": "172170161",
+        "name": "TRB Marsiglia",
+        "username": "marsigliaCR"
+      },
+      {
+        "id": "21856262",
+        "name": "João Henriques 👾",
+        "username": "johnny_ghost_"
+      },
+      {
+        "id": "1435585081947529221",
+        "name": "Dhananjay",
+        "username": "DokaKuri"
+      },
+      {
+        "id": "1556716471178657793",
+        "name": "Lordson Vimal",
+        "username": "lordson_vimal"
+      },
+      {
+        "id": "96383",
+        "name": "Zach Leatherman",
+        "username": "zachleat"
+      },
+      {
+        "id": "877730006709018624",
+        "name": "Sean Corbett",
+        "username": "sc_codeUM"
+      },
+      {
+        "id": "16426060",
+        "name": "Liz Nix (She/Her/Sir)",
+        "username": "LizNix"
+      },
+      {
+        "id": "786375418685165568",
+        "name": "Theo 🔜 TwitchCon (w/ Ping.gg)",
+        "username": "t3dotgg"
+      },
+      {
+        "id": "1562900056784523265",
+        "name": "!!!Theo",
+        "username": "t3notgg"
+      },
+      {
+        "id": "277872618",
+        "name": "Maiah Macariola",
+        "username": "maiahmac"
+      },
+      {
+        "id": "903651710404501505",
+        "name": "Utkarsh Maurya",
+        "username": "coder_utkarsh"
+      },
+      {
+        "id": "116830672",
+        "name": "Brandon McConnell 🇺🇦✊",
+        "username": "branmcconnell"
+      },
+      {
+        "id": "1388270448652193796",
+        "name": "m-j-r",
+        "username": "m_j_rossman"
+      }
+    ],
+    "tweets": [
+      {
+        "author_id": "46210824",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 2,
+          "quote_count": 0
+        },
+        "text": "@WithTheCaswave @dan_abramov @nvpkp",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577361532555792384"
+          }
+        ],
+        "in_reply_to_user_id": "434757848",
+        "id": "1577362723192586257",
+        "edit_history_tweet_ids": ["1577362723192586257"]
+      },
+      {
+        "author_id": "1440785614673113093",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 17,
+          "like_count": 25,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @reegannotraygan @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577367341620396032"
+          }
+        ],
+        "in_reply_to_user_id": "1440785614673113093",
+        "id": "1577368506512850961",
+        "edit_history_tweet_ids": ["1577368506512850961"]
+      },
+      {
+        "author_id": "1440785614673113093",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 8,
+          "like_count": 36,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov I have a whole list of friend I value and love here but here’s the thread I guess lmao\n\nIn no specific order EXCEPT MY OTHER BRAIN CEL @yuricodesbot \n\nSpecial shoutout to my first follower @pokecoder and my friend and mentor @theCoachNico. Also my best friend @Mansourabv \n\nAnyway",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577366373495410688",
+        "edit_history_tweet_ids": ["1577366373495410688"]
+      },
+      {
+        "author_id": "1225934677",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 2,
+          "quote_count": 0
+        },
+        "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv Legend",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577366373495410688"
+          }
+        ],
+        "in_reply_to_user_id": "1440785614673113093",
+        "id": "1577372336138878976",
+        "edit_history_tweet_ids": ["1577372336138878976"]
+      },
+      {
+        "author_id": "1470928421790355460",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 5,
+          "quote_count": 0
+        },
+        "text": "@DeniTechh @dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1 @t3dotgg @codingphase @noel_codes @MrConerMurphy @catalinmpit @LDLockhartJr @DorianDevelops @DunsinWebDev @Jazzycodes @44JAX44 @Saedeh57 @njong_emy @SergiiKirianov @TheJackForge @hhthacker @ghumare64 @eddiejaoude @Yaa_gurl @heyOnuoha @ChekTek @izaye_visuals 🥺❣️",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577368506512850961"
+          }
+        ],
+        "in_reply_to_user_id": "1440785614673113093",
+        "id": "1577372158447206444",
+        "edit_history_tweet_ids": ["1577372158447206444"]
+      },
+      {
+        "author_id": "70345946",
+        "public_metrics": {
+          "retweet_count": 19,
+          "reply_count": 212,
+          "like_count": 343,
+          "quote_count": 6
+        },
+        "text": "On a mission to find the most insightful twitter account\n\nTag the first account you can think of that's more insightful than you. If you get tagged, do the same underneath.",
+        "id": "1577232048099856384",
+        "edit_history_tweet_ids": ["1577232048099856384"]
+      },
+      {
+        "author_id": "397987659",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 0,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @buildsghos, very impressed by the technical knowledge, and the analysis capacities. Every single tweet they make create a brain connection. Source of inspiration for me.",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577370753946763292",
+        "edit_history_tweet_ids": ["1577370753946763292"]
+      },
+      {
+        "author_id": "992126114",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 4,
+          "quote_count": 0
+        },
+        "text": "@APKoponen @dan_abramov Oh, fun game\n\n@steveruizok",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577364689457119232"
+          }
+        ],
+        "in_reply_to_user_id": "523668306",
+        "id": "1577365599126274049",
+        "edit_history_tweet_ids": ["1577365599126274049"]
+      },
+      {
+        "author_id": "1440785614673113093",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 8,
+          "like_count": 28,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @yuricodesbot @pokecoder @theCoachNico @Mansourabv @GrahamTheDev @genericmikechen @ykdojo @saraliDev @katalyst_katt @sudobunni @shashiwhocodes @TheTechRally @davidnunez @FrancescoCiull4 @themarcba @denicmarko @shashiwhocodes @trunarla @AvieDev @reactive_dude @nina_a1012 @TheAnkurTyagi @bencodesx @bellauvre @DailyDevTips1",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577366373495410688"
+          }
+        ],
+        "in_reply_to_user_id": "1440785614673113093",
+        "id": "1577367341620396032",
+        "edit_history_tweet_ids": ["1577367341620396032"]
+      },
+      {
+        "author_id": "1440785614673113093",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 3,
+          "quote_count": 0
+        },
+        "text": "@saraliDev @dan_abramov @J_Lieu @DThompsonDev @danielcranney @shashiwhocodes I need to host a tech event for all of us!",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577361416138506240"
+          }
+        ],
+        "in_reply_to_user_id": "1053295063449694213",
+        "id": "1577364633110855690",
+        "edit_history_tweet_ids": ["1577364633110855690"]
+      },
+      {
+        "author_id": "194068797",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 5,
+          "like_count": 11,
+          "quote_count": 0
+        },
+        "text": "@saraliDev @dan_abramov @DeniTechh @DThompsonDev @danielcranney @shashiwhocodes Thanks Sara! You're too kind.\n\nTo pay it forward I'll tag @hussien_coding, @_AnthonyBeckett @CHBernasconiC, @GaborPfalzer, @goobemaster \n\nThere are more, but these folks come to mind first ✨",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577361416138506240"
+          }
+        ],
+        "in_reply_to_user_id": "1053295063449694213",
+        "id": "1577366257803862016",
+        "edit_history_tweet_ids": ["1577366257803862016"]
+      },
+      {
+        "author_id": "881192533056827392",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 2,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov gotta be @mclegibilist",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577361297443651584",
+        "edit_history_tweet_ids": ["1577361297443651584"]
+      },
+      {
+        "author_id": "1053295063449694213",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 4,
+          "like_count": 7,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @J_Lieu @DeniTechh @DThompsonDev @danielcranney @shashiwhocodes and many more of the amazing people I follow ✨",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577361416138506240",
+        "edit_history_tweet_ids": ["1577361416138506240"]
+      },
+      {
+        "author_id": "523668306",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 3,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @DavidKPiano",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577364689457119232",
+        "edit_history_tweet_ids": ["1577364689457119232"]
+      },
+      {
+        "author_id": "434757848",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @SeanMombo",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577361532555792384",
+        "edit_history_tweet_ids": ["1577361532555792384"]
+      },
+      {
+        "author_id": "3122937380",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@kishore_kch @dan_abramov Thanks! We try to spot underrated tweets and tweeters",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577292590688632832"
+          }
+        ],
+        "in_reply_to_user_id": "2457795684",
+        "id": "1577333965312217089",
+        "edit_history_tweet_ids": ["1577333965312217089"]
+      },
+      {
+        "author_id": "21375846",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@thewizardlucas @pascale_carol @talyssonoc @dan_abramov Thanks, Lucas!",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577280042312568833"
+          }
+        ],
+        "in_reply_to_user_id": "2722742863",
+        "id": "1577342620715520000",
+        "edit_history_tweet_ids": ["1577342620715520000"]
+      },
+      {
+        "author_id": "3048199165",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @_rkauf",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577330808066609158",
+        "edit_history_tweet_ids": ["1577330808066609158"]
+      },
+      {
+        "author_id": "55897406",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 9,
+          "quote_count": 1
+        },
+        "text": "@jarredsumner The benefit of import maps as a linking mechanism is that they are a common currency that can be shared with browsers, unlike node_modules. So it provides a future convergence point.\n\nIn the worst case, import maps may need to be regenerated based off those other files for now.",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1575043477833887744"
+          }
+        ],
+        "in_reply_to_user_id": "2489440172",
+        "id": "1575046530402504706",
+        "edit_history_tweet_ids": ["1575046530402504706"]
+      },
+      {
+        "author_id": "389681470",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 4,
+          "quote_count": 0
+        },
+        "text": "@thenamskov @dan_abramov @addyosmani",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577234896409759744"
+          }
+        ],
+        "in_reply_to_user_id": "1146220860262535173",
+        "id": "1577261251532845061",
+        "edit_history_tweet_ids": ["1577261251532845061"]
+      },
+      {
+        "author_id": "2722742863",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@pascale_carol @talyssonoc @dan_abramov Thank you, Carol!\n\n➡️@allenholub",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577278373583208451"
+          }
+        ],
+        "in_reply_to_user_id": "1570399673197764609",
+        "id": "1577280042312568833",
+        "edit_history_tweet_ids": ["1577280042312568833"]
+      },
+      {
+        "author_id": "1255806225150853122",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 3,
+          "like_count": 3,
+          "quote_count": 0
+        },
+        "text": "@wbscodingschool @dan_abramov Wow thanks! \n@nilsandrey is underrated!",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577243782906421248"
+          }
+        ],
+        "in_reply_to_user_id": "1199284273783726081",
+        "id": "1577275671667437570",
+        "edit_history_tweet_ids": ["1577275671667437570"]
+      },
+      {
+        "author_id": "3348112552",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @ideasyoucanhave",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577232454670110720",
+        "edit_history_tweet_ids": ["1577232454670110720"]
+      },
+      {
+        "author_id": "2457795684",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @reactiflux (all the cool folks)",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577292590688632832",
+        "edit_history_tweet_ids": ["1577292590688632832"]
+      },
+      {
+        "author_id": "30192824",
+        "public_metrics": {
+          "retweet_count": 290,
+          "reply_count": 22,
+          "like_count": 1788,
+          "quote_count": 32
+        },
+        "text": "If you work in tech, #TechTwitter is the place to learn, keep up to date and get inspired.\n\nFollow the right people and you learn something new every day.\n\nHere are 20 tech folks I always pay attention to. They tweet no fluff. Plus details on what to expect when following them:",
+        "id": "1470511313713573899",
+        "edit_history_tweet_ids": ["1470511313713573899"]
+      },
+      {
+        "author_id": "633958151",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 12,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov My vote goes out to @GergelyOrosz",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577245795488702464",
+        "edit_history_tweet_ids": ["1577245795488702464"]
+      },
+      {
+        "author_id": "1200926075733176320",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 2,
+          "like_count": 17,
+          "quote_count": 2
+        },
+        "text": "@t3dotgg @zBrianW @dan_abramov @dylan_piercey",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577238587321438208"
+          }
+        ],
+        "in_reply_to_user_id": "786375418685165568",
+        "id": "1577322271588220928",
+        "edit_history_tweet_ids": ["1577322271588220928"]
+      },
+      {
+        "author_id": "2972914644",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 2,
+          "like_count": 5,
+          "quote_count": 0
+        },
+        "text": "@RyanCarniato @t3dotgg @zBrianW @dan_abramov @Steve8708 Also @RyanCarniato but we're probably not supposed to recurse here.",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577323877801201664"
+          }
+        ],
+        "in_reply_to_user_id": "2972914644",
+        "id": "1577324483064365057",
+        "edit_history_tweet_ids": ["1577324483064365057"]
+      },
+      {
+        "author_id": "1246097356061380611",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @ken_wheeler",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577324293209427968",
+        "edit_history_tweet_ids": ["1577324293209427968"]
+      },
+      {
+        "author_id": "2972914644",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 5,
+          "quote_count": 0
+        },
+        "text": "@RyanCarniato @t3dotgg @zBrianW @dan_abramov @Steve8708",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577322271588220928"
+          }
+        ],
+        "in_reply_to_user_id": "1200926075733176320",
+        "id": "1577323877801201664",
+        "edit_history_tweet_ids": ["1577323877801201664"]
+      },
+      {
+        "author_id": "1200926075733176320",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 7,
+          "quote_count": 0
+        },
+        "text": "@zachleat @JLarky @dan_abramov @Rich_Harris It can still be used for good.",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577302278721118210"
+          }
+        ],
+        "in_reply_to_user_id": "96383",
+        "id": "1577322906266193920",
+        "edit_history_tweet_ids": ["1577322906266193920"]
+      },
+      {
+        "author_id": "21856262",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 0,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @peduarte",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577323104707174400",
+        "edit_history_tweet_ids": ["1577323104707174400"]
+      },
+      {
+        "author_id": "1435585081947529221",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 7,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @RyanCarniato",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577263138982227968",
+        "edit_history_tweet_ids": ["1577263138982227968"]
+      },
+      {
+        "author_id": "1556716471178657793",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 5,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov @RyanCarniato",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577256732094791681",
+        "edit_history_tweet_ids": ["1577256732094791681"]
+      },
+      {
+        "author_id": "96383",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 2,
+          "like_count": 14,
+          "quote_count": 0
+        },
+        "text": "@JLarky @dan_abramov @RyanCarniato @Rich_Harris how insightful do we need to be to spot a thinly veiled popularity contest 😅",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577301153393827844"
+          }
+        ],
+        "in_reply_to_user_id": "22676414",
+        "id": "1577302278721118210",
+        "edit_history_tweet_ids": ["1577302278721118210"]
+      },
+      {
+        "author_id": "877730006709018624",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 1,
+          "like_count": 1,
+          "quote_count": 0
+        },
+        "text": "@RyanCarniato @t3dotgg @zBrianW @dan_abramov @dylan_piercey @techgirl1908",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577322271588220928"
+          }
+        ],
+        "in_reply_to_user_id": "1200926075733176320",
+        "id": "1577322706227404805",
+        "edit_history_tweet_ids": ["1577322706227404805"]
+      },
+      {
+        "author_id": "22676414",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 2,
+          "like_count": 10,
+          "quote_count": 0
+        },
+        "text": "@dan_abramov In webdev? @RyanCarniato, @Rich_Harris and @zachleat come to mind :)",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577232048099856384"
+          }
+        ],
+        "in_reply_to_user_id": "70345946",
+        "id": "1577301153393827844",
+        "edit_history_tweet_ids": ["1577301153393827844"]
+      },
+      {
+        "author_id": "786375418685165568",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 2,
+          "like_count": 37,
+          "quote_count": 0
+        },
+        "text": "@zBrianW @dan_abramov @RyanCarniato",
+        "referenced_tweets": [
+          {
+            "type": "replied_to",
+            "id": "1577237631687008256"
+          }
+        ],
+        "in_reply_to_user_id": "32359196",
+        "id": "1577238587321438208",
+        "edit_history_tweet_ids": ["1577238587321438208"]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "resource_id": "1577342634401619969",
+      "parameter": "referenced_tweets.id",
+      "resource_type": "tweet",
+      "section": "includes",
+      "title": "Authorization Error",
+      "value": "1577342634401619969",
+      "detail": "Sorry, you are not authorized to see the Tweet with referenced_tweets.id: [1577342634401619969].",
+      "type": "https://api.twitter.com/2/problems/not-authorized-for-resource"
+    },
+    {
+      "resource_id": "1577342634401619969",
+      "parameter": "referenced_tweets.id",
+      "resource_type": "tweet",
+      "section": "includes",
+      "title": "Authorization Error",
+      "value": "1577342634401619969",
+      "detail": "Sorry, you are not authorized to see the Tweet with referenced_tweets.id: [1577342634401619969].",
+      "type": "https://api.twitter.com/2/problems/not-authorized-for-resource"
+    }
+  ],
+  "meta": {
+    "newest_id": "1577373382030540806",
+    "oldest_id": "1577312721527250944",
+    "result_count": 100,
+    "next_token": "b26v89c19zqg8o3fpzbmm4519b24e8pkw4ovav9mstri5"
+  }
+}

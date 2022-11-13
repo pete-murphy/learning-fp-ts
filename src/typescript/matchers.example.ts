@@ -1,33 +1,33 @@
-import { pipe } from "fp-ts/lib/pipeable"
-import { match } from "./matchers"
+import { pipe } from "fp-ts/function";
+import { match } from "@simspace/matchers";
 
 export type TicketDetail =
   | {
-      tag: "tracking"
+      tag: "tracking";
     }
   | {
-      tag: "info"
-      contents: string
+      tag: "info";
+      contents: string;
     }
   | {
-      tag: "change"
-      contents: number
-    }
+      tag: "change";
+      contents: number;
+    };
 
 const ex1: TicketDetail = {
-  tag: "tracking",
-}
+  tag: "tracking"
+};
 
 const ex2: TicketDetail = {
   tag: "change",
-  contents: 200,
-}
+  contents: 200
+};
 
 pipe(
   ex1 as TicketDetail,
-  match({
+  match.w({
     tracking: () => "I'm super tracked!",
     info: i => i.contents,
-    change: c => String(c.contents),
+    change: c => String(c.contents)
   })
-)
+);
