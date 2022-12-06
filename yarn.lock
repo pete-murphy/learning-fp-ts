@@ -2632,9 +2632,9 @@ decamelize@^1.2.0:
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
 
 deep-equal@~1.1.1:
   version "1.1.1"
@@ -5210,10 +5210,10 @@ parse5@4.0.0:
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
 
-parser-ts@^0.6.15:
-  version "0.6.15"
-  resolved "https://registry.yarnpkg.com/parser-ts/-/parser-ts-0.6.15.tgz#2bbe6f0522b4fd5435644e0f1881cb90f59adae1"
-  integrity sha512-VhoEKmGOR7jLLNKoBBcVWKUkB8U13Uy4FsdXWQSiLmbiJAq3S8OHB1Ev9pyBpyh0MDF3opPC9DmikZOvw/5hZQ==
+parser-ts@^0.6.16:
+  version "0.6.16"
+  resolved "https://registry.yarnpkg.com/parser-ts/-/parser-ts-0.6.16.tgz#e1477d6eea789325ca94dc3a48802dba67506a64"
+  integrity sha512-BC5HBg1UfaGKi/PKwUZKmFwQq56qVsMel1Gx0Lu2JeHf/J+XCqV9fahCil0GOMC+sH2ON3N6jdyIoI6RzCyQqw==
   dependencies:
     "@babel/code-frame" "^7.0.0"
 
