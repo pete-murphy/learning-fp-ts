@@ -4824,9 +4824,9 @@ mimic-fn@^2.1.0:
     brace-expansion "^1.1.7"
 
 minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5, minimist@~1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.8.tgz#c1a464e7693302e082a075cee0c057741ac4772c"
+  integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -5210,10 +5210,10 @@ parse5@4.0.0:
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
 
-parser-ts@^0.6.15:
-  version "0.6.15"
-  resolved "https://registry.yarnpkg.com/parser-ts/-/parser-ts-0.6.15.tgz#2bbe6f0522b4fd5435644e0f1881cb90f59adae1"
-  integrity sha512-VhoEKmGOR7jLLNKoBBcVWKUkB8U13Uy4FsdXWQSiLmbiJAq3S8OHB1Ev9pyBpyh0MDF3opPC9DmikZOvw/5hZQ==
+parser-ts@^0.6.16:
+  version "0.6.16"
+  resolved "https://registry.yarnpkg.com/parser-ts/-/parser-ts-0.6.16.tgz#e1477d6eea789325ca94dc3a48802dba67506a64"
+  integrity sha512-BC5HBg1UfaGKi/PKwUZKmFwQq56qVsMel1Gx0Lu2JeHf/J+XCqV9fahCil0GOMC+sH2ON3N6jdyIoI6RzCyQqw==
   dependencies:
     "@babel/code-frame" "^7.0.0"
 
