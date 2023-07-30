@@ -1,5 +1,5 @@
 {
-  "prettier.printWidth": 60,
+  "prettier.printWidth": 40,
   "files.autoSaveDelay": 100,
-  "typescript.tsdk": "/Users/peter/Code/fp-ts-learning/node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

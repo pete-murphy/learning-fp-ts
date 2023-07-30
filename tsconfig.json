@@ -11,7 +11,7 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": ["esnext"],
+    "lib": ["esnext", "ES2015"],
     "jsx": "react"
   },
   "baseUrl": "src"

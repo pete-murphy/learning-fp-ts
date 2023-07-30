@@ -1,13 +1,13 @@
-import { pipe, tuple } from "fp-ts/function"
-import * as RA from "fp-ts/ReadonlyArray"
-import { Ap } from "./lib/fp-ts-imports"
+import { pipe, tuple } from "fp-ts/function";
+import * as RA from "fp-ts/ReadonlyArray";
+import { Ap } from "./lib/fp-ts-imports";
 
 pipe(
   RA.Do,
   RA.apS("x", [1, 2, 3]),
   RA.apS("y", ["a", "b", "c"]),
-  RA.map(({ x, y }) => tuple(x, y))
-)
+  RA.map(({ x, y }) => tuple(x, y)),
+);
 //-> [ [ 1, 'a' ],
 //     [ 1, 'b' ],
 //     [ 1, 'c' ],
@@ -21,10 +21,10 @@ pipe(
 RA.comprehension(
   [
     [1, 2, 3],
-    ["a", "b", "c"]
+    ["a", "b", "c"],
   ],
-  tuple
-)
+  tuple,
+);
 //-> [ [ 1, 'a' ],
 //     [ 1, 'b' ],
 //     [ 1, 'c' ],
@@ -35,4 +35,4 @@ RA.comprehension(
 //     [ 3, 'b' ],
 //     [ 3, 'c' ] ]
 
-Ap.sequenceT(RA.Apply)([1, 2, 3], ["a", "b", "c"]) //?
+Ap.sequenceT(RA.Apply)([1, 2, 3], ["a", "b", "c"]); //?
